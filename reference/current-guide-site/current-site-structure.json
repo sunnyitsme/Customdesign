@@ -1,0 +1,619 @@
+{
+  "source": "https://guidefs.co.uk",
+  "crawl_date": "2026-08-29",
+  "navigation": {
+    "Home": "/",
+    "About Us": {
+      "Our Company": "/gfs-our-company",
+      "Testimonials": "/testimonials",
+      "FAQs": "/faq",
+      "Terms of Business": "/sites/default/files/clients/966/Gfs-tob-may2025.pdf",
+      "Privacy Notice": "/sites/default/files/clients/966/Gfs-privacy-notice.pdf"
+    },
+    "Services": {
+      "Mortgages": {
+        "Introduction To Mortgages": "/introduction-to-mortgages",
+        "Mortgage Repayment": "/mortgage-repayment",
+        "Buy-to-let": "/buy-to-let-mortgages",
+        "Remortgaging": "/remortgaging",
+        "Standard Variable Rate Mortgages": "/standard-variable-rate-mortgages",
+        "Fixed Rate Mortgages": "/fixed-rate-mortgages",
+        "Tracker Mortgages": "/tracker-mortgages",
+        "Cashback Mortgages": "/cashback-mortgages",
+        "Offset Mortgages": "/offset-mortgages",
+        "Bad Credit Mortgages": "/bad-credit-mortgages-direct"
+      },
+      "More Mortgage Options": {
+        "First Time Buyer": "/1st-time-buyer",
+        "Holiday Let Mortgages": "/holiday-let-mortgages-direct",
+        "Limited Company Lending": "/limited-company-lending-direct",
+        "Let-To-Buy Mortgages": "/let-to-buy-mortgages-direct",
+        "Self Employed Mortgages": "/self-employed-mortgages-direct",
+        "Second Properties": "/second-properties-direct",
+        "High-Value Mortgages": "/high-value-mortgages-direct",
+        "Retirement Interest Only Mortgages": "/retirement-interest-only-mortgages-direct",
+        "Self Build Mortgages": "/self-build-mortgages",
+        "Second Charge Mortgages": "/second-charge-mortgages"
+      },
+      "Protection": {
+        "Why Protection is Important": "/why-protection-is-important",
+        "Life Assurance": "/life-assurance",
+        "Family Income Benefit": "/family-income-benefit",
+        "Income Protection": "/income-protection",
+        "Private Medical Insurance": "/private-medical",
+        "Critical Illness": "/critical-illness",
+        "Landlord Insurance": "/landlord-insurance-direct",
+        "Military Personnel": "/military-personnel-direct"
+      },
+      "Business Protection": {
+        "Introduction to Business Protection": "/introduction-to-business-insurance",
+        "Directors' & Staff Benefits": "/directors-and-staff-benefits",
+        "Income Protection": "/income-protection-insurance",
+        "Share Protection": "/share-protection",
+        "Key Person": "/keyperson-insurance",
+        "Relevant Life Cover": "/relevant-life-cover",
+        "Employers' Liability": "/employers-liability-insurance",
+        "Professional Indemnity": "/professional-indemnity-insurance"
+      },
+      "Specialist Lending & Property Finance": {
+        "Introduction": "/gfs-lending-and-property-finance",
+        "Bridging Loans": "/gfs-bridging-loans",
+        "Development Finance": "/gfs-development-finance",
+        "Commercial & Semi Commercial Mortgages": "/gfs-commercial-and-semi-commercial-mortgages",
+        "Portfolio Landlord Finance": "/gfs-portfolio-landlord-finance",
+        "Auction Finance": "/gfs-auction-finance",
+        "House in Multiple Occupation (HMO) Finance": "/gfs-house-in-multiple-occupation-finance",
+        "Second Charge & Debt Consolidation": "/gfs-second-charge-and-debt-consolidation"
+      },
+      "Wills Writing Services": "/gfs-wills-writing"
+    },
+    "Calculators": {
+      "Mortgage Borrow": "/gfs-mortgage-borrow",
+      "Mortgage Repayment": "/gfs-mortgage-repayment",
+      "How much can I borrow": "/gfs-how-much-can-i-borrow",
+      "Overpayment": "/gfs-overpayment",
+      "Stamp Duty": "/gfs-stamp-duty"
+    },
+    "Contact Us": "/contact",
+    "Client & Advisor": {
+      "Client Login": "https://client.guidemortgages.co.uk",
+      "Advisor Login": "https://crm.guidemortgages.co.uk"
+    }
+  },
+  "global_data": {
+    "crawl_date": "2026-08-29",
+    "main_phone": "0333 034 8993",
+    "main_email_on_public_site": "enquiries@guidefs.co.uk",
+    "primary_public_address": "1st Floor, 1000 Great West Road, Brentford, London TW8 9DW",
+    "offices": {
+      "London": "1st Floor, 1000 Great West Road, Brentford, London TW8 9DW",
+      "Manchester": "Ground Floor, Dunham House, Cross Street, Sale, M33 7HH",
+      "Leicester": "Unit D5, Leicester Business Centre, Ross Walk, Leicester, LE4 5HH",
+      "Leeds": "Office 3, Millwright Business Centre, Regent Street, Leeds, LS2 7NA"
+    },
+    "legal_entity": "Asset Guide Limited",
+    "trading_names": [
+      "Guide Financial Services",
+      "Guide Mortgages"
+    ],
+    "fca_frn": "918369",
+    "ico_number": "ZA277525",
+    "company_number": "10938852",
+    "public_footer_topics": [
+      "FCA/authorisation statement",
+      "mortgage/secured-lending repossession warning",
+      "credit/lender criteria qualification",
+      "Buy-to-Let regulatory qualification",
+      "protection lapse warning",
+      "statement regarding Wills, Estate Planning and Commercial Mortgages",
+      "UK regulatory-regime targeting statement",
+      "WEBPRO development/copyright credit"
+    ],
+    "known_inconsistencies_to_resolve": [
+      "The Company page mentions London, Manchester and Leicester, while the footer also lists Leeds.",
+      "Terms of Business / Privacy Notice use a Manchester/Sale address and info@guidemortgages.co.uk, while the public site prominently uses the Brentford address and enquiries@guidefs.co.uk.",
+      "Our Team remains publicly available but is not in the current main About menu.",
+      "How We Work remains publicly available and contains investment-planning language that does not align neatly with the current four-pillar proposition."
+    ]
+  },
+  "external_dependencies": [
+    {
+      "type": "Client portal",
+      "title": "Client Login",
+      "url": "https://client.guidemortgages.co.uk",
+      "notes": "External system linked from Client & Advisor menu."
+    },
+    {
+      "type": "Advisor portal",
+      "title": "Advisor Login",
+      "url": "https://crm.guidemortgages.co.uk",
+      "notes": "External CRM/adviser system linked from Client & Advisor menu."
+    },
+    {
+      "type": "Analytics",
+      "title": "Google Tag Manager",
+      "url": "https://www.googletagmanager.com",
+      "notes": "GTM iframe is present in the public page output."
+    },
+    {
+      "type": "Calculator dependency",
+      "title": "WEBPRO Central calculators",
+      "url": "https://calcs.webprocentral.co.uk",
+      "notes": "All five calculator pages embed calculator iframes from this service."
+    }
+  ],
+  "pages": [
+    {
+      "category": "Core",
+      "title": "Home",
+      "path": "/",
+      "nav": "Yes",
+      "summary": "Homepage with four service highlights, mortgage-led company introduction, a six-stage 'plan towards your goals' process, a second main-services grid, callback CTA, client testimonials, partner/membership logos, office details and regulatory footer.",
+      "url": "https://guidefs.co.uk/"
+    },
+    {
+      "category": "About",
+      "title": "Our Company",
+      "path": "/gfs-our-company",
+      "nav": "Yes",
+      "summary": "Corporate overview positioning Guide around Residential Mortgages, Specialist Property Finance, Protection Planning and Will Writing & Estate Planning. Includes service summaries, reasons to choose Guide, mission, vision and values.",
+      "url": "https://guidefs.co.uk/gfs-our-company"
+    },
+    {
+      "category": "About",
+      "title": "Testimonials",
+      "path": "/testimonials",
+      "nav": "Yes",
+      "summary": "Paginated client testimonial library. Public crawl shows four pages of testimonials, with several mortgage-focused client stories and named reviewers.",
+      "url": "https://guidefs.co.uk/testimonials"
+    },
+    {
+      "category": "About",
+      "title": "FAQs",
+      "path": "/faq",
+      "nav": "Yes",
+      "summary": "Mortgage FAQ covering what a mortgage is, indicative borrowing, mortgage types, ownership costs, overpayments/early repayment and typical application-to-completion timing.",
+      "url": "https://guidefs.co.uk/faq"
+    },
+    {
+      "category": "About",
+      "title": "Terms of Business",
+      "path": "/sites/default/files/clients/966/Gfs-tob-may2025.pdf",
+      "nav": "Yes",
+      "summary": "PDF containing firm/regulatory disclosures, service basis, communication methods, fees, conflicts, third-party introductions, client money handling, complaints and related terms.",
+      "url": "https://guidefs.co.uk/sites/default/files/clients/966/Gfs-tob-may2025.pdf"
+    },
+    {
+      "category": "About",
+      "title": "Privacy Notice",
+      "path": "/sites/default/files/clients/966/Gfs-privacy-notice.pdf",
+      "nav": "Yes",
+      "summary": "PDF privacy notice describing collection and use of personal, financial and in some cases health information, data sources, processing and data protection rights.",
+      "url": "https://guidefs.co.uk/sites/default/files/clients/966/Gfs-privacy-notice.pdf"
+    },
+    {
+      "category": "Legacy / hidden",
+      "title": "Our Team",
+      "path": "/our_team",
+      "nav": "No",
+      "summary": "Team page still publicly available but not present in the current main About menu. Profiles Jiwan Singh Dhanik, Pravin Singh, Rajesh D'sa and Prasanna Shetty with qualifications, role, bio, phone and profile links.",
+      "url": "https://guidefs.co.uk/our_team"
+    },
+    {
+      "category": "Legacy / hidden",
+      "title": "How We Work",
+      "path": "/gfs-how-we-work",
+      "nav": "No",
+      "summary": "Six-phase advice-process page covering About You, Goals & Ambitions, Analysis, Personal Financial Plan, Implementation and Review. Contains investment-planning language that should be compliance-reviewed before reuse.",
+      "url": "https://guidefs.co.uk/gfs-how-we-work"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Introduction To Mortgages",
+      "path": "/introduction-to-mortgages",
+      "nav": "Yes",
+      "summary": "Explains residential mortgages as secured lending and covers basic lender conditions, affordability/stress testing, deposits and lender assessment factors.",
+      "url": "https://guidefs.co.uk/introduction-to-mortgages"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Mortgage Repayment",
+      "path": "/mortgage-repayment",
+      "nav": "Yes",
+      "summary": "Explains repayment mortgages versus interest-only mortgages, capital and interest treatment, term effects and the need for an interest-only repayment strategy.",
+      "url": "https://guidefs.co.uk/mortgage-repayment"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Buy-to-let",
+      "path": "/buy-to-let-mortgages",
+      "nav": "Yes",
+      "summary": "Overview of BTL mortgages, eligibility/lending criteria, credit record, rental coverage and common lender/property restrictions.",
+      "url": "https://guidefs.co.uk/buy-to-let-mortgages"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Remortgaging",
+      "path": "/remortgaging",
+      "nav": "Yes",
+      "summary": "Explains remortgaging and common reasons including home improvements, debt consolidation, reviewing rates, changing terms and potentially avoiding a house move.",
+      "url": "https://guidefs.co.uk/remortgaging"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Standard Variable Rate Mortgages",
+      "path": "/standard-variable-rate-mortgages",
+      "nav": "Yes",
+      "summary": "Explains lender-controlled SVR pricing, relationship to Bank of England base rate, repayment uncertainty, fees and possible early-repayment-charge differences.",
+      "url": "https://guidefs.co.uk/standard-variable-rate-mortgages"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Fixed Rate Mortgages",
+      "path": "/fixed-rate-mortgages",
+      "nav": "Yes",
+      "summary": "Explains fixed-rate mortgage periods, payment certainty, potential fees and what typically happens when the fixed period ends.",
+      "url": "https://guidefs.co.uk/fixed-rate-mortgages"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Tracker Mortgages",
+      "path": "/tracker-mortgages",
+      "nav": "Yes",
+      "summary": "Explains tracker mortgages linked to an index such as Bank of England base rate, lender margin, possible minimum rate/floor and typical tracker periods.",
+      "url": "https://guidefs.co.uk/tracker-mortgages"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Cashback Mortgages",
+      "path": "/cashback-mortgages",
+      "nav": "Yes",
+      "summary": "Explains cashback incentives, common uses for cashback, lender conditions and possible repayment of cashback on early redemption.",
+      "url": "https://guidefs.co.uk/cashback-mortgages"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Offset Mortgages",
+      "path": "/offset-mortgages",
+      "nav": "Yes",
+      "summary": "Explains offsetting savings/current-account balances against mortgage debt to reduce charged interest, shorten term or lower payments.",
+      "url": "https://guidefs.co.uk/offset-mortgages"
+    },
+    {
+      "category": "Mortgages",
+      "title": "Bad Credit Mortgages",
+      "path": "/bad-credit-mortgages-direct",
+      "nav": "Yes",
+      "summary": "Explains mortgage options for applicants with adverse credit, application considerations, steps that may improve eligibility, pricing/deposit implications and common causes of bad credit.",
+      "url": "https://guidefs.co.uk/bad-credit-mortgages-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "First Time Buyer",
+      "path": "/1st-time-buyer",
+      "nav": "Yes",
+      "summary": "First-time-buyer guide covering lender assessment, property and employment factors, affordability/expenditure, financial commitments and the chain-free advantage.",
+      "url": "https://guidefs.co.uk/1st-time-buyer"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Holiday Let Mortgages",
+      "path": "/holiday-let-mortgages-direct",
+      "nav": "Yes",
+      "summary": "Explains holiday-let mortgages, seasonal rental-income assessment, interest-only/capital repayment options and potentially stricter lender criteria.",
+      "url": "https://guidefs.co.uk/holiday-let-mortgages-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Limited Company Lending",
+      "path": "/limited-company-lending-direct",
+      "nav": "Yes",
+      "summary": "Explains limited-company/SPV mortgage lending for landlords, including purchases, remortgages, company transfers, higher-risk properties and some expat cases.",
+      "url": "https://guidefs.co.uk/limited-company-lending-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Let-To-Buy Mortgages",
+      "path": "/let-to-buy-mortgages-direct",
+      "nav": "Yes",
+      "summary": "Explains refinancing an existing home onto a rental basis while arranging a new residential mortgage, plus common reasons clients use let-to-buy.",
+      "url": "https://guidefs.co.uk/let-to-buy-mortgages-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Self Employed Mortgages",
+      "path": "/self-employed-mortgages-direct",
+      "nav": "Yes",
+      "summary": "Explains common mortgage challenges for self-employed applicants such as short trading history or variable profits and Guide's adviser-led lender-matching approach.",
+      "url": "https://guidefs.co.uk/self-employed-mortgages-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Second Properties",
+      "path": "/second-properties-direct",
+      "nav": "Yes",
+      "summary": "Explains mortgages for purchasing a second property, common reasons for doing so, increased affordability scrutiny and potential deposit differences.",
+      "url": "https://guidefs.co.uk/second-properties-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "High-Value Mortgages",
+      "path": "/high-value-mortgages-direct",
+      "nav": "Yes",
+      "summary": "High-value mortgage page aimed at premium property and £1m+ lending, discussing specialist underwriting, LTV constraints and broader asset/income considerations.",
+      "url": "https://guidefs.co.uk/high-value-mortgages-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Retirement Interest Only Mortgages",
+      "path": "/retirement-interest-only-mortgages-direct",
+      "nav": "Yes",
+      "summary": "Explains RIO mortgages as interest-only borrowing without a fixed end date, generally repaid on death or move into care, and contrasts them with equity release.",
+      "url": "https://guidefs.co.uk/retirement-interest-only-mortgages-direct"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Self Build Mortgages",
+      "path": "/self-build-mortgages",
+      "nav": "Yes",
+      "summary": "Explains specialist self-build lending, project plans, build-cost forecasts, planning/building-regulation requirements, inspections and staged funding considerations.",
+      "url": "https://guidefs.co.uk/self-build-mortgages"
+    },
+    {
+      "category": "More Mortgage Options",
+      "title": "Second Charge Mortgages",
+      "path": "/second-charge-mortgages",
+      "nav": "Yes",
+      "summary": "Explains second-charge lending secured behind a first mortgage, use of property equity, affordability and the order in which secured lenders are repaid.",
+      "url": "https://guidefs.co.uk/second-charge-mortgages"
+    },
+    {
+      "category": "Protection",
+      "title": "Why Protection is Important",
+      "path": "/why-protection-is-important",
+      "nav": "Yes",
+      "summary": "Introduces the financial impact of death or serious illness on households and the role of protection in helping preserve housing and family lifestyle.",
+      "url": "https://guidefs.co.uk/why-protection-is-important"
+    },
+    {
+      "category": "Protection",
+      "title": "Life Assurance",
+      "path": "/life-assurance",
+      "nav": "Yes",
+      "summary": "Explains life cover, terminal-illness features on some plans, term versus whole-of-life cover, level/decreasing cover and premium structures.",
+      "url": "https://guidefs.co.uk/life-assurance"
+    },
+    {
+      "category": "Protection",
+      "title": "Family Income Benefit",
+      "path": "/family-income-benefit",
+      "nav": "Yes",
+      "summary": "Explains family income benefit as regular payments for the remaining policy term after a valid death claim, with a policy-lapse warning.",
+      "url": "https://guidefs.co.uk/family-income-benefit"
+    },
+    {
+      "category": "Protection",
+      "title": "Income Protection",
+      "path": "/income-protection",
+      "nav": "Yes",
+      "summary": "Explains personal income protection for illness/injury, replacement of part of net income, term/age limits and guaranteed versus reviewable premiums.",
+      "url": "https://guidefs.co.uk/income-protection"
+    },
+    {
+      "category": "Protection",
+      "title": "Private Medical Insurance",
+      "path": "/private-medical",
+      "nav": "Yes",
+      "summary": "Explains private medical insurance, private/NHS-related treatment access, medical underwriting and reviewable annual premiums.",
+      "url": "https://guidefs.co.uk/private-medical"
+    },
+    {
+      "category": "Protection",
+      "title": "Critical Illness",
+      "path": "/critical-illness",
+      "nav": "Yes",
+      "summary": "Explains defined critical-illness cover, common insured conditions, term choices, lump-sum/income options and policy-definition limitations.",
+      "url": "https://guidefs.co.uk/critical-illness"
+    },
+    {
+      "category": "Protection",
+      "title": "Landlord Insurance",
+      "path": "/landlord-insurance-direct",
+      "nav": "Yes",
+      "summary": "Explains landlord insurance with building, contents and liability cover, plus portfolio-cover considerations.",
+      "url": "https://guidefs.co.uk/landlord-insurance-direct"
+    },
+    {
+      "category": "Protection",
+      "title": "Military Personnel",
+      "path": "/military-personnel-direct",
+      "nav": "Yes",
+      "summary": "Insurance page for armed-forces personnel covering specialist considerations and examples such as kit, travel and life insurance.",
+      "url": "https://guidefs.co.uk/military-personnel-direct"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Introduction to Business Protection",
+      "path": "/introduction-to-business-insurance",
+      "nav": "Yes",
+      "summary": "Introduces protecting a business against the loss or impairment of key people, staff and shareholders.",
+      "url": "https://guidefs.co.uk/introduction-to-business-insurance"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Directors' & Staff Benefits",
+      "path": "/directors-and-staff-benefits",
+      "nav": "Yes",
+      "summary": "Discusses employee/director reward and benefit structures such as pensions, life insurance, bonuses and other benefits as recruitment/retention tools.",
+      "url": "https://guidefs.co.uk/directors-and-staff-benefits"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Income Protection",
+      "path": "/income-protection-insurance",
+      "nav": "Yes",
+      "summary": "Business/group income-protection page covering employer sickness schemes, long-term versus short-term income protection and replacement-income considerations.",
+      "url": "https://guidefs.co.uk/income-protection-insurance"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Share Protection",
+      "path": "/share-protection",
+      "nav": "Yes",
+      "summary": "Explains life-assurance-backed share protection to help remaining directors/partners fund a purchase of a deceased shareholder's interest.",
+      "url": "https://guidefs.co.uk/share-protection"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Key Person",
+      "path": "/keyperson-insurance",
+      "nav": "Yes",
+      "summary": "Explains insurance for key employees/directors and potential uses such as temporary replacement, recruitment and mitigating loss following death or incapacity.",
+      "url": "https://guidefs.co.uk/keyperson-insurance"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Relevant Life Cover",
+      "path": "/relevant-life-cover",
+      "nav": "Yes",
+      "summary": "Explains employer-funded relevant life cover for eligible employees, employer/employee relationship requirements, trusts and portability considerations.",
+      "url": "https://guidefs.co.uk/relevant-life-cover"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Employers' Liability",
+      "path": "/employers-liability-insurance",
+      "nav": "Yes",
+      "summary": "Explains employers' liability cover and the employer's responsibility for employee injury or disease arising from employment.",
+      "url": "https://guidefs.co.uk/employers-liability-insurance"
+    },
+    {
+      "category": "Business Protection",
+      "title": "Professional Indemnity",
+      "path": "/professional-indemnity-insurance",
+      "nav": "Yes",
+      "summary": "Explains professional indemnity cover for businesses providing advice, knowledge or professional services and potential negligence claims.",
+      "url": "https://guidefs.co.uk/professional-indemnity-insurance"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "Introduction to Specialist Lending & Property Finance",
+      "path": "/gfs-lending-and-property-finance",
+      "nav": "Yes",
+      "summary": "Hub page for specialist property finance aimed at investors, landlords and developers. Lists BTL, bridging, development, commercial/semi-commercial and portfolio finance.",
+      "url": "https://guidefs.co.uk/gfs-lending-and-property-finance"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "Bridging Loans",
+      "path": "/gfs-bridging-loans",
+      "nav": "Yes",
+      "summary": "Short-term secured finance for auctions, refurbishments, development or fast transactions, with benefits, use cases and target client types.",
+      "url": "https://guidefs.co.uk/gfs-bridging-loans"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "Development Finance",
+      "path": "/gfs-development-finance",
+      "nav": "Yes",
+      "summary": "Short/medium-term development funding for new builds, refurbishments, conversions, land purchase and construction costs.",
+      "url": "https://guidefs.co.uk/gfs-development-finance"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "Commercial & Semi Commercial Mortgages",
+      "path": "/gfs-commercial-and-semi-commercial-mortgages",
+      "nav": "Yes",
+      "summary": "Commercial finance for owner-occupied and investment properties, including offices, retail, industrial and mixed-use/semi-commercial property.",
+      "url": "https://guidefs.co.uk/gfs-commercial-and-semi-commercial-mortgages"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "Portfolio Landlord Finance",
+      "path": "/gfs-portfolio-landlord-finance",
+      "nav": "Yes",
+      "summary": "Portfolio finance for landlords with multiple properties, including consolidation, borrowing-capacity considerations and portfolio expansion.",
+      "url": "https://guidefs.co.uk/gfs-portfolio-landlord-finance"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "Auction Finance",
+      "path": "/gfs-auction-finance",
+      "nav": "Yes",
+      "summary": "Short-term finance designed around auction completion deadlines for residential, commercial, BTL and refurbishment/development purchases.",
+      "url": "https://guidefs.co.uk/gfs-auction-finance"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "House in Multiple Occupation (HMO) Finance",
+      "path": "/gfs-house-in-multiple-occupation-finance",
+      "nav": "Yes",
+      "summary": "Specialist HMO funding for purchases, conversions/refurbishments, portfolio expansion and refinancing, with licensing/safety compliance context.",
+      "url": "https://guidefs.co.uk/gfs-house-in-multiple-occupation-finance"
+    },
+    {
+      "category": "Specialist Lending & Property Finance",
+      "title": "Second Charge & Debt Consolidation",
+      "path": "/gfs-second-charge-and-debt-consolidation",
+      "nav": "Yes",
+      "summary": "Explains second-charge secured lending using property equity without replacing the first mortgage, including home improvements, investment and debt consolidation uses.",
+      "url": "https://guidefs.co.uk/gfs-second-charge-and-debt-consolidation"
+    },
+    {
+      "category": "Wills & Estate Planning",
+      "title": "Wills Writing Services",
+      "path": "/gfs-wills-writing",
+      "nav": "Yes",
+      "summary": "Single-page wills section covering Standard Wills, Mirror Wills, Trust Wills, Will Updates & Reviews, reasons to choose the service, a four-stage process and basic FAQs.",
+      "url": "https://guidefs.co.uk/gfs-wills-writing"
+    },
+    {
+      "category": "Calculators",
+      "title": "Mortgage Borrow",
+      "path": "/gfs-mortgage-borrow",
+      "nav": "Yes",
+      "summary": "Calculator page embedding an external WEBPRO Central mortgage-borrow iframe, followed by the standard callback and footer.",
+      "url": "https://guidefs.co.uk/gfs-mortgage-borrow"
+    },
+    {
+      "category": "Calculators",
+      "title": "Mortgage Repayment",
+      "path": "/gfs-mortgage-repayment",
+      "nav": "Yes",
+      "summary": "Calculator page embedding an external WEBPRO Central mortgage-repayment iframe, followed by the standard callback and footer.",
+      "url": "https://guidefs.co.uk/gfs-mortgage-repayment"
+    },
+    {
+      "category": "Calculators",
+      "title": "How much can I borrow",
+      "path": "/gfs-how-much-can-i-borrow",
+      "nav": "Yes",
+      "summary": "Calculator page embedding an external WEBPRO Central borrowing iframe, followed by the standard callback and footer.",
+      "url": "https://guidefs.co.uk/gfs-how-much-can-i-borrow"
+    },
+    {
+      "category": "Calculators",
+      "title": "Overpayment",
+      "path": "/gfs-overpayment",
+      "nav": "Yes",
+      "summary": "Calculator page embedding an external WEBPRO Central mortgage-overpayment iframe, followed by the standard callback and footer.",
+      "url": "https://guidefs.co.uk/gfs-overpayment"
+    },
+    {
+      "category": "Calculators",
+      "title": "Stamp Duty",
+      "path": "/gfs-stamp-duty",
+      "nav": "Yes",
+      "summary": "Stamp Duty Land Tax calculator page with a UK Government-rate disclaimer and an external WEBPRO Central iframe.",
+      "url": "https://guidefs.co.uk/gfs-stamp-duty"
+    },
+    {
+      "category": "Contact",
+      "title": "Contact Us",
+      "path": "/contact",
+      "nav": "Yes",
+      "summary": "Contact page showing the main telephone number, Brentford/London contact address and email, plus London, Manchester, Leicester and Leeds office details.",
+      "url": "https://guidefs.co.uk/contact"
+    }
+  ]
+}
