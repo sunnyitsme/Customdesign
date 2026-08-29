@@ -1,65 +1,148 @@
 # Decision Record
 
-## D-001 — Framework: Next.js 16 ✅ Confirmed 2026-08-29
+Revised 2026-08-29 following client corrections.
 
-App Router, TypeScript strict mode. Astro considered and rejected.
+---
 
-Rationale: `redirects()` handles the 59-URL permanent 301 migration as first-class
-configuration; the Metadata API protects the SEO transfer; server components keep client JS
-small under a video hero; and the roadmap (Insights hub, forms, adviser filtering, Guide-owned
-calculators) pulls toward React regardless.
+## D-001 — Framework: Next.js 16 ✅ Confirmed
 
-## D-002 — Legacy service pages retained as child pages ✅ Confirmed 2026-08-29
+App Router, React, TypeScript strict mode, Tailwind CSS 4. Astro considered and rejected.
 
-The ~40 thin service pages are **not** consolidated into four hubs. They become child pages
-under the new hub structure.
+## D-002 — Legacy service pages: child *routes*, not child *navigation* ✅ Revised
 
-```
-/introduction-to-mortgages          → /mortgages
-/fixed-rate-mortgages               → /mortgages/fixed-rate
-/offset-mortgages                   → /mortgages/offset
-/1st-time-buyer                     → /mortgages/first-time-buyer
-/gfs-bridging-loans                 → /property-finance/bridging-finance
-/gfs-auction-finance                → /property-finance/auction-finance
-/why-protection-is-important        → /protection
-/life-assurance                     → /protection/life-assurance
-/keyperson-insurance                → /protection/business/key-person
-/gfs-wills-writing                  → /wills-estate-planning
-/gfs-our-company                    → /about
-/our_team                           → /about/team
-/testimonials                       → /about/testimonials
-/gfs-stamp-duty                     → /calculators/stamp-duty
-```
-*(Indicative — the full map is authored in `content/redirects.ts` with a test asserting every
-URL in `source-urls.txt` resolves.)*
+**Superseded:** the earlier reading that keeping ~40 legacy pages required a three-level
+primary navigation. That conflated content architecture with navigation architecture. They are
+separate decisions.
 
-**Consequence for phase 1:** the primary navigation must carry a third level. `PrimaryNav` is
-built as a panel/mega-menu that can present a hub plus its children, not a flat link row. This
-is a phase-1 architectural requirement, not a later addition.
+**Correct position:**
 
-## D-003 — Proceed on the proposed palette ✅ Confirmed 2026-08-29
+Keeping the ~40 legacy service pages as child routes is an **SEO and content-architecture**
+decision. It carries no obligation to expose every child route in the primary navigation.
 
-Guide's brand assets are not available. The token layer in `docs/00-rebuild-plan.md` §5 is
-used as a provisional system.
+**Primary navigation hubs (six):**
+Mortgages · Property Finance · Protection · Wills & Estate Planning · About · Insights
+*(Contact and the login/consultation actions sit in utility navigation, not the hub row.)*
 
-**This means the first homepage review judges composition, hierarchy, typography and rhythm —
-not final brand.** When Guide's logo, colour values and typefaces arrive, they replace the
-tokens in one file. Item 01 in `docs/01-content-and-assets-required.md` remains open.
+**Desktop mega menu** per hub may contain:
+- the hub landing page
+- selected high-priority child services
+- optional featured content
 
-## D-004 — Skills to be enabled before implementation ⏸ Blocked 2026-08-29
+**Explicitly not:** dumping all ~40 service pages into a three-level navigation tree.
 
-The seven skills named in the brief — `frontend-design`, `design-taste-frontend`,
-`brand-guidelines`, `web-design-guidelines`, `image-to-code`, `webapp-testing`, `Ponytail` —
-are not installed. Verified against the session skill list, the on-disk synced skills
-directory, and the claude.ai skill and plugin catalogues.
+**Lower-priority long-tail pages** exist as routes and stay discoverable through hub pages,
+related-service links, contextual internal links, breadcrumbs where appropriate, the XML
+sitemap, and search engines.
 
-**Decision: they will be enabled for this workspace before homepage implementation begins.**
+*Phase-1 consequence:* `PrimaryNav` is a six-hub row with a curated mega-menu panel. Panel
+contents are driven by a `featured` flag in the service data, so curation is a content decision
+rather than a code change.
 
-Implementation is therefore on hold. Nothing further is built until the skills are available
-and the go-ahead is given.
+## D-003 — Proceed on the provisional palette ✅ Confirmed, with one correction
+
+Guide's brand assets are unavailable; the token layer is provisional and swaps in one file.
+
+**Correction arising from the `frontend-design` skill (now available — see D-004).** That skill
+names three clusters that read as generic AI output, the first being *"a warm cream background
+(near #F4F1EA) with a high-contrast serif display and a terracotta or warm-clay accent."*
+
+The palette proposed in `docs/00-rebuild-plan.md` §5 — paper `#F6F4F0`, Newsreader as a
+high-contrast serif display, brass `#A6864E` — **sits inside that cluster.** It was a default,
+not a choice.
+
+The palette and type pairing are therefore **reopened** and will be re-derived during the
+Phase 1 design-plan step, grounded in the subject: London property, private-client advisory,
+architectural restraint. The §5 structure (token names, scales, constraints) stands; the
+specific hex values and typefaces do not.
+
+## D-004 — Skills: re-scanned, three findings ✅ Revised
+
+The earlier "none are installed" finding was **incomplete** — it missed the `/mnt/skills` tree
+and the plugin list.
+
+| Brief name | Status | Exact name / path |
+| --- | --- | --- |
+| `frontend-design` | ✅ **Available** | `/mnt/skills/public/frontend-design/SKILL.md` — exact match, read, in use |
+| `Ponytail` | ⚠️ **Enabled, not invocable** | Plugin `ponytail`, `plugin_01UrwR1RGztMe7jS8ySm9P9y`, `enabled: true`. `Skill(ponytail)` returns *Unknown skill* — no skill component surfaced in this session |
+| `brand-guidelines` | ⚠️ **Name collision only** | `/mnt/skills/examples/brand-guidelines/SKILL.md` exists, but it applies **Anthropic's** brand colours and typography. Not Guide's. Using it here would put Anthropic branding on a UK financial firm's website |
+| `design-taste-frontend` / `Taste` | ❌ Not found | — |
+| `web-design-guidelines` | ❌ Not found | — |
+| `image-to-code` | ❌ Not found | — |
+| `webapp-testing` | ❌ Not found | Playwright + Chromium available directly (`/opt/pw-browsers`) |
+
+**Scanned:** project-local `.claude/` (does not exist) · `/mnt/skills/public` · `/mnt/skills/examples`
+· `/root/.claude/skills/**` · `/home/claude/.claude/skills` · `ListSkills` · `ListPlugins`
+· `SearchSkills` · `SearchPlugins` · filesystem-wide `SKILL.md` search · name grep across all roots.
+
+**Not enabled, but available to enable — closest cover for the four missing skills:** the
+**Design** plugin (`knowledge-work-plugins` marketplace) provides `design:design-critique`,
+`design:design-system`, `design:accessibility-review`, `design:ux-copy`.
+
+**Also enabled and relevant:** `artifact-design`, `artifact-diagramming`, `code-review`,
+`simplify`, `security-review`, `run`.
+
+**What this means for practice.** `frontend-design` is used for real at the design-plan and
+critique steps. For the four genuinely missing skills, the substitutes in
+`docs/00-rebuild-plan.md` §10 apply. Ponytail's principle — *the laziest solution that works,
+YAGNI, stdlib first* — is applied as a standing review discipline against the §7 dependency
+policy, but **not claimed as skill usage**, since the skill cannot be invoked. Design intent is
+not simplified away.
+
+## D-005 — The Drupal export does not block Phase 1 ✅ New
+
+Obtaining the Drupal database export, `/sites/default/files/`, original media, PDFs, SEO
+metadata and existing redirects **before WEBPRO access is cancelled** remains a high-priority
+migration requirement, documented in `docs/01-content-and-assets-required.md` §0.
+
+**It does not block the Phase 1 visual build.** For Phase 1:
+
+- the migration pack is the business/content reference;
+- exact information is used wherever the pack contains it;
+- clearly labelled development placeholders are used where exact copy, media, statistics, case
+  studies, reviews or logos are unavailable;
+- nothing is fabricated;
+- no fake production content is created merely to make the design look complete.
+
+**The first visual build is judged on** composition, typography, hierarchy, spacing, responsive
+behaviour, interaction quality and premium visual direction.
+
+## D-006 — Company information conflicts stay open and visible ✅ New
+
+The discrepancies remain documented and are **not** arbitrated by us. Where a component needs a
+value that is in conflict, it renders `[FIRM CONFIRMATION REQUIRED]`:
+
+| Conflict | Sources |
+| --- | --- |
+| Address | Brentford/London (public site) vs Manchester/Sale (ToB + Privacy Notice PDFs) |
+| Email | `enquiries@guidefs.co.uk` (public site) vs `info@guidemortgages.co.uk` (PDFs) |
+| Office count | Three (Company page) vs four (global footer, incl. Leeds) |
+
+These conflicts **do not block** the visual homepage build.
+
+## D-007 — Payload / PostgreSQL deferred ✅ New
+
+Not built in depth now. The frontend foundation is designed so Payload integrates cleanly
+later:
+
+- content lives in `content/*.ts` behind typed interfaces, so the data source can change
+  without touching presentational components;
+- section components take props; none reach for a global content object;
+- image handling goes through one `AspectImage` wrapper, so a media CDN swaps in one place.
+
+No CMS dependency, schema or database is added in Phase 1.
+
+## D-008 — Phase 1 scope is deliberately partial ✅ New
+
+Phase 1 builds **only**: global design tokens · typography foundation · responsive
+container/grid · Header and Navigation · cinematic London Hero · Four Core Services section.
+
+The rest of the homepage is **not** built until this first visual direction has been
+browser-tested and reviewed. See `docs/03-phase-1-plan.md`.
+
+---
 
 ## Still open
 
-- The 15 content items in `docs/01-content-and-assets-required.md`.
-- Highest priority, and outside this repository: obtain the **Drupal export, database backup
-  and public-files archive** from the current provider before the WEBPRO relationship ends.
+- The 15 content items in `docs/01-content-and-assets-required.md` (none blocking Phase 1).
+- Whether to enable the **Design** plugin to cover the four missing skills.
+- Highest priority and outside this repository: the Drupal export, ahead of WEBPRO cancellation.
