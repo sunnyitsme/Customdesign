@@ -146,3 +146,52 @@ browser-tested and reviewed. See `docs/03-phase-1-plan.md`.
 - The 15 content items in `docs/01-content-and-assets-required.md` (none blocking Phase 1).
 - Whether to enable the **Design** plugin to cover the four missing skills.
 - Highest priority and outside this repository: the Drupal export, ahead of WEBPRO cancellation.
+
+---
+
+## Phase 1 build decisions
+
+## D-009 — Service numerals: kept, as set-indexing ✅
+
+Both variants were built and compared at 1440px, as instructed.
+
+**Unnumbered** leaves the datum rail entirely empty and the hairlines begin from
+nothing; the composition loses its left anchor and reads more anonymous.
+**Numbered** gives each row a starting mark and corroborates the "four divisions"
+count stated in the heading.
+
+Kept — but as an editorial index of a fixed set, not a process. Nothing connects
+the numerals, no copy implies order, and they carry `aria-hidden` so assistive
+technology reads the division names alone.
+
+## D-010 — Scroll-reveal removed; Motion dependency deferred ✅
+
+A staggered scroll-reveal was built for the divisions and then removed.
+
+`whileInView` with `initial={{ opacity: 0 }}` renders `opacity: 0` **into the
+server HTML**. Testing showed the consequence directly: the division copy was
+invisible until an IntersectionObserver fired. On a regulated financial site
+that puts service descriptions behind JavaScript — a real content and SEO
+liability — in exchange for decoration that communicated no hierarchy.
+
+The `motion` package was removed with it rather than left installed unused. The
+page's motion is now the header surface transition, the hero video cross-fade,
+the division plate cross-fade and hover/focus states — all CSS, all
+transform/opacity, all behind the global reduced-motion switch.
+
+Motion is not rejected for the project. It gets reinstalled when a section
+genuinely needs it; the lender marquee is a CSS keyframe and will not.
+
+## D-011 — TypeScript pinned to 5.9 ✅
+
+`typescript@7.0.2` installs by default but `typescript-eslint` does not support
+it, which disabled ESLint entirely — including the `jsx-a11y` rules the brief
+depends on. Working lint is worth more than the newest compiler. Revisit when
+typescript-eslint ships TS 7 support.
+
+## D-012 — Hero media resolved server-side ✅
+
+`lib/media.ts` checks the filesystem for the three hero assets at render time.
+Dropping `guide-london.webm` / `.mp4` / `-poster.webp` into `public/media/hero/`
+activates the video path with no component change — the placeholder is a state,
+not a separate tree.

@@ -1,0 +1,219 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Guide Financial Services — design tokens
+   --------------------------------------------------------------------------
+   PROVISIONAL IDENTITY. See docs/02-decisions.md D-003.
+   Guide's real brand assets are unavailable and guidefs.co.uk is unreachable
+   from this environment, so no brand colour could be extracted. Every colour
+   and typeface below is a considered placeholder. Replacing the real brand
+   system means editing this block only — no component references a literal.
+
+   Direction: "Elevation" — cool mineral neutrals and a verdigris accent drawn
+   from London's weathered-copper roofscape and architectural drawing
+   conventions. Deliberately not cream/serif/brass, not navy-and-gold, not
+   fintech neon.
+   ========================================================================== */
+
+@theme {
+  /* Delete Tailwind's stock palette so only Guide tokens exist.
+     An arbitrary colour in a component is then a visible mistake in review. */
+  --color-*: initial;
+
+  /* --- Surfaces --------------------------------------------------------- */
+  --color-ground: #ebece9; /* page ground — cool limestone */
+  --color-surface: #f7f8f6; /* raised surface */
+  --color-deep: #1b2422; /* dark section ground — slate-green black */
+  --color-deep-raised: #232e2b;
+
+  /* --- Text ------------------------------------------------------------- */
+  --color-ink: #15191a; /* 14.93:1 on ground  AAA */
+  --color-ink-secondary: #4e5654; /*  6.36:1 on ground  AA  */
+  --color-ink-tertiary: #616966; /*  4.76:1 on ground  AA  */
+  --color-ink-inverse: #edefec; /* 13.74:1 on deep    AAA */
+  --color-ink-inverse-secondary: #a2aba7; /*  6.75:1 on deep    AA  */
+
+  /* --- Lines ------------------------------------------------------------ */
+  --color-line: #d4d8d3; /* decorative hairline / datum */
+  --color-line-strong: #b4bab5;
+  --color-line-interactive: #767e7a; /* 3.52:1 — control borders meet 3:1 */
+  --color-line-inverse: #36423f;
+
+  /* --- Accent ----------------------------------------------------------- */
+  --color-accent: #2f5f52; /*  6.15:1 on ground  AA  */
+  --color-accent-hover: #24493f;
+  --color-accent-bright: #8fbfaf; /*  7.74:1 on deep    AAA */
+
+  /* --- Focus ------------------------------------------------------------ */
+  --color-focus: #1f4a3e; /*  8.40:1 on ground */
+  --color-focus-inverse: #7fb3a2; /*  6.71:1 on deep   */
+
+  /* --- Typography ------------------------------------------------------- */
+  /* Display + UI: Archivo — architectural grotesque, variable weight/width.
+     Reading prose: Source Serif 4 — a text serif, not a luxury display serif.
+     The inversion (sans display / serif body) is deliberate: it keeps the
+     editorial authority without the private-wealth headline cliché. */
+  --font-display:
+    var(--font-archivo), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-prose: var(--font-source-serif), Georgia, 'Times New Roman', serif;
+
+  --text-display-1: clamp(2.125rem, 4.4vw, 3.625rem);
+  --text-display-1--line-height: 0.98;
+  --text-display-1--letter-spacing: -0.03em;
+
+  --text-display-2: clamp(1.875rem, 3.4vw, 2.875rem);
+  --text-display-2--line-height: 1.04;
+  --text-display-2--letter-spacing: -0.025em;
+
+  --text-heading-1: clamp(1.625rem, 3vw, 2.375rem);
+  --text-heading-1--line-height: 1.12;
+  --text-heading-1--letter-spacing: -0.02em;
+
+  --text-heading-2: clamp(1.3125rem, 2.1vw, 1.6875rem);
+  --text-heading-2--line-height: 1.2;
+  --text-heading-2--letter-spacing: -0.015em;
+
+  --text-heading-3: 1.0625rem;
+  --text-heading-3--line-height: 1.35;
+  --text-heading-3--letter-spacing: -0.005em;
+
+  --text-body-lg: clamp(1.0625rem, 1.35vw, 1.1875rem);
+  --text-body-lg--line-height: 1.62;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.55;
+
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.16em;
+
+  /* --- Radius ----------------------------------------------------------- */
+  /* 2px is the ceiling. There is no large-radius token to reach for, so the
+     rounded-card look is structurally unavailable. */
+  --radius-*: initial;
+  --radius-sm: 2px;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --duration-fast: 150ms;
+  --duration-base: 240ms;
+  --duration-slow: 420ms;
+  --duration-cinematic: 720ms;
+
+  /* --- Breakpoints ------------------------------------------------------ */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 30rem; /* 480 */
+  --breakpoint-md: 48rem; /* 768 */
+  --breakpoint-lg: 64rem; /* 1024 */
+  --breakpoint-xl: 90rem; /* 1440 */
+}
+
+/* --- Layout system --------------------------------------------------------
+   Not Tailwind theme values — these drive the container and the datum rail,
+   which are structural rather than utility-composed. */
+:root {
+  --container-max: 90rem; /* 1440 */
+  --measure-max: 42rem; /* prose measure ~68ch */
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+
+  /* The datum rail: the left column that carries section indices and labels,
+     mirroring the title block on an architectural elevation. Collapses to
+     zero below lg, where labels sit inline above their content instead. */
+  --datum-rail: 0rem;
+
+  --section-sm: clamp(3.5rem, 6vw, 5.5rem);
+  --section-md: clamp(5rem, 9vw, 8rem);
+  --section-lg: clamp(6.5rem, 12vw, 11rem);
+
+  --header-height: 4.5rem;
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --datum-rail: 8.25rem;
+    --header-height: 5.25rem;
+  }
+}
+
+/* --- Base ----------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* No horizontal overflow at any supported viewport. */
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote {
+  margin: 0;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focus is :focus-visible only, and carries two tokens so it stays legible
+   over the dark hero as well as on paper. */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.on-deep :focus-visible,
+.on-deep:focus-visible {
+  outline-color: var(--color-focus-inverse);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-ink-inverse);
+}
+
+/* Numerals align wherever they are compared. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Motion --------------------------------------------------------------
+   Every animation in the project is transform/opacity only and sits behind
+   this switch. Nothing animates blur, filter, shadow or layout. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
