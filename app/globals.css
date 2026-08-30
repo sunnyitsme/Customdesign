@@ -111,6 +111,17 @@
   --breakpoint-md: 48rem; /* 768 */
   --breakpoint-lg: 64rem; /* 1024 */
   --breakpoint-xl: 90rem; /* 1440 */
+
+  /* Header disclosure steps, in priority order: navigation, then the CTA, then
+     the Login disclosure, then the telephone number. Named so each value lives
+     in one place rather than drifting across SiteHeader, MobileNav and
+     PortalLogin. Every value is measured, not chosen — see SiteHeader.
+       cta      — CTA joins the wordmark and the drawer trigger
+       desknav  — primary navigation and the Login disclosure replace the drawer
+       deskfull — the telephone number joins */
+  --breakpoint-cta: 27rem; /* 432px  — 50px clear of the trigger; 414px gives 35px */
+  --breakpoint-desknav: 77rem; /* 1232px — nav+Login+CTA at 60px; 1216px gives 53px */
+  --breakpoint-deskfull: 85rem; /* 1360px — adds phone at 60px; 1344px gives 53px */
 }
 
 /* --- Layout system --------------------------------------------------------

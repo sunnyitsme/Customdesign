@@ -47,7 +47,7 @@ export function PortalLogin({ solid }: { solid: boolean }) {
   return (
     <div
       ref={rootRef}
-      className="relative hidden min-[85rem]:block"
+      className="relative hidden desknav:block"
       onBlur={(event) => {
         if (!event.currentTarget.contains(event.relatedTarget as Node)) setOpen(false);
       }}

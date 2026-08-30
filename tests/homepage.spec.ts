@@ -96,85 +96,60 @@ test('reduced motion — hero video is not fetched', async ({ browser }) => {
 });
 
 /**
- * Header breakpoint regression.
+ * Header disclosure hierarchy.
  *
- * The desktop navigation switches on at 74rem (1184px). Below that the drawer
- * is active. This previously collided at 1024-1080: the nav wrapper carried
- * min-w-0, so the <ul> reported a shrunken box while its children overflowed
- * unclipped and the CTA sat on top of "Insights".
- */
-const HEADER_WIDTHS = [1024, 1080, 1100, 1152, 1180, 1200, 1280, 1440];
-const DESKTOP_NAV_FROM = 1184;
-
-for (const width of HEADER_WIDTHS) {
-  test(`header at ${width}px — correct mode, no collision, no clipping`, async ({ page }) => {
-    await page.setViewportSize({ width, height: 900 });
-    await page.goto('/', { waitUntil: 'networkidle' });
-    await page.waitForTimeout(250);
-
-    const desktop = width >= DESKTOP_NAV_FROM;
-    const trigger = page.getByRole('button', { name: 'Open navigation menu' });
-    const cta = page.getByRole('banner').getByRole('link', { name: 'Speak to an adviser' });
-
-    if (desktop) {
-      await expect(trigger).toBeHidden();
-      await expect(cta).toBeVisible();
-
-      const geometry = await page.evaluate(() => {
-        // Top-level hub controls only; panel links inside are hidden.
-        const items = Array.from(document.querySelectorAll('header nav > ul > li'))
-          .map((li) => li.querySelector(':scope > a, :scope > button'))
-          .filter((el): el is HTMLElement => el !== null);
-        const actions = document.querySelector('header > div')?.lastElementChild;
-        const actionsLeft = actions ? actions.getBoundingClientRect().left : Infinity;
-        return {
-          lastRight: Math.round(items[items.length - 1]!.getBoundingClientRect().right),
-          actionsLeft: Math.round(actionsLeft),
-          // Any nav label whose text is clipped by its own box.
-          clipped: items.filter((el) => el.scrollWidth > el.clientWidth + 1).map((el) => el.textContent),
-        };
-      });
-
-      const gap = geometry.actionsLeft - geometry.lastRight;
-      expect(geometry.clipped, `clipped nav labels at ${width}px`).toEqual([]);
-      expect(gap, `nav/actions gap at ${width}px`).toBeGreaterThanOrEqual(40);
-    } else {
-      await expect(trigger).toBeVisible();
-      await expect(page.locator('header nav[aria-label="Primary"]')).toBeHidden();
-    }
-
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
-    );
-    expect(overflow, `horizontal overflow at ${width}px`).toBeLessThanOrEqual(0);
-  });
-}
-
-/**
- * Utility-login disclosure regression.
+ * Priority order: primary navigation, then the CTA, then the Login disclosure,
+ * then the telephone number. Every breakpoint is measured — see
+ * --breakpoint-cta / -desknav / -deskfull in app/globals.css.
  *
- * Both portal links inline cost 152px and left a 25-36px nav/actions gap at
- * every width from 1536 up — the header bar is capped at --container-max, so a
- * wider viewport yields *less* content width, not more. The compact disclosure
- * costs 41px and appears at 85rem (1360px), the first width that clears the
- * phone number switching on at 82rem with a relaxed gap.
+ *   below 432px   wordmark + drawer trigger
+ *   432px         + Speak to an adviser
+ *   1232px        primary nav + Login disclosure, drawer retires
+ *   1360px        + telephone number
+ *
+ * The rule this exists to protect: there must be no width where the desktop
+ * navigation is up, the drawer is gone, and the portals are unreachable.
  */
-const PORTAL_LOGIN_FROM = 1360;
+const CTA_FROM = 432;
+const DESKNAV_FROM = 1232;
+const DESKFULL_FROM = 1360;
 const COMFORTABLE_GAP = 56;
 
-for (const width of [1440, 1500, 1536, 1600, 1663, 1664, 1680, 1728, 1760, 1920]) {
-  test(`header at ${width}px — utility login present and header stays relaxed`, async ({ page }) => {
+/** Widths spanning every step and both sides of each boundary. */
+const HEADER_WIDTHS = [
+  390, 431, 432, 768, 1024, 1184, 1200, 1216, 1231, 1232, 1248, 1264, 1280,
+  1312, 1344, 1359, 1360, 1400, 1440, 1536, 1664, 1728, 1920,
+];
+
+for (const width of HEADER_WIDTHS) {
+  test(`header at ${width}px — correct disclosure step, relaxed and unclipped`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/', { waitUntil: 'networkidle' });
     await page.waitForTimeout(220);
 
-    const login = page.getByRole('button', { name: 'Login' });
-    await expect(login).toBeVisible();
-    await expect(login).toHaveAttribute('aria-expanded', 'false');
+    const desktop = width >= DESKNAV_FROM;
+    const banner = page.getByRole('banner');
+    const trigger = page.getByRole('button', { name: 'Open navigation menu' });
+    const login = banner.getByRole('button', { name: 'Login' });
+    const phone = banner.getByRole('link', { name: '0333 034 8993' });
+    const cta = banner.getByRole('link', { name: 'Speak to an adviser' });
 
-    // CTA and phone must both survive at every desktop width.
-    await expect(page.getByRole('banner').getByRole('link', { name: 'Speak to an adviser' })).toBeVisible();
-    await expect(page.getByRole('banner').getByRole('link', { name: '0333 034 8993' })).toBeVisible();
+    // 2 + 4. Wherever the desktop navigation is up, the Login disclosure is up
+    // with it, and the drawer has retired. Below that the drawer is the route.
+    if (desktop) {
+      await expect(trigger).toBeHidden();
+      await expect(login).toBeVisible();
+    } else {
+      await expect(trigger).toBeVisible();
+      await expect(login).toBeHidden();
+      await expect(page.locator('header nav[aria-label="Primary"]')).toBeHidden();
+    }
+
+    // CTA is priority 2: present from 432px up, at every width above.
+    await expect(cta)[width >= CTA_FROM ? 'toBeVisible' : 'toBeHidden']();
+
+    // 3. Phone is disclosed last and only above its own measured width.
+    await expect(phone)[width >= DESKFULL_FROM ? 'toBeVisible' : 'toBeHidden']();
 
     const geometry = await page.evaluate(() => {
       const bar = document.querySelector('header > div')!;
@@ -183,36 +158,71 @@ for (const width of [1440, 1500, 1536, 1600, 1663, 1664, 1680, 1728, 1760, 1920]
         .map((li) => li.querySelector(':scope > a, :scope > button'))
         .filter((el): el is HTMLElement => el !== null);
       const controls = [...items, ...Array.from(actions.querySelectorAll('a, button'))] as HTMLElement[];
+      const visible = controls.filter((el) => el.getBoundingClientRect().width > 0);
       return {
-        gap: Math.round(actions.getBoundingClientRect().left - items[items.length - 1]!.getBoundingClientRect().right),
-        clipped: controls.filter((el) => el.scrollWidth > el.clientWidth + 1).map((el) => el.textContent),
+        gap: items.length
+          ? Math.round(actions.getBoundingClientRect().left - items[items.length - 1]!.getBoundingClientRect().right)
+          : null,
+        clipped: visible.filter((el) => el.scrollWidth > el.clientWidth + 1).map((el) => el.textContent),
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       };
     });
 
     expect(geometry.clipped, `clipped header controls at ${width}px`).toEqual([]);
-    expect(geometry.gap, `nav/actions gap at ${width}px`).toBeGreaterThanOrEqual(COMFORTABLE_GAP);
     expect(geometry.overflow, `horizontal overflow at ${width}px`).toBeLessThanOrEqual(0);
+    if (desktop) {
+      expect(geometry.gap, `nav/actions gap at ${width}px`).toBeGreaterThanOrEqual(COMFORTABLE_GAP);
+    }
   });
 }
 
-test(`utility login is hidden below ${PORTAL_LOGIN_FROM}px`, async ({ page }) => {
-  await page.setViewportSize({ width: PORTAL_LOGIN_FROM - 1, height: 900 });
-  await page.goto('/', { waitUntil: 'networkidle' });
-  await expect(page.getByRole('button', { name: 'Login' })).toBeHidden();
-  // Still reachable in the drawer at widths where the drawer is the navigation.
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.reload({ waitUntil: 'networkidle' });
-  await page.getByRole('button', { name: 'Open navigation menu' }).click();
-  await expect(page.getByRole('dialog').getByRole('link', { name: 'Client login' })).toBeVisible();
-  await expect(page.getByRole('dialog').getByRole('link', { name: 'Advisor login' })).toBeVisible();
+/** 1. Below the desktop breakpoint the portals live in the drawer. */
+for (const width of [390, 768, 1024, DESKNAV_FROM - 1]) {
+  test(`portals reachable via drawer at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.getByRole('button', { name: 'Open navigation menu' }).click();
+    const dialog = page.getByRole('dialog', { name: 'Site navigation' });
+    await expect(dialog.getByRole('link', { name: 'Client login' })).toHaveAttribute(
+      'href',
+      'https://client.guidemortgages.co.uk',
+    );
+    await expect(dialog.getByRole('link', { name: 'Advisor login' })).toHaveAttribute(
+      'href',
+      'https://crm.guidemortgages.co.uk',
+    );
+  });
+}
+
+/**
+ * 4. No responsive dead zone. Walks every width across the whole desktop
+ * boundary and asserts a login route exists at each one — in the drawer below
+ * it, in the disclosure above it, and never neither.
+ */
+test('no width leaves the portals unreachable from the header', async ({ page }) => {
+  const dead: number[] = [];
+  for (let width = 1180; width <= 1400; width += 4) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const route = await page.evaluate(() => {
+      const vis = (el: Element | null | undefined) => !!(el && el.getBoundingClientRect().width > 0);
+      const header = document.querySelector('header')!;
+      const trigger = Array.from(header.querySelectorAll('button')).find(
+        (b) => b.getAttribute('aria-label') === 'Open navigation menu',
+      );
+      const login = Array.from(header.querySelectorAll('button')).find((b) => /Login/.test(b.textContent ?? ''));
+      return vis(trigger) || vis(login);
+    });
+    if (!route) dead.push(width);
+  }
+  expect(dead, 'widths with no login route in the header').toEqual([]);
 });
 
-test('utility login disclosure — keyboard operable, Escape closes', async ({ page }) => {
+test('login disclosure — keyboard operable, Escape closes', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/', { waitUntil: 'networkidle' });
 
-  const login = page.getByRole('button', { name: 'Login' });
+  const login = page.getByRole('banner').getByRole('button', { name: 'Login' });
   await login.focus();
   await page.keyboard.press('Enter');
   await expect(login).toHaveAttribute('aria-expanded', 'true');

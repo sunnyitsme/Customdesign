@@ -16,10 +16,18 @@ import { PortalLogin } from './PortalLogin';
  * an enhancement, but nothing depends on hover — the same panel opens on click
  * and on keyboard focus.
  *
- * Breakpoint: the full navigation appears at 74rem (1184px), not at lg. Six
- * hubs measure 647px intrinsic; with the 128px wordmark, the 151px CTA and two
- * 24px group gaps that is 974px of content, which needs 1184px to sit inside
- * the fluid gutters with room to breathe. Below that the drawer stays active.
+ * Disclosure hierarchy, in priority order, every step measured rather than
+ * chosen (see --breakpoint-* in app/globals.css):
+ *
+ *   below 432px   wordmark + drawer trigger
+ *   cta 432px     + Speak to an adviser        (50px clear; 414px gives 35px)
+ *   desknav 1232  primary nav + Login, drawer retires  (60px; 1216px gives 53px)
+ *   deskfull 1360 + telephone number           (60px; 1344px gives 53px)
+ *
+ * The navigation and the Login disclosure share one breakpoint deliberately:
+ * there must be no width where the desktop nav is up, the drawer is gone, and
+ * the portals are unreachable from the header.
+ *
  * `lg` is deliberately untouched — it still drives the datum rail and the
  * services layout.
  *
@@ -85,7 +93,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <div ref={navRef} className="hidden shrink-0 min-[74rem]:block">
+        <div ref={navRef} className="hidden shrink-0 desknav:block">
           <nav aria-label="Primary">
             <ul className="m-0 flex list-none items-center gap-1 p-0">
               {hubs.map((hub) => {
@@ -174,12 +182,12 @@ export function SiteHeader() {
 
         <div className="flex shrink-0 items-center gap-6">
           <PortalLogin solid={solid} />
-          <a href={site.phoneHref} className="hidden text-[0.84rem] font-medium whitespace-nowrap tabular min-[82rem]:inline">
+          <a href={site.phoneHref} className="hidden text-[0.84rem] font-medium whitespace-nowrap tabular deskfull:inline">
             {site.phone}
           </a>
           <Link
             href={primaryCta.href}
-            className={`hidden shrink-0 rounded-sm px-4 py-2.5 text-[0.84rem] font-medium whitespace-nowrap transition-colors duration-base min-[74rem]:inline-flex ${
+            className={`hidden shrink-0 rounded-sm px-4 py-2.5 text-[0.84rem] font-medium whitespace-nowrap transition-colors duration-base cta:inline-flex ${
               solid ? 'bg-ink text-ink-inverse hover:bg-accent' : 'bg-ink-inverse text-ink hover:bg-accent-bright'
             }`}
           >

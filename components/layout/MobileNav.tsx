@@ -44,7 +44,7 @@ export function MobileNav() {
         onClick={openNav}
         aria-expanded={open}
         aria-label="Open navigation menu"
-        className="-mr-2 inline-flex h-11 w-11 items-center justify-center min-[74rem]:hidden"
+        className="-mr-2 inline-flex h-11 w-11 items-center justify-center desknav:hidden"
       >
         <span aria-hidden="true" className="relative block h-3 w-6">
           <span className="absolute top-0 left-0 h-px w-full bg-current" />
