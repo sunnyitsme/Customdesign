@@ -14,6 +14,18 @@ import { MobileNav } from './MobileNav';
  * with aria-expanded controlling one panel. Pointer users get hover-to-open as
  * an enhancement, but nothing depends on hover — the same panel opens on click
  * and on keyboard focus.
+ *
+ * Breakpoint: the full navigation appears at 74rem (1184px), not at lg. Six
+ * hubs measure 647px intrinsic; with the 128px wordmark, the 151px CTA and two
+ * 24px group gaps that is 974px of content, which needs 1184px to sit inside
+ * the fluid gutters with room to breathe. Below that the drawer stays active.
+ * `lg` is deliberately untouched — it still drives the datum rail and the
+ * services layout.
+ *
+ * The nav wrapper is shrink-0, not min-w-0. Under min-w-0 the <ul> reported a
+ * shrunken box while its children overflowed unclipped, so an overlap with the
+ * CTA measured as a healthy gap. shrink-0 turns that silent overlap into real
+ * page overflow, which the test suite already fails on.
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -72,7 +84,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <div ref={navRef} className="hidden min-w-0 lg:block">
+        <div ref={navRef} className="hidden shrink-0 min-[74rem]:block">
           <nav aria-label="Primary">
             <ul className="m-0 flex list-none items-center gap-1 p-0">
               {hubs.map((hub) => {
@@ -174,7 +186,7 @@ export function SiteHeader() {
           </a>
           <Link
             href={primaryCta.href}
-            className={`hidden shrink-0 rounded-sm px-4 py-2.5 text-[0.84rem] font-medium whitespace-nowrap transition-colors duration-base lg:inline-flex ${
+            className={`hidden shrink-0 rounded-sm px-4 py-2.5 text-[0.84rem] font-medium whitespace-nowrap transition-colors duration-base min-[74rem]:inline-flex ${
               solid ? 'bg-ink text-ink-inverse hover:bg-accent' : 'bg-ink-inverse text-ink hover:bg-accent-bright'
             }`}
           >

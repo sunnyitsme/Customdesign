@@ -11,6 +11,8 @@ import { site } from '@/content/site';
  * Uses a native <dialog> opened with showModal(): focus trapping, Escape to
  * close, background inertness and focus return to the trigger are all browser
  * behaviour. No focus-trap dependency, and more robust than hand-rolling it.
+ *
+ * Active below 74rem (1184px) — see SiteHeader for how that width was measured.
  */
 export function MobileNav() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -42,7 +44,7 @@ export function MobileNav() {
         onClick={openNav}
         aria-expanded={open}
         aria-label="Open navigation menu"
-        className="-mr-2 inline-flex h-11 w-11 items-center justify-center lg:hidden"
+        className="-mr-2 inline-flex h-11 w-11 items-center justify-center min-[74rem]:hidden"
       >
         <span aria-hidden="true" className="relative block h-3 w-6">
           <span className="absolute top-0 left-0 h-px w-full bg-current" />

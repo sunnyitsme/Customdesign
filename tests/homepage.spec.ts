@@ -94,3 +94,58 @@ test('reduced motion — hero video is not fetched', async ({ browser }) => {
   await page.screenshot({ path: 'shots/home-reduced-motion.png', fullPage: true });
   await context.close();
 });
+
+/**
+ * Header breakpoint regression.
+ *
+ * The desktop navigation switches on at 74rem (1184px). Below that the drawer
+ * is active. This previously collided at 1024-1080: the nav wrapper carried
+ * min-w-0, so the <ul> reported a shrunken box while its children overflowed
+ * unclipped and the CTA sat on top of "Insights".
+ */
+const HEADER_WIDTHS = [1024, 1080, 1100, 1152, 1180, 1200, 1280, 1440];
+const DESKTOP_NAV_FROM = 1184;
+
+for (const width of HEADER_WIDTHS) {
+  test(`header at ${width}px — correct mode, no collision, no clipping`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(250);
+
+    const desktop = width >= DESKTOP_NAV_FROM;
+    const trigger = page.getByRole('button', { name: 'Open navigation menu' });
+    const cta = page.getByRole('banner').getByRole('link', { name: 'Speak to an adviser' });
+
+    if (desktop) {
+      await expect(trigger).toBeHidden();
+      await expect(cta).toBeVisible();
+
+      const geometry = await page.evaluate(() => {
+        // Top-level hub controls only; panel links inside are hidden.
+        const items = Array.from(document.querySelectorAll('header nav > ul > li'))
+          .map((li) => li.querySelector(':scope > a, :scope > button'))
+          .filter((el): el is HTMLElement => el !== null);
+        const actions = document.querySelector('header > div')?.lastElementChild;
+        const actionsLeft = actions ? actions.getBoundingClientRect().left : Infinity;
+        return {
+          lastRight: Math.round(items[items.length - 1]!.getBoundingClientRect().right),
+          actionsLeft: Math.round(actionsLeft),
+          // Any nav label whose text is clipped by its own box.
+          clipped: items.filter((el) => el.scrollWidth > el.clientWidth + 1).map((el) => el.textContent),
+        };
+      });
+
+      const gap = geometry.actionsLeft - geometry.lastRight;
+      expect(geometry.clipped, `clipped nav labels at ${width}px`).toEqual([]);
+      expect(gap, `nav/actions gap at ${width}px`).toBeGreaterThanOrEqual(40);
+    } else {
+      await expect(trigger).toBeVisible();
+      await expect(page.locator('header nav[aria-label="Primary"]')).toBeHidden();
+    }
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(overflow, `horizontal overflow at ${width}px`).toBeLessThanOrEqual(0);
+  });
+}
