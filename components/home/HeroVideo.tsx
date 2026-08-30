@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Hero background video.
@@ -30,14 +30,19 @@ export function HeroVideo({
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const narrow = window.matchMedia('(max-width: 47.99rem)').matches;
-    const connection = (navigator as { connection?: { saveData?: boolean } }).connection;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const narrow = window.matchMedia("(max-width: 47.99rem)").matches;
+    const connection = (navigator as { connection?: { saveData?: boolean } })
+      .connection;
 
     if (reducedMotion || narrow || connection?.saveData) return;
 
     // Defer to idle so the video never competes with first paint.
-    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 400));
+    const idle =
+      window.requestIdleCallback ??
+      ((cb: () => void) => window.setTimeout(cb, 400));
     const handle = idle(() => setShouldLoad(true));
     return () => window.clearTimeout(handle as number);
   }, []);
@@ -48,14 +53,19 @@ export function HeroVideo({
     if (!video) return;
     video.load();
     const onReady = () => setReady(true);
-    video.addEventListener('canplay', onReady);
-    return () => video.removeEventListener('canplay', onReady);
+    video.addEventListener("canplay", onReady);
+    return () => video.removeEventListener("canplay", onReady);
   }, [shouldLoad]);
 
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden bg-deep">
       {/* eslint-disable-next-line @next/next/no-img-element -- background plate, sized by CSS not layout */}
-      <img src={poster} alt="" aria-hidden="true" className="h-full w-full object-cover" />
+      <img
+        src={poster}
+        alt=""
+        aria-hidden="true"
+        className="h-full w-full object-cover"
+      />
 
       {shouldLoad && (
         <video
@@ -68,7 +78,7 @@ export function HeroVideo({
           preload="none"
           aria-label={label}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-cinematic ease-out-quart ${
-            ready ? 'opacity-100' : 'opacity-0'
+            ready ? "opacity-100" : "opacity-0"
           }`}
         >
           <source src={webm} type="video/webm" />

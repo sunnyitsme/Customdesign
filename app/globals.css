@@ -210,6 +210,16 @@ video {
   color: var(--color-ink-inverse);
 }
 
+/* Marquee viewports scroll natively — that is what gives touch swipe for free —
+   but the scrollbar itself would be visual noise. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Numerals align wherever they are compared. */
 .tabular {
   font-variant-numeric: tabular-nums;

@@ -57,7 +57,10 @@ test('keyboard — mega menu opens without hover and closes on Escape', async ({
   await expect(trigger).toHaveAttribute('aria-expanded', 'false');
   await page.keyboard.press('Enter');
   await expect(trigger).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.getByRole('link', { name: 'First-time buyers' })).toBeVisible();
+  // Scoped to the primary nav: the footer now carries the same link.
+  await expect(
+    page.getByLabel('Primary').getByRole('link', { name: 'First-time buyers' }),
+  ).toBeVisible();
   // Let the header's colour transition settle so the capture is not mid-flight.
   await page.waitForTimeout(500);
   await page.screenshot({ path: 'shots/megamenu-1440.png' });

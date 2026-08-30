@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { utilityNav } from '@/content/navigation';
+import { useEffect, useRef, useState } from "react";
+import { utilityNav } from "@/content/navigation";
 
 /**
  * Client and adviser portal access, as one compact disclosure.
@@ -18,11 +18,10 @@ import { utilityNav } from '@/content/navigation';
  * and aria-controls, Escape to close, outside pointerdown to dismiss, and no
  * dependence on hover.
  *
- * Appears at 85rem (1360px), chosen by measurement rather than arithmetic. The
- * control is only 41px, but it has to clear the phone number switching on at
- * 82rem: at 1312 the gap falls to 39px and at 1344 it is still 53px. 1360px is
- * the first width that measures a relaxed 60px, and it only improves from
- * there. The phone's own breakpoint is deliberately untouched.
+ * Appears at --breakpoint-desknav (1232px), the same step as the primary
+ * navigation. They share a breakpoint deliberately: there must be no width
+ * where the desktop nav is up, the drawer is gone, and the portals are
+ * unreachable from the header. Below 1232px the drawer carries both links.
  */
 export function PortalLogin({ solid }: { solid: boolean }) {
   const [open, setOpen] = useState(false);
@@ -31,16 +30,16 @@ export function PortalLogin({ solid }: { solid: boolean }) {
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false);
+      if (event.key === "Escape") setOpen(false);
     };
     const onPointerDown = (event: PointerEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
     };
-    document.addEventListener('keydown', onKey);
-    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointerDown);
     return () => {
-      document.removeEventListener('keydown', onKey);
-      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointerDown);
     };
   }, [open]);
 
@@ -49,7 +48,8 @@ export function PortalLogin({ solid }: { solid: boolean }) {
       ref={rootRef}
       className="relative hidden desknav:block"
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node)) setOpen(false);
+        if (!event.currentTarget.contains(event.relatedTarget as Node))
+          setOpen(false);
       }}
     >
       <button
@@ -63,7 +63,7 @@ export function PortalLogin({ solid }: { solid: boolean }) {
         <span
           aria-hidden="true"
           className={`mt-px block h-1 w-1 border-r border-b border-current transition-transform duration-base ${
-            open ? 'rotate-[-135deg]' : 'rotate-[45deg]'
+            open ? "rotate-[-135deg]" : "rotate-[45deg]"
           }`}
         />
       </button>
@@ -72,7 +72,7 @@ export function PortalLogin({ solid }: { solid: boolean }) {
         id="portal-login-panel"
         hidden={!open}
         className={`absolute top-[calc(100%+0.75rem)] right-0 min-w-[11rem] border bg-ground py-1 ${
-          solid ? 'border-line' : 'border-line-inverse'
+          solid ? "border-line" : "border-line-inverse"
         }`}
       >
         <ul className="m-0 list-none p-0">

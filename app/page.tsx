@@ -1,20 +1,54 @@
-import { Hero } from '@/components/home/Hero';
-import { ServiceDivisions } from '@/components/home/ServiceDivisions';
-import { heroMediaExists } from '@/lib/media';
+import { AboutGuide } from "@/components/home/AboutGuide";
+import { CaseStudies } from "@/components/home/CaseStudies";
+import { ConsultationCta } from "@/components/home/ConsultationCta";
+import { CredibilityStats } from "@/components/home/CredibilityStats";
+import { Experts } from "@/components/home/Experts";
+import { Hero } from "@/components/home/Hero";
+import { HowGuideWorks } from "@/components/home/HowGuideWorks";
+import { Insights } from "@/components/home/Insights";
+import { LogoMarquee } from "@/components/home/LogoMarquee";
+import { ReviewsMarquee } from "@/components/home/ReviewsMarquee";
+import { ServiceDivisions } from "@/components/home/ServiceDivisions";
+import { heroMediaExists } from "@/lib/media";
 
 /**
- * Homepage — Phase 1.
+ * Homepage.
  *
- * Only the hero and the four core divisions are built. The remaining sections
- * (positioning, statistics, lender marquee, advisers, case studies, social
- * proof, process, insights, footer) are deliberately not started until this
- * visual direction is reviewed. See docs/03-phase-1-plan.md.
+ * The order is a rhythm, not a list. Dark and light alternate so no two
+ * adjacent sections read the same way, and section heights vary deliberately:
+ * the hero and the case studies are the tall moments, the lender marquee is
+ * the shortest, and the process sits on a raised surface to separate the two
+ * light sections either side of it without a third dark band.
+ *
+ *   hero            dark, cinematic
+ *   divisions       light, editorial index
+ *   about           light, image-led and asymmetric
+ *   stats           DARK, short, typographic
+ *   lenders         light, shortest section on the page
+ *   experts         light, tall portraits, offset
+ *   cases           DARK, tallest section
+ *   reviews         light, very slow motion
+ *   process         raised surface, ordered sequence
+ *   insights        light, unequal editorial weighting
+ *   cta             DARK, the closing statement
+ *
+ * Only the two marquees and the divisions index are client components; the rest
+ * render on the server.
  */
 export default function HomePage() {
   return (
     <>
       <Hero hasMedia={heroMediaExists()} />
       <ServiceDivisions />
+      <AboutGuide />
+      <CredibilityStats />
+      <LogoMarquee />
+      <Experts />
+      <CaseStudies />
+      <ReviewsMarquee />
+      <HowGuideWorks />
+      <Insights />
+      <ConsultationCta />
     </>
   );
 }

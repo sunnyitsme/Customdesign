@@ -56,52 +56,52 @@ export function ServiceDivisions() {
                 key={division.id}
                 className="border-t border-line first:border-t-0 lg:first:border-t"
               >
-                  <Link
-                    href={division.href}
-                    onPointerEnter={() => setActive(index)}
-                    onFocus={() => setActive(index)}
-                    className="group block py-8 lg:py-10"
-                  >
-                    <DatumGrid className="gap-y-3">
-                      <span
-                        aria-hidden="true"
-                        className={`text-eyebrow font-medium tabular uppercase transition-colors duration-base ${
-                          active === index ? "text-accent" : "text-ink-tertiary"
-                        }`}
-                      >
-                        {division.index}
-                      </span>
+                <Link
+                  href={division.href}
+                  onPointerEnter={() => setActive(index)}
+                  onFocus={() => setActive(index)}
+                  className="group block py-8 lg:py-10"
+                >
+                  <DatumGrid className="gap-y-3">
+                    <span
+                      aria-hidden="true"
+                      className={`text-eyebrow font-medium tabular uppercase transition-colors duration-base ${
+                        active === index ? "text-accent" : "text-ink-tertiary"
+                      }`}
+                    >
+                      {division.index}
+                    </span>
 
-                      <div>
-                        <h3 className="text-heading-1 font-medium tracking-tight text-balance transition-colors duration-base group-hover:text-accent">
-                          {division.label}
-                        </h3>
+                    <div>
+                      <h3 className="text-heading-1 font-medium tracking-tight text-balance transition-colors duration-base group-hover:text-accent">
+                        {division.label}
+                      </h3>
 
-                        {/* Three compositions, not one shrunk twice:
+                      {/* Three compositions, not one shrunk twice:
                           mobile stacks plate above copy, tablet sets copy and a
                           portrait plate side by side, desktop drops the inline
                           plate for the sticky one alongside the index. */}
-                        <div className="mt-6 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,15rem)] md:items-start md:gap-10 lg:mt-5 lg:block">
-                          <div className="relative aspect-3/2 md:order-2 md:aspect-4/5 lg:hidden">
-                            <DrawingPlate
-                              label={`${division.label} — photography required`}
-                              tone="light"
-                            />
-                          </div>
+                      <div className="mt-6 grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,15rem)] md:items-start md:gap-10 lg:mt-5 lg:block">
+                        <div className="relative aspect-3/2 md:order-2 md:aspect-4/5 lg:hidden">
+                          <DrawingPlate
+                            label={`${division.label} — photography required`}
+                            tone="light"
+                          />
+                        </div>
 
-                          <div className="md:order-1">
-                            <p className="max-w-[52ch] font-prose text-body-lg text-ink-secondary">
-                              {division.scope}
-                            </p>
+                        <div className="md:order-1">
+                          <p className="max-w-[52ch] font-prose text-body-lg text-ink-secondary">
+                            {division.scope}
+                          </p>
 
-                            <span className="mt-5 inline-block text-body-sm font-medium text-accent underline decoration-transparent underline-offset-[6px] transition-[text-decoration-color] duration-base group-hover:decoration-accent">
-                              {division.label} advice
-                            </span>
-                          </div>
+                          <span className="mt-5 inline-block text-body-sm font-medium text-accent underline decoration-transparent underline-offset-[6px] transition-[text-decoration-color] duration-base group-hover:decoration-accent">
+                            {division.label} advice
+                          </span>
                         </div>
                       </div>
-                    </DatumGrid>
-                  </Link>
+                    </div>
+                  </DatumGrid>
+                </Link>
               </li>
             ))}
           </ol>

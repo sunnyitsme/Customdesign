@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import { hubs, primaryCta } from '@/content/navigation';
-import { site } from '@/content/site';
-import { MobileNav } from './MobileNav';
-import { PortalLogin } from './PortalLogin';
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { hubs, primaryCta } from "@/content/navigation";
+import { site } from "@/content/site";
+import { MobileNav } from "./MobileNav";
+import { PortalLogin } from "./PortalLogin";
 
 /**
  * Site header.
@@ -45,23 +45,23 @@ export function SiteHeader() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     if (!openHub) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpenHub(null);
+      if (event.key === "Escape") setOpenHub(null);
     };
     const onPointerDown = (event: PointerEvent) => {
       if (!navRef.current?.contains(event.target as Node)) setOpenHub(null);
     };
-    document.addEventListener('keydown', onKey);
-    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointerDown);
     return () => {
-      document.removeEventListener('keydown', onKey);
-      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointerDown);
     };
   }, [openHub]);
 
@@ -77,17 +77,22 @@ export function SiteHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-slow ${
-        solid ? 'border-b border-line bg-ground text-ink' : 'on-deep border-b border-transparent text-ink-inverse'
+        solid
+          ? "border-b border-line bg-ground text-ink"
+          : "on-deep border-b border-transparent text-ink-inverse"
       }`}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node)) setOpenHub(null);
+        if (!event.currentTarget.contains(event.relatedTarget as Node))
+          setOpenHub(null);
       }}
     >
       <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[var(--container-max)] items-center justify-between gap-6 px-[var(--gutter)]">
         {/* Wordmark. No Guide logo asset exists — this is typographic, not a
             fabricated mark. See content/pending.ts brand.identity. */}
         <Link href="/" className="shrink-0 leading-none">
-          <span className="block text-[1.0625rem] font-semibold tracking-[-0.02em]">Guide</span>
+          <span className="block text-[1.0625rem] font-semibold tracking-[-0.02em]">
+            Guide
+          </span>
           <span className="mt-0.5 block text-[9px] font-medium tracking-[0.2em] uppercase opacity-70">
             Financial Services
           </span>
@@ -133,7 +138,7 @@ export function SiteHeader() {
                       <span
                         aria-hidden="true"
                         className={`mt-px block h-1 w-1 border-r border-b border-current transition-transform duration-base ${
-                          isOpen ? 'rotate-[-135deg]' : 'rotate-[45deg]'
+                          isOpen ? "rotate-[-135deg]" : "rotate-[45deg]"
                         }`}
                       />
                     </button>
@@ -182,13 +187,18 @@ export function SiteHeader() {
 
         <div className="flex shrink-0 items-center gap-6">
           <PortalLogin solid={solid} />
-          <a href={site.phoneHref} className="hidden text-[0.84rem] font-medium whitespace-nowrap tabular deskfull:inline">
+          <a
+            href={site.phoneHref}
+            className="hidden text-[0.84rem] font-medium whitespace-nowrap tabular deskfull:inline"
+          >
             {site.phone}
           </a>
           <Link
             href={primaryCta.href}
             className={`hidden shrink-0 rounded-sm px-4 py-2.5 text-[0.84rem] font-medium whitespace-nowrap transition-colors duration-base cta:inline-flex ${
-              solid ? 'bg-ink text-ink-inverse hover:bg-accent' : 'bg-ink-inverse text-ink hover:bg-accent-bright'
+              solid
+                ? "bg-ink text-ink-inverse hover:bg-accent"
+                : "bg-ink-inverse text-ink hover:bg-accent-bright"
             }`}
           >
             {primaryCta.label}

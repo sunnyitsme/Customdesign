@@ -8,15 +8,16 @@
  */
 export function DrawingPlate({
   label,
-  tone = 'dark',
-  className = '',
+  tone = "dark",
+  className = "",
 }: {
   label: string;
-  tone?: 'light' | 'dark';
+  tone?: "light" | "dark";
   className?: string;
 }) {
-  const line = tone === 'dark' ? 'rgba(143,191,175,0.14)' : 'rgba(21,25,26,0.11)';
-  const ground = tone === 'dark' ? 'var(--color-deep)' : '#E3E5E1';
+  const line =
+    tone === "dark" ? "rgba(143,191,175,0.14)" : "rgba(21,25,26,0.11)";
+  const ground = tone === "dark" ? "var(--color-deep)" : "#E3E5E1";
 
   return (
     <div
@@ -31,15 +32,21 @@ export function DrawingPlate({
       {/* Two datum lines crossing off-centre — the drawing's registration marks. */}
       <span
         className="absolute top-0 bottom-0 left-[38.2%] w-px"
-        style={{ backgroundColor: tone === 'dark' ? 'rgba(143,191,175,0.3)' : 'rgba(47,95,82,0.34)' }}
+        style={{
+          backgroundColor:
+            tone === "dark" ? "rgba(143,191,175,0.3)" : "rgba(47,95,82,0.34)",
+        }}
       />
       <span
         className="absolute right-0 left-0 top-[61.8%] h-px"
-        style={{ backgroundColor: tone === 'dark' ? 'rgba(143,191,175,0.3)' : 'rgba(47,95,82,0.34)' }}
+        style={{
+          backgroundColor:
+            tone === "dark" ? "rgba(143,191,175,0.3)" : "rgba(47,95,82,0.34)",
+        }}
       />
       <span
         className={`absolute bottom-4 left-4 text-[10px] font-medium tracking-[0.14em] uppercase ${
-          tone === 'dark' ? 'text-ink-inverse-secondary' : 'text-ink-tertiary'
+          tone === "dark" ? "text-ink-inverse-secondary" : "text-ink-tertiary"
         }`}
       >
         {label}

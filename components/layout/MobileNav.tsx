@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import { hubs, primaryCta, utilityNav } from '@/content/navigation';
-import { site } from '@/content/site';
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { hubs, primaryCta, utilityNav } from "@/content/navigation";
+import { site } from "@/content/site";
 
 /**
  * Mobile navigation.
@@ -26,8 +26,8 @@ export function MobileNav() {
       setOpen(false);
       setExpanded(null);
     };
-    dialog.addEventListener('close', handleClose);
-    return () => dialog.removeEventListener('close', handleClose);
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
   }, []);
 
   const openNav = () => {
@@ -59,7 +59,9 @@ export function MobileNav() {
       >
         <div className="on-deep flex h-full flex-col overflow-y-auto">
           <div className="flex items-center justify-between border-b border-line-inverse px-[var(--gutter)] py-5">
-            <span className="text-heading-3 font-semibold tracking-tight">{site.name}</span>
+            <span className="text-heading-3 font-semibold tracking-tight">
+              {site.name}
+            </span>
             <button
               type="button"
               onClick={closeNav}
@@ -93,13 +95,13 @@ export function MobileNav() {
                           type="button"
                           onClick={() => setExpanded(isOpen ? null : hub.href)}
                           aria-expanded={isOpen}
-                          aria-label={`${isOpen ? 'Hide' : 'Show'} ${hub.label} services`}
+                          aria-label={`${isOpen ? "Hide" : "Show"} ${hub.label} services`}
                           className="inline-flex h-11 w-11 items-center justify-center"
                         >
                           <span
                             aria-hidden="true"
                             className={`relative block h-3 w-3 transition-transform duration-base ${
-                              isOpen ? 'rotate-45' : ''
+                              isOpen ? "rotate-45" : ""
                             }`}
                           >
                             <span className="absolute top-1/2 left-0 h-px w-full bg-current" />
@@ -150,7 +152,10 @@ export function MobileNav() {
                 </li>
               ))}
               <li>
-                <a href={site.phoneHref} className="text-body-sm text-ink-inverse-secondary tabular">
+                <a
+                  href={site.phoneHref}
+                  className="text-body-sm text-ink-inverse-secondary tabular"
+                >
                   {site.phone}
                 </a>
               </li>

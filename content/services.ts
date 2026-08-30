@@ -25,55 +25,55 @@ export interface Division {
 
 export const divisions: readonly Division[] = [
   {
-    id: 'mortgages',
-    index: '01',
-    label: 'Mortgages',
-    href: '/mortgages',
+    id: "mortgages",
+    index: "01",
+    label: "Mortgages",
+    href: "/mortgages",
     scope:
-      'Residential mortgage advice covering purchases, remortgaging, buy-to-let, and lending for self-employed and higher-value cases.',
+      "Residential mortgage advice covering purchases, remortgaging, buy-to-let, and lending for self-employed and higher-value cases.",
     positioning: null,
     image: {
       src: null,
-      alt: 'Placeholder — residential architecture photography required. See docs/01-content-and-assets-required.md §12.',
+      alt: "Placeholder — residential architecture photography required. See docs/01-content-and-assets-required.md §12.",
     },
   },
   {
-    id: 'property-finance',
-    index: '02',
-    label: 'Property Finance',
-    href: '/property-finance',
+    id: "property-finance",
+    index: "02",
+    label: "Property Finance",
+    href: "/property-finance",
     scope:
-      'Specialist funding for investors, landlords and developers: bridging, development finance, commercial and semi-commercial, portfolio and auction finance.',
+      "Specialist funding for investors, landlords and developers: bridging, development finance, commercial and semi-commercial, portfolio and auction finance.",
     positioning: null,
     image: {
       src: null,
-      alt: 'Placeholder — commercial or development site photography required.',
+      alt: "Placeholder — commercial or development site photography required.",
     },
   },
   {
-    id: 'protection',
-    index: '03',
-    label: 'Protection',
-    href: '/protection',
+    id: "protection",
+    index: "03",
+    label: "Protection",
+    href: "/protection",
     scope:
-      'Personal and business cover including life assurance, income protection, critical illness, private medical, and key person and share protection.',
+      "Personal and business cover including life assurance, income protection, critical illness, private medical, and key person and share protection.",
     positioning: null,
     image: {
       src: null,
-      alt: 'Placeholder — interior or client-meeting photography required.',
+      alt: "Placeholder — interior or client-meeting photography required.",
     },
   },
   {
-    id: 'wills-estate-planning',
-    index: '04',
-    label: 'Wills & Estate Planning',
-    href: '/wills-estate-planning',
+    id: "wills-estate-planning",
+    index: "04",
+    label: "Wills & Estate Planning",
+    href: "/wills-estate-planning",
     scope:
-      'Will writing services covering standard wills, mirror wills, trust wills, and reviews as circumstances change.',
+      "Will writing services covering standard wills, mirror wills, trust wills, and reviews as circumstances change.",
     positioning: null,
     image: {
       src: null,
-      alt: 'Placeholder — architectural or still-life photography required.',
+      alt: "Placeholder — architectural or still-life photography required.",
     },
   },
 ];
@@ -89,14 +89,14 @@ export const divisions: readonly Division[] = [
 export const hero = {
   headline: null as string | null,
   supporting: null as string | null,
-  primaryCta: { label: 'Speak to an adviser', href: '/contact' },
-  secondaryCta: { label: 'How we work', href: '/about/how-we-work' },
+  primaryCta: { label: "Speak to an adviser", href: "/contact" },
+  secondaryCta: { label: "How we work", href: "/about/how-we-work" },
   media: {
     // Assets do not exist yet. The component renders a structural placeholder
     // and swaps to video the moment these files are added — no redesign needed.
-    webm: '/media/hero/guide-london.webm',
-    mp4: '/media/hero/guide-london.mp4',
-    poster: '/media/hero/guide-london-poster.webp',
-    alt: 'London financial district',
+    webm: "/media/hero/guide-london.webm",
+    mp4: "/media/hero/guide-london.mp4",
+    poster: "/media/hero/guide-london-poster.webp",
+    alt: "London financial district",
   },
 } as const;

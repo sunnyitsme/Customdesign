@@ -20,7 +20,10 @@ import { HeroVideo } from "./HeroVideo";
  */
 export function Hero({ hasMedia }: { hasMedia: boolean }) {
   return (
-    <section className="on-deep relative isolate flex min-h-[min(90svh,50rem)] flex-col justify-end overflow-hidden bg-deep pt-[calc(var(--header-height)+var(--section-sm))] text-ink-inverse">
+    <section
+      aria-labelledby="hero-heading"
+      className="on-deep relative isolate flex min-h-[min(90svh,50rem)] flex-col justify-end overflow-hidden bg-deep pt-[calc(var(--header-height)+var(--section-sm))] text-ink-inverse"
+    >
       {hasMedia ? (
         <HeroVideo
           webm={hero.media.webm}
@@ -47,7 +50,10 @@ export function Hero({ hasMedia }: { hasMedia: boolean }) {
         <DatumGrid>
           <div />
           <PendingContent label="hero.copy — approved headline required">
-            <h1 className="max-w-[17ch] text-display-1 font-medium text-balance">
+            <h1
+              id="hero-heading"
+              className="max-w-[17ch] text-display-1 font-medium text-balance"
+            >
               Mortgage and property finance advice.
             </h1>
           </PendingContent>
