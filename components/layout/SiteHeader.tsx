@@ -2,9 +2,10 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { hubs, primaryCta, utilityNav } from '@/content/navigation';
+import { hubs, primaryCta } from '@/content/navigation';
 import { site } from '@/content/site';
 import { MobileNav } from './MobileNav';
+import { PortalLogin } from './PortalLogin';
 
 /**
  * Site header.
@@ -172,15 +173,7 @@ export function SiteHeader() {
         </div>
 
         <div className="flex shrink-0 items-center gap-6">
-          <ul className="m-0 hidden list-none items-center gap-4 p-0 min-[96rem]:flex">
-            {utilityNav.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} rel="noopener noreferrer" className="text-[0.8rem] whitespace-nowrap opacity-75 hover:opacity-100">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <PortalLogin solid={solid} />
           <a href={site.phoneHref} className="hidden text-[0.84rem] font-medium whitespace-nowrap tabular min-[82rem]:inline">
             {site.phone}
           </a>

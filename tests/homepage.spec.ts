@@ -149,3 +149,77 @@ for (const width of HEADER_WIDTHS) {
     expect(overflow, `horizontal overflow at ${width}px`).toBeLessThanOrEqual(0);
   });
 }
+
+/**
+ * Utility-login disclosure regression.
+ *
+ * Both portal links inline cost 152px and left a 25-36px nav/actions gap at
+ * every width from 1536 up — the header bar is capped at --container-max, so a
+ * wider viewport yields *less* content width, not more. The compact disclosure
+ * costs 41px and appears at 85rem (1360px), the first width that clears the
+ * phone number switching on at 82rem with a relaxed gap.
+ */
+const PORTAL_LOGIN_FROM = 1360;
+const COMFORTABLE_GAP = 56;
+
+for (const width of [1440, 1500, 1536, 1600, 1663, 1664, 1680, 1728, 1760, 1920]) {
+  test(`header at ${width}px — utility login present and header stays relaxed`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(220);
+
+    const login = page.getByRole('button', { name: 'Login' });
+    await expect(login).toBeVisible();
+    await expect(login).toHaveAttribute('aria-expanded', 'false');
+
+    // CTA and phone must both survive at every desktop width.
+    await expect(page.getByRole('banner').getByRole('link', { name: 'Speak to an adviser' })).toBeVisible();
+    await expect(page.getByRole('banner').getByRole('link', { name: '0333 034 8993' })).toBeVisible();
+
+    const geometry = await page.evaluate(() => {
+      const bar = document.querySelector('header > div')!;
+      const actions = bar.lastElementChild!;
+      const items = Array.from(document.querySelectorAll('header nav > ul > li'))
+        .map((li) => li.querySelector(':scope > a, :scope > button'))
+        .filter((el): el is HTMLElement => el !== null);
+      const controls = [...items, ...Array.from(actions.querySelectorAll('a, button'))] as HTMLElement[];
+      return {
+        gap: Math.round(actions.getBoundingClientRect().left - items[items.length - 1]!.getBoundingClientRect().right),
+        clipped: controls.filter((el) => el.scrollWidth > el.clientWidth + 1).map((el) => el.textContent),
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    });
+
+    expect(geometry.clipped, `clipped header controls at ${width}px`).toEqual([]);
+    expect(geometry.gap, `nav/actions gap at ${width}px`).toBeGreaterThanOrEqual(COMFORTABLE_GAP);
+    expect(geometry.overflow, `horizontal overflow at ${width}px`).toBeLessThanOrEqual(0);
+  });
+}
+
+test(`utility login is hidden below ${PORTAL_LOGIN_FROM}px`, async ({ page }) => {
+  await page.setViewportSize({ width: PORTAL_LOGIN_FROM - 1, height: 900 });
+  await page.goto('/', { waitUntil: 'networkidle' });
+  await expect(page.getByRole('button', { name: 'Login' })).toBeHidden();
+  // Still reachable in the drawer at widths where the drawer is the navigation.
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.getByRole('button', { name: 'Open navigation menu' }).click();
+  await expect(page.getByRole('dialog').getByRole('link', { name: 'Client login' })).toBeVisible();
+  await expect(page.getByRole('dialog').getByRole('link', { name: 'Advisor login' })).toBeVisible();
+});
+
+test('utility login disclosure — keyboard operable, Escape closes', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/', { waitUntil: 'networkidle' });
+
+  const login = page.getByRole('button', { name: 'Login' });
+  await login.focus();
+  await page.keyboard.press('Enter');
+  await expect(login).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByRole('banner').getByRole('link', { name: 'Client login' })).toBeVisible();
+  await expect(page.getByRole('banner').getByRole('link', { name: 'Advisor login' })).toBeVisible();
+
+  await page.keyboard.press('Escape');
+  await expect(login).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('banner').getByRole('link', { name: 'Client login' })).toBeHidden();
+});
