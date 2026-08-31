@@ -62,10 +62,16 @@ export default async function TeamMemberPage({
             <Eyebrow>Adviser</Eyebrow>
             <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
               <div className="relative aspect-4/5 w-full">
-                <DrawingPlate label={`${member.name} — portrait required`} tone="light" />
+                <DrawingPlate
+                  label={`${member.name} — portrait required`}
+                  tone="light"
+                />
               </div>
               <div>
-                <h1 id="member-heading" className="text-display-2 font-medium text-balance">
+                <h1
+                  id="member-heading"
+                  className="text-display-2 font-medium text-balance"
+                >
                   {member.name}
                 </h1>
                 <PendingContent
@@ -79,8 +85,8 @@ export default async function TeamMemberPage({
                     Qualifications [FIRM CONFIRMATION REQUIRED]
                   </p>
                   <p className="mt-6 max-w-[56ch] text-body-lg text-ink-secondary">
-                    [APPROVED COPY REQUIRED] — a biography written or approved by
-                    the adviser. Nothing is written on their behalf.
+                    [APPROVED COPY REQUIRED] — a biography written or approved
+                    by the adviser. Nothing is written on their behalf.
                   </p>
                 </PendingContent>
                 <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">

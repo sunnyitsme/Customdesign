@@ -22,7 +22,10 @@ export default function OurTeamPage() {
           { label: "Our team" },
         ]}
       />
-      <section aria-labelledby="team-list-heading" className="py-[var(--section-md)]">
+      <section
+        aria-labelledby="team-list-heading"
+        className="py-[var(--section-md)]"
+      >
         <Container>
           <h2 id="team-list-heading" className="sr-only">
             Advisers
@@ -31,9 +34,15 @@ export default function OurTeamPage() {
             <ul className="m-0 grid list-none grid-cols-1 gap-x-10 gap-y-14 p-0 sm:grid-cols-2 lg:grid-cols-3">
               {team.map((member) => (
                 <li key={member.id}>
-                  <Link href={`/about/team/${member.slug}`} className="group block">
+                  <Link
+                    href={`/about/team/${member.slug}`}
+                    className="group block"
+                  >
                     <div className="relative aspect-4/5 w-full">
-                      <DrawingPlate label={`${member.name} — portrait required`} tone="light" />
+                      <DrawingPlate
+                        label={`${member.name} — portrait required`}
+                        tone="light"
+                      />
                     </div>
                     <h3 className="mt-6 text-heading-1 font-medium tracking-tight transition-colors duration-base group-hover:text-accent">
                       {member.name}

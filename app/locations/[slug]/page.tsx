@@ -57,7 +57,9 @@ export default async function LocationPage({
         <p className="mt-8 max-w-[46ch] text-body-lg text-ink-inverse-secondary">
           {location.address}
         </p>
-        <p className="mt-4 text-body-sm text-accent-bright">[FIRM CONFIRMATION REQUIRED]</p>
+        <p className="mt-4 text-body-sm text-accent-bright">
+          [FIRM CONFIRMATION REQUIRED]
+        </p>
         <a
           href={site.phoneHref}
           className="mt-8 inline-block text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse underline-offset-[6px] hover:decoration-accent-bright"
@@ -66,13 +68,19 @@ export default async function LocationPage({
         </a>
       </PageOpening>
 
-      <section aria-labelledby="location-detail-heading" className="py-[var(--section-md)]">
+      <section
+        aria-labelledby="location-detail-heading"
+        className="py-[var(--section-md)]"
+      >
         <Container>
           <DatumGrid>
             <Eyebrow>This office</Eyebrow>
             <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
               <div>
-                <h2 id="location-detail-heading" className="max-w-[22ch] text-display-2 font-medium text-balance">
+                <h2
+                  id="location-detail-heading"
+                  className="max-w-[22ch] text-display-2 font-medium text-balance"
+                >
                   Advice available here.
                 </h2>
                 <ul className="m-0 mt-9 flex list-none flex-col gap-px border-t border-line bg-line p-0">
@@ -92,14 +100,17 @@ export default async function LocationPage({
                   className="mt-10"
                 >
                   <p className="max-w-[54ch] text-body-lg text-ink-secondary">
-                    [APPROVED COPY REQUIRED] — a short description of this office
-                    and who works from it.
+                    [APPROVED COPY REQUIRED] — a short description of this
+                    office and who works from it.
                   </p>
                 </PendingContent>
               </div>
               <div>
                 <div className="relative aspect-4/3 w-full">
-                  <DrawingPlate label="Map required — location and directions" tone="light" />
+                  <DrawingPlate
+                    label="Map required — location and directions"
+                    tone="light"
+                  />
                 </div>
                 <p className="mt-4 text-body-sm text-ink-tertiary">
                   Map and directions [FIRM CONFIRMATION REQUIRED]

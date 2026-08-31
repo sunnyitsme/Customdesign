@@ -52,20 +52,34 @@ export default function PropertyFinancePage() {
         <Container>
           <DatumGrid>
             <Eyebrow>Client types</Eyebrow>
-            <h2 id="pf-clients-heading" className="max-w-[22ch] text-display-2 font-medium text-balance">
+            <h2
+              id="pf-clients-heading"
+              className="max-w-[22ch] text-display-2 font-medium text-balance"
+            >
               Who this desk works with.
             </h2>
           </DatumGrid>
           <ul className="m-0 mt-11 grid list-none grid-cols-1 gap-px border-t border-line bg-line p-0 md:grid-cols-2 xl:grid-cols-4">
             {[
-              ["Developers", "Building out sites, converting buildings, or buying land."],
-              ["Portfolio landlords", "Holding multiple properties personally or through a company."],
-              ["Investors", "Buying at auction, refurbishing, or acquiring commercial property."],
+              [
+                "Developers",
+                "Building out sites, converting buildings, or buying land.",
+              ],
+              [
+                "Portfolio landlords",
+                "Holding multiple properties personally or through a company.",
+              ],
+              [
+                "Investors",
+                "Buying at auction, refurbishing, or acquiring commercial property.",
+              ],
               ["Businesses", "Buying premises to occupy rather than to let."],
             ].map(([title, body]) => (
               <li key={title} className="bg-surface py-8 md:px-6 md:first:pl-0">
                 <h3 className="text-heading-3 font-medium text-ink">{title}</h3>
-                <p className="mt-3 max-w-[30ch] text-body text-ink-secondary">{body}</p>
+                <p className="mt-3 max-w-[30ch] text-body text-ink-secondary">
+                  {body}
+                </p>
               </li>
             ))}
           </ul>
@@ -81,7 +95,10 @@ export default function PropertyFinancePage() {
           <DatumGrid>
             <Eyebrow tone="dark">Selected cases</Eyebrow>
             <div className="grid gap-x-14 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-              <h2 id="pf-cases-heading" className="max-w-[20ch] text-display-2 font-medium text-balance">
+              <h2
+                id="pf-cases-heading"
+                className="max-w-[20ch] text-display-2 font-medium text-balance"
+              >
                 Transactions we have arranged.
               </h2>
               <p className="max-w-[42ch] text-body-lg text-ink-inverse-secondary lg:pt-2">
@@ -97,9 +114,15 @@ export default function PropertyFinancePage() {
           >
             <ul className="m-0 grid list-none grid-cols-1 gap-px border-t border-line-inverse bg-line-inverse p-0 md:grid-cols-2">
               {cases.map((entry) => (
-                <li key={entry.id} className="bg-deep py-8 md:px-7 md:first:pl-0">
+                <li
+                  key={entry.id}
+                  className="bg-deep py-8 md:px-7 md:first:pl-0"
+                >
                   <div className="relative aspect-16/10 w-full">
-                    <DrawingPlate label={`${entry.discipline} — photography required`} tone="dark" />
+                    <DrawingPlate
+                      label={`${entry.discipline} — photography required`}
+                      tone="dark"
+                    />
                   </div>
                   <p className="mt-6 text-eyebrow font-medium tracking-[0.16em] text-accent-bright uppercase">
                     {entry.discipline}

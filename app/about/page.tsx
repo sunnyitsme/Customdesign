@@ -35,21 +35,30 @@ export default function AboutPage() {
         imageAlt="Image required — office or architectural context, people-led"
       />
 
-      <section aria-labelledby="about-story-heading" className="border-t border-line py-[var(--section-md)]">
+      <section
+        aria-labelledby="about-story-heading"
+        className="border-t border-line py-[var(--section-md)]"
+      >
         <Container>
           <DatumGrid>
             <Eyebrow>The firm</Eyebrow>
             <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]">
               <div>
-                <h2 id="about-story-heading" className="max-w-[20ch] text-display-2 font-medium text-balance">
+                <h2
+                  id="about-story-heading"
+                  className="max-w-[20ch] text-display-2 font-medium text-balance"
+                >
                   Advice given with the other areas in view.
                 </h2>
-                <PendingContent label="about.copy — approved company story, mission and values required" className="mt-9">
+                <PendingContent
+                  label="about.copy — approved company story, mission and values required"
+                  className="mt-9"
+                >
                   <p className="max-w-[58ch] text-body-lg text-ink-secondary">
                     A purchase raises questions about cover; a portfolio raises
                     questions about structure; an estate raises questions about
-                    both. [APPROVED COPY REQUIRED] — the firm&rsquo;s own account
-                    of its story, mission and values.
+                    both. [APPROVED COPY REQUIRED] — the firm&rsquo;s own
+                    account of its story, mission and values.
                   </p>
                 </PendingContent>
               </div>
@@ -69,11 +78,17 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="about-people-heading" className="border-t border-line bg-surface py-[var(--section-md)]">
+      <section
+        aria-labelledby="about-people-heading"
+        className="border-t border-line bg-surface py-[var(--section-md)]"
+      >
         <Container>
           <DatumGrid>
             <Eyebrow>People</Eyebrow>
-            <h2 id="about-people-heading" className="max-w-[20ch] text-display-2 font-medium text-balance">
+            <h2
+              id="about-people-heading"
+              className="max-w-[20ch] text-display-2 font-medium text-balance"
+            >
               The advisers behind the advice.
             </h2>
           </DatumGrid>
@@ -83,10 +98,19 @@ export default function AboutPage() {
           >
             <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-12 p-0 sm:grid-cols-2 xl:grid-cols-4">
               {team.map((member, index) => (
-                <li key={member.id} className={index % 2 === 1 ? "xl:mt-12" : undefined}>
-                  <Link href={`/about/team/${member.slug}`} className="group block">
+                <li
+                  key={member.id}
+                  className={index % 2 === 1 ? "xl:mt-12" : undefined}
+                >
+                  <Link
+                    href={`/about/team/${member.slug}`}
+                    className="group block"
+                  >
                     <div className="relative aspect-4/5 w-full">
-                      <DrawingPlate label={`${member.name} — portrait required`} tone="light" />
+                      <DrawingPlate
+                        label={`${member.name} — portrait required`}
+                        tone="light"
+                      />
                     </div>
                     <h3 className="mt-6 text-heading-2 font-medium tracking-tight transition-colors duration-base group-hover:text-accent">
                       {member.name}
@@ -108,11 +132,17 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="about-offices-heading" className="border-t border-line py-[var(--section-md)]">
+      <section
+        aria-labelledby="about-offices-heading"
+        className="border-t border-line py-[var(--section-md)]"
+      >
         <Container>
           <DatumGrid>
             <Eyebrow>Offices</Eyebrow>
-            <h2 id="about-offices-heading" className="max-w-[20ch] text-display-2 font-medium text-balance">
+            <h2
+              id="about-offices-heading"
+              className="max-w-[20ch] text-display-2 font-medium text-balance"
+            >
               Where we work from.
             </h2>
           </DatumGrid>
@@ -122,12 +152,20 @@ export default function AboutPage() {
           >
             <ul className="m-0 grid list-none grid-cols-1 gap-px border-t border-line bg-line p-0 sm:grid-cols-2 xl:grid-cols-4">
               {locations.map((location) => (
-                <li key={location.slug} className="bg-ground py-7 sm:px-6 sm:first:pl-0">
-                  <Link href={`/locations/${location.slug}`} className="group block">
+                <li
+                  key={location.slug}
+                  className="bg-ground py-7 sm:px-6 sm:first:pl-0"
+                >
+                  <Link
+                    href={`/locations/${location.slug}`}
+                    className="group block"
+                  >
                     <h3 className="text-heading-3 font-medium text-ink transition-colors duration-base group-hover:text-accent">
                       {location.city}
                     </h3>
-                    <p className="mt-2 max-w-[28ch] text-body-sm text-ink-secondary">{location.address}</p>
+                    <p className="mt-2 max-w-[28ch] text-body-sm text-ink-secondary">
+                      {location.address}
+                    </p>
                   </Link>
                 </li>
               ))}

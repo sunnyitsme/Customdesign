@@ -40,7 +40,9 @@ function ServiceHero({
       }
     >
       <Container>
-        <div className={dark ? "" : "[&_a]:text-ink-tertiary [&_span]:text-ink"}>
+        <div
+          className={dark ? "" : "[&_a]:text-ink-tertiary [&_span]:text-ink"}
+        >
           <Breadcrumbs items={crumbs} />
         </div>
 
@@ -91,7 +93,10 @@ function ServiceHero({
 
             {page.variant !== "educational" && (
               <div className="relative aspect-4/5 w-full lg:aspect-3/4">
-                <DrawingPlate label={page.imageAlt} tone={dark ? "dark" : "light"} />
+                <DrawingPlate
+                  label={page.imageAlt}
+                  tone={dark ? "dark" : "light"}
+                />
               </div>
             )}
           </div>
@@ -103,7 +108,10 @@ function ServiceHero({
 
 function ComplianceNotice({ flags }: { flags: readonly string[] }) {
   return (
-    <section aria-label="Compliance review" className="border-t border-line bg-surface">
+    <section
+      aria-label="Compliance review"
+      className="border-t border-line bg-surface"
+    >
       <Container className="py-8">
         <DatumGrid>
           <Eyebrow>Review</Eyebrow>
@@ -113,7 +121,10 @@ function ComplianceNotice({ flags }: { flags: readonly string[] }) {
             </p>
             <ul className="m-0 mt-3 flex list-none flex-col gap-1.5 p-0">
               {flags.map((flag) => (
-                <li key={flag} className="max-w-[76ch] text-body-sm text-ink-secondary">
+                <li
+                  key={flag}
+                  className="max-w-[76ch] text-body-sm text-ink-secondary"
+                >
                   {flag}
                 </li>
               ))}
@@ -134,7 +145,10 @@ export function ServicePageView({
 }) {
   const related = page.related
     .map((href) => ({ href, page: pageByHref(href) }))
-    .filter((entry) => entry.page !== undefined || entry.href.startsWith("/calculators"));
+    .filter(
+      (entry) =>
+        entry.page !== undefined || entry.href.startsWith("/calculators"),
+    );
 
   const hasAudience = page.audience.length > 0;
   const hasFaqs = page.faqs.length > 0;
@@ -150,20 +164,31 @@ export function ServicePageView({
       {/* Who it is for — omitted on educational guides, which address a topic
           rather than a circumstance. */}
       {hasAudience && (
-        <section aria-labelledby="audience-heading" className="border-t border-line py-[var(--section-md)]">
+        <section
+          aria-labelledby="audience-heading"
+          className="border-t border-line py-[var(--section-md)]"
+        >
           <Container>
             <DatumGrid>
               <Eyebrow>Who it is for</Eyebrow>
               <div>
-                <h2 id="audience-heading" className="max-w-[20ch] text-display-2 font-medium text-balance">
+                <h2
+                  id="audience-heading"
+                  className="max-w-[20ch] text-display-2 font-medium text-balance"
+                >
                   {page.variant === "commercial"
                     ? "Situations we are asked about."
                     : "You might be here because"}
                 </h2>
                 <ul className="m-0 mt-10 grid list-none grid-cols-1 gap-px border-t border-line bg-line p-0 md:grid-cols-3">
                   {page.audience.map((item: string) => (
-                    <li key={item} className="bg-ground py-7 md:px-6 md:first:pl-0">
-                      <p className="max-w-[34ch] text-body-lg text-ink-secondary">{item}</p>
+                    <li
+                      key={item}
+                      className="bg-ground py-7 md:px-6 md:first:pl-0"
+                    >
+                      <p className="max-w-[34ch] text-body-lg text-ink-secondary">
+                        {item}
+                      </p>
                     </li>
                   ))}
                 </ul>
@@ -183,7 +208,11 @@ export function ServicePageView({
         >
           <Container>
             <DatumGrid>
-              <Eyebrow>{page.variant === "educational" ? "How it works" : "What to know"}</Eyebrow>
+              <Eyebrow>
+                {page.variant === "educational"
+                  ? "How it works"
+                  : "What to know"}
+              </Eyebrow>
               <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]">
                 <div>
                   <h2
@@ -196,14 +225,19 @@ export function ServicePageView({
                   </h2>
                   <ol className="relative m-0 mt-10 flex list-none flex-col gap-7 p-0">
                     {page.considerations.map((item: string, index: number) => (
-                      <li key={item} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4">
+                      <li
+                        key={item}
+                        className="grid grid-cols-[2rem_minmax(0,1fr)] gap-4"
+                      >
                         <span
                           aria-hidden="true"
                           className="pt-1 text-eyebrow font-medium tabular text-accent"
                         >
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <p className="max-w-[56ch] text-body-lg text-ink-secondary">{item}</p>
+                        <p className="max-w-[56ch] text-body-lg text-ink-secondary">
+                          {item}
+                        </p>
                       </li>
                     ))}
                   </ol>
@@ -215,8 +249,8 @@ export function ServicePageView({
                       Speak to someone
                     </p>
                     <p className="mt-4 max-w-[30ch] text-body text-ink-secondary">
-                      Advice on this is a conversation, not a form. Talk it through
-                      with an adviser first.
+                      Advice on this is a conversation, not a form. Talk it
+                      through with an adviser first.
                     </p>
                     <Link
                       href="/contact"
@@ -239,12 +273,18 @@ export function ServicePageView({
       )}
 
       {hasFaqs && (
-        <section aria-labelledby="faq-heading" className="border-t border-line py-[var(--section-md)]">
+        <section
+          aria-labelledby="faq-heading"
+          className="border-t border-line py-[var(--section-md)]"
+        >
           <Container>
             <DatumGrid>
               <Eyebrow>Questions</Eyebrow>
               <div className="max-w-[54rem]">
-                <h2 id="faq-heading" className="max-w-[20ch] text-display-2 font-medium text-balance">
+                <h2
+                  id="faq-heading"
+                  className="max-w-[20ch] text-display-2 font-medium text-balance"
+                >
                   Common questions.
                 </h2>
                 <PendingContent
@@ -252,10 +292,12 @@ export function ServicePageView({
                   className="mt-10"
                 >
                   <Accordion
-                    items={page.faqs.map((faq: { question: string; answer: string | null }) => ({
-                      question: faq.question,
-                      answer: faq.answer ?? "[APPROVED COPY REQUIRED]",
-                    }))}
+                    items={page.faqs.map(
+                      (faq: { question: string; answer: string | null }) => ({
+                        question: faq.question,
+                        answer: faq.answer ?? "[APPROVED COPY REQUIRED]",
+                      }),
+                    )}
                   />
                 </PendingContent>
               </div>
@@ -265,28 +307,46 @@ export function ServicePageView({
       )}
 
       {related.length > 0 && (
-        <section aria-labelledby="related-heading" className="border-t border-line bg-surface py-[var(--section-md)]">
+        <section
+          aria-labelledby="related-heading"
+          className="border-t border-line bg-surface py-[var(--section-md)]"
+        >
           <Container>
             <DatumGrid>
               <Eyebrow>Related</Eyebrow>
               <div>
-                <h2 id="related-heading" className="max-w-[24ch] text-heading-1 font-medium text-balance">
+                <h2
+                  id="related-heading"
+                  className="max-w-[24ch] text-heading-1 font-medium text-balance"
+                >
                   Often considered alongside this.
                 </h2>
                 <ul className="m-0 mt-9 grid list-none grid-cols-1 gap-px border-t border-line bg-line p-0 md:grid-cols-3">
-                  {related.map(({ href, page: target }: { href: string; page: ServicePage | undefined }) => (
-                    <li key={href} className="bg-surface">
-                      <Link href={href} className="group block py-7 md:px-6 md:first:pl-0">
-                        <span className="block text-heading-3 font-medium text-ink transition-colors duration-base group-hover:text-accent">
-                          {target?.navLabel ?? "Calculators"}
-                        </span>
-                        <span className="mt-2 block max-w-[32ch] text-body-sm text-ink-secondary">
-                          {target?.scope.slice(0, 96) ?? "Work through the numbers."}
-                          {target && target.scope.length > 96 ? "…" : ""}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
+                  {related.map(
+                    ({
+                      href,
+                      page: target,
+                    }: {
+                      href: string;
+                      page: ServicePage | undefined;
+                    }) => (
+                      <li key={href} className="bg-surface">
+                        <Link
+                          href={href}
+                          className="group block py-7 md:px-6 md:first:pl-0"
+                        >
+                          <span className="block text-heading-3 font-medium text-ink transition-colors duration-base group-hover:text-accent">
+                            {target?.navLabel ?? "Calculators"}
+                          </span>
+                          <span className="mt-2 block max-w-[32ch] text-body-sm text-ink-secondary">
+                            {target?.scope.slice(0, 96) ??
+                              "Work through the numbers."}
+                            {target && target.scope.length > 96 ? "…" : ""}
+                          </span>
+                        </Link>
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             </DatumGrid>

@@ -72,7 +72,7 @@ export function Experts() {
         </PendingContent>
 
         <Link
-          href="/about/team"
+          href="/about/our-team"
           className="mt-16 inline-block border-b border-line-interactive pb-1 text-body-sm font-medium text-ink transition-colors duration-base hover:border-accent hover:text-accent"
         >
           Meet our team

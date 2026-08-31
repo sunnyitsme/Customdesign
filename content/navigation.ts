@@ -1,12 +1,26 @@
+import {
+  businessProtectionPages,
+  mortgageGuides,
+  mortgagePages,
+  propertyFinancePages,
+  protectionPages,
+  willsPages,
+  type ServicePage,
+} from "./service-pages";
+
 /**
  * Navigation architecture.
  *
- * Six primary hubs. Long-tail legacy service pages remain real child routes for
- * SEO and content purposes but are NOT all surfaced here — the desktop menu is
- * curated. See docs/02-decisions.md D-002.
+ * Six primary hubs. Long-tail service pages remain real routes for SEO and
+ * content purposes but are NOT all surfaced here — the desktop menu is curated.
+ * See docs/02-decisions.md D-002.
  *
- * `featured` drives what appears in the mega-menu panel, so curation is a
- * content decision rather than a code change.
+ * Hub children are DERIVED from the service content rather than listed by hand.
+ * A hand-written list drifts: a slug changes and the menu quietly points at a
+ * 404. Deriving them means a link can only exist if the page does.
+ *
+ * `featured` names the slugs the mega-menu panel shows, so curation stays a
+ * content decision.
  */
 
 export interface NavChild {
@@ -26,6 +40,16 @@ export interface NavHub {
   readonly children: readonly NavChild[];
 }
 
+const toChildren = (
+  pages: readonly ServicePage[],
+  featured: readonly string[],
+): readonly NavChild[] =>
+  pages.map((page) => ({
+    label: page.navLabel,
+    href: `/${page.parent}/${page.slug}`,
+    featured: featured.includes(page.slug),
+  }));
+
 export const hubs: readonly NavHub[] = [
   {
     id: "mortgages",
@@ -34,64 +58,14 @@ export const hubs: readonly NavHub[] = [
     summary:
       "Residential advice across the whole of market, from first purchase to refinancing.",
     children: [
-      {
-        label: "First-time buyers",
-        href: "/mortgages/first-time-buyers",
-        featured: true,
-      },
-      {
-        label: "Remortgaging",
-        href: "/mortgages/remortgaging",
-        featured: true,
-      },
-      { label: "Buy-to-let", href: "/mortgages/buy-to-let", featured: true },
-      {
-        label: "High-value lending",
-        href: "/mortgages/high-value",
-        featured: true,
-      },
-      {
-        label: "Self-employed",
-        href: "/mortgages/self-employed",
-        featured: true,
-      },
-      { label: "Fixed rate", href: "/mortgages/fixed-rate", featured: false },
-      { label: "Tracker", href: "/mortgages/tracker", featured: false },
-      { label: "Offset", href: "/mortgages/offset", featured: false },
-      {
-        label: "Standard variable rate",
-        href: "/mortgages/standard-variable-rate",
-        featured: false,
-      },
-      { label: "Cashback", href: "/mortgages/cashback", featured: false },
-      {
-        label: "Adverse credit",
-        href: "/mortgages/adverse-credit",
-        featured: false,
-      },
-      { label: "Self-build", href: "/mortgages/self-build", featured: false },
-      {
-        label: "Second charge",
-        href: "/mortgages/second-charge",
-        featured: false,
-      },
-      { label: "Let-to-buy", href: "/mortgages/let-to-buy", featured: false },
-      { label: "Holiday let", href: "/mortgages/holiday-let", featured: false },
-      {
-        label: "Limited company lending",
-        href: "/mortgages/limited-company",
-        featured: false,
-      },
-      {
-        label: "Second properties",
-        href: "/mortgages/second-properties",
-        featured: false,
-      },
-      {
-        label: "Retirement interest only",
-        href: "/mortgages/retirement-interest-only",
-        featured: false,
-      },
+      ...toChildren(mortgagePages, [
+        "first-time-buyers",
+        "remortgaging",
+        "buy-to-let",
+        "high-value-mortgages",
+        "self-employed",
+      ]),
+      ...toChildren(mortgageGuides, []),
     ],
   },
   {
@@ -99,39 +73,12 @@ export const hubs: readonly NavHub[] = [
     label: "Property Finance",
     href: "/property-finance",
     summary: "Specialist funding for investors, landlords and developers.",
-    children: [
-      {
-        label: "Bridging finance",
-        href: "/property-finance/bridging",
-        featured: true,
-      },
-      {
-        label: "Development finance",
-        href: "/property-finance/development",
-        featured: true,
-      },
-      {
-        label: "Commercial mortgages",
-        href: "/property-finance/commercial",
-        featured: true,
-      },
-      {
-        label: "Portfolio landlord finance",
-        href: "/property-finance/portfolio",
-        featured: true,
-      },
-      {
-        label: "Auction finance",
-        href: "/property-finance/auction",
-        featured: false,
-      },
-      { label: "HMO finance", href: "/property-finance/hmo", featured: false },
-      {
-        label: "Second charge & consolidation",
-        href: "/property-finance/second-charge",
-        featured: false,
-      },
-    ],
+    children: toChildren(propertyFinancePages, [
+      "bridging",
+      "development-finance",
+      "commercial-finance",
+      "portfolio-landlords",
+    ]),
   },
   {
     id: "protection",
@@ -140,56 +87,17 @@ export const hubs: readonly NavHub[] = [
     summary:
       "Cover for households and businesses against death, illness and loss of income.",
     children: [
-      {
-        label: "Life assurance",
-        href: "/protection/life-assurance",
-        featured: true,
-      },
-      {
-        label: "Income protection",
-        href: "/protection/income-protection",
-        featured: true,
-      },
-      {
-        label: "Critical illness",
-        href: "/protection/critical-illness",
-        featured: true,
-      },
+      ...toChildren(protectionPages, [
+        "life-assurance",
+        "income-protection",
+        "critical-illness",
+      ]),
       {
         label: "Business protection",
         href: "/protection/business",
         featured: true,
       },
-      {
-        label: "Family income benefit",
-        href: "/protection/family-income-benefit",
-        featured: false,
-      },
-      {
-        label: "Private medical insurance",
-        href: "/protection/private-medical",
-        featured: false,
-      },
-      {
-        label: "Landlord insurance",
-        href: "/protection/landlord",
-        featured: false,
-      },
-      {
-        label: "Key person cover",
-        href: "/protection/business/key-person",
-        featured: false,
-      },
-      {
-        label: "Share protection",
-        href: "/protection/business/share-protection",
-        featured: false,
-      },
-      {
-        label: "Relevant life cover",
-        href: "/protection/business/relevant-life",
-        featured: false,
-      },
+      ...toChildren(businessProtectionPages, []),
     ],
   },
   {
@@ -198,28 +106,12 @@ export const hubs: readonly NavHub[] = [
     href: "/wills-estate-planning",
     summary:
       "Wills, mirror wills, trust wills, and reviews as circumstances change.",
-    children: [
-      {
-        label: "Standard wills",
-        href: "/wills-estate-planning/standard-wills",
-        featured: true,
-      },
-      {
-        label: "Mirror wills",
-        href: "/wills-estate-planning/mirror-wills",
-        featured: true,
-      },
-      {
-        label: "Trust wills",
-        href: "/wills-estate-planning/trust-wills",
-        featured: true,
-      },
-      {
-        label: "Reviews & updates",
-        href: "/wills-estate-planning/reviews",
-        featured: true,
-      },
-    ],
+    children: toChildren(willsPages, [
+      "wills",
+      "mirror-wills",
+      "trust-wills",
+      "will-reviews",
+    ]),
   },
   {
     id: "about",
@@ -227,11 +119,10 @@ export const hubs: readonly NavHub[] = [
     href: "/about",
     summary: "The firm, the people and how we work.",
     children: [
-      { label: "Our company", href: "/about", featured: true },
-      { label: "Our team", href: "/about/team", featured: true },
+      { label: "Our company", href: "/about/our-company", featured: true },
+      { label: "Our team", href: "/about/our-team", featured: true },
       { label: "How we work", href: "/about/how-we-work", featured: true },
-      { label: "Testimonials", href: "/about/testimonials", featured: true },
-      { label: "FAQs", href: "/about/faqs", featured: false },
+      { label: "Locations", href: "/locations", featured: true },
     ],
   },
   {
@@ -240,7 +131,12 @@ export const hubs: readonly NavHub[] = [
     href: "/insights",
     summary:
       "Commentary on lending conditions, property finance and protection.",
-    children: [],
+    children: [
+      { label: "Guides", href: "/insights/guides", featured: true },
+      { label: "Case studies", href: "/insights/case-studies", featured: true },
+      { label: "FAQs", href: "/insights/faqs", featured: true },
+      { label: "News", href: "/insights/news", featured: false },
+    ],
   },
 ];
 
@@ -262,3 +158,10 @@ export const primaryCta = {
   label: "Speak to an adviser",
   href: "/contact",
 } as const;
+
+/** Every internal href the navigation exposes — used by the link tests. */
+export const allNavHrefs: readonly string[] = [
+  ...hubs.map((hub) => hub.href),
+  ...hubs.flatMap((hub) => hub.children.map((child) => child.href)),
+  primaryCta.href,
+];

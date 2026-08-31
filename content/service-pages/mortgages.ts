@@ -39,9 +39,16 @@ export const mortgagePages: readonly ServicePage[] = [
       { question: "How long does an application usually take?", answer: null },
       { question: "What documents should I get ready?", answer: null },
     ],
-    related: ["/mortgages/guides/introduction-to-mortgages", "/mortgages/guides/fixed-rate", "/calculators/affordability"],
+    related: [
+      "/mortgages/guides/introduction-to-mortgages",
+      "/mortgages/guides/fixed-rate",
+      "/calculators/affordability",
+    ],
     legacyUrls: ["/1st-time-buyer"],
-    complianceFlags: ["Affordability wording", "Any indicative borrowing figure"],
+    complianceFlags: [
+      "Affordability wording",
+      "Any indicative borrowing figure",
+    ],
     imageAlt: "Image required — residential property, first-home register",
     ctaLabel: "Speak to a mortgage adviser",
   },
@@ -65,10 +72,17 @@ export const mortgagePages: readonly ServicePage[] = [
       "Raising funds against a home increases the amount secured on it.",
     ],
     faqs: [
-      { question: "When should I start looking at a remortgage?", answer: null },
+      {
+        question: "When should I start looking at a remortgage?",
+        answer: null,
+      },
       { question: "Can I remortgage to make home improvements?", answer: null },
     ],
-    related: ["/mortgages/second-charge", "/mortgages/guides/mortgage-repayment", "/calculators/mortgage-repayment"],
+    related: [
+      "/mortgages/second-charge",
+      "/mortgages/guides/mortgage-repayment",
+      "/calculators/mortgage-repayment",
+    ],
     legacyUrls: ["/remortgaging"],
     complianceFlags: [
       "Debt consolidation wording — consolidating unsecured debt into a mortgage secures it against the home and may cost more overall",
@@ -99,7 +113,11 @@ export const mortgagePages: readonly ServicePage[] = [
       { question: "How is rental coverage assessed?", answer: null },
       { question: "Can I let a property I already own?", answer: null },
     ],
-    related: ["/mortgages/limited-company", "/property-finance/portfolio-landlords", "/protection/landlord-insurance"],
+    related: [
+      "/mortgages/limited-company",
+      "/property-finance/portfolio-landlords",
+      "/protection/landlord-insurance",
+    ],
     legacyUrls: ["/buy-to-let-mortgages"],
     complianceFlags: [
       "Buy-to-Let regulatory qualification — most buy-to-let lending is not regulated by the FCA; the exact wording must come from compliance",
@@ -130,9 +148,15 @@ export const mortgagePages: readonly ServicePage[] = [
       { question: "How long do I need to have been trading?", answer: null },
       { question: "Which accounts will a lender want to see?", answer: null },
     ],
-    related: ["/mortgages/limited-company", "/mortgages/high-value-mortgages", "/protection/income-protection"],
+    related: [
+      "/mortgages/limited-company",
+      "/mortgages/high-value-mortgages",
+      "/protection/income-protection",
+    ],
     legacyUrls: ["/self-employed-mortgages-direct"],
-    complianceFlags: ["Lender criteria wording — criteria vary by lender and change"],
+    complianceFlags: [
+      "Lender criteria wording — criteria vary by lender and change",
+    ],
     imageAlt: "Image required — professional or workplace context",
     ctaLabel: "Speak to a mortgage adviser",
   },
@@ -159,9 +183,15 @@ export const mortgagePages: readonly ServicePage[] = [
       { question: "What counts as a high-value mortgage?", answer: null },
       { question: "How does private bank lending differ?", answer: null },
     ],
-    related: ["/mortgages/self-employed", "/mortgages/second-property", "/property-finance/bridging"],
+    related: [
+      "/mortgages/self-employed",
+      "/mortgages/second-property",
+      "/property-finance/bridging",
+    ],
     legacyUrls: ["/high-value-mortgages-direct"],
-    complianceFlags: ["Any lending threshold or LTV figure requires firm confirmation"],
+    complianceFlags: [
+      "Any lending threshold or LTV figure requires firm confirmation",
+    ],
     imageAlt: "Image required — premium residential architecture",
     ctaLabel: "Discuss high-value lending",
   },
@@ -185,10 +215,17 @@ export const mortgagePages: readonly ServicePage[] = [
       "Some lenders will consider higher-risk property types or non-UK-resident applicants; many will not.",
     ],
     faqs: [
-      { question: "Should I hold property personally or through a company?", answer: null },
+      {
+        question: "Should I hold property personally or through a company?",
+        answer: null,
+      },
       { question: "What is an SPV?", answer: null },
     ],
-    related: ["/mortgages/buy-to-let", "/property-finance/portfolio-landlords", "/property-finance/hmo-finance"],
+    related: [
+      "/mortgages/buy-to-let",
+      "/property-finance/portfolio-landlords",
+      "/property-finance/hmo-finance",
+    ],
     legacyUrls: ["/limited-company-lending-direct"],
     complianceFlags: [
       "Tax treatment — personal versus company ownership has tax consequences. Guide does not give tax advice; wording must make the boundary explicit",
@@ -216,7 +253,11 @@ export const mortgagePages: readonly ServicePage[] = [
       "Criteria tend to be tighter than for standard buy-to-let.",
     ],
     faqs: [{ question: "How is holiday let income assessed?", answer: null }],
-    related: ["/mortgages/buy-to-let", "/mortgages/second-property", "/protection/landlord-insurance"],
+    related: [
+      "/mortgages/buy-to-let",
+      "/mortgages/second-property",
+      "/protection/landlord-insurance",
+    ],
     legacyUrls: ["/holiday-let-mortgages-direct"],
     imageAlt: "Image required — coastal or rural holiday property",
     ctaLabel: "Discuss a holiday let",
@@ -240,8 +281,14 @@ export const mortgagePages: readonly ServicePage[] = [
       "The existing property moves onto a letting basis, which changes how it is assessed.",
       "Timing across the two transactions needs coordinating.",
     ],
-    faqs: [{ question: "How does let-to-buy differ from buy-to-let?", answer: null }],
-    related: ["/mortgages/buy-to-let", "/mortgages/second-property", "/mortgages/remortgaging"],
+    faqs: [
+      { question: "How does let-to-buy differ from buy-to-let?", answer: null },
+    ],
+    related: [
+      "/mortgages/buy-to-let",
+      "/mortgages/second-property",
+      "/mortgages/remortgaging",
+    ],
     legacyUrls: ["/let-to-buy-mortgages-direct"],
     imageAlt: "Image required — residential street or terrace",
     ctaLabel: "Speak to a mortgage adviser",
@@ -265,8 +312,17 @@ export const mortgagePages: readonly ServicePage[] = [
       "Deposit expectations can differ from a main residence.",
       "Additional property purchases carry their own tax treatment.",
     ],
-    faqs: [{ question: "How is affordability assessed on a second property?", answer: null }],
-    related: ["/mortgages/holiday-let", "/mortgages/high-value-mortgages", "/calculators/stamp-duty"],
+    faqs: [
+      {
+        question: "How is affordability assessed on a second property?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/mortgages/holiday-let",
+      "/mortgages/high-value-mortgages",
+      "/calculators/stamp-duty",
+    ],
     legacyUrls: ["/second-properties-direct"],
     complianceFlags: [
       "Stamp duty and additional-property tax — rates and surcharges differ by UK nation and change; do not state figures without confirmation",
@@ -297,7 +353,11 @@ export const mortgagePages: readonly ServicePage[] = [
       { question: "How does this differ from equity release?", answer: null },
       { question: "What happens to the property eventually?", answer: null },
     ],
-    related: ["/mortgages/guides/mortgage-repayment", "/wills-estate-planning", "/protection/life-assurance"],
+    related: [
+      "/mortgages/guides/mortgage-repayment",
+      "/wills-estate-planning",
+      "/protection/life-assurance",
+    ],
     legacyUrls: ["/retirement-interest-only-mortgages-direct"],
     complianceFlags: [
       "Later-life lending and equity release comparison — high-risk advice area needing explicit compliance wording",
@@ -329,7 +389,11 @@ export const mortgagePages: readonly ServicePage[] = [
       { question: "When are funds released?", answer: null },
       { question: "What happens if the build overruns?", answer: null },
     ],
-    related: ["/property-finance/development-finance", "/property-finance/bridging", "/mortgages/guides/introduction-to-mortgages"],
+    related: [
+      "/property-finance/development-finance",
+      "/property-finance/bridging",
+      "/mortgages/guides/introduction-to-mortgages",
+    ],
     legacyUrls: ["/self-build-mortgages"],
     imageAlt: "Image required — self-build or construction site",
     ctaLabel: "Discuss a self-build",
@@ -353,8 +417,17 @@ export const mortgagePages: readonly ServicePage[] = [
       "If a property is sold, secured lenders are repaid in order of their charge.",
       "Affordability is assessed across both amounts.",
     ],
-    faqs: [{ question: "How does a second charge differ from a remortgage?", answer: null }],
-    related: ["/mortgages/remortgaging", "/property-finance/second-charge", "/mortgages/guides/mortgage-repayment"],
+    faqs: [
+      {
+        question: "How does a second charge differ from a remortgage?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/mortgages/remortgaging",
+      "/property-finance/second-charge",
+      "/mortgages/guides/mortgage-repayment",
+    ],
     legacyUrls: ["/second-charge-mortgages"],
     complianceFlags: [
       "Debt consolidation wording — securing previously unsecured debt against a home is a high-risk topic",
@@ -389,9 +462,16 @@ export const mortgageGuides: readonly ServicePage[] = [
       "The deposit affects both whether a lender will lend and on what terms.",
     ],
     faqs: [{ question: "What do lenders assess?", answer: null }],
-    related: ["/mortgages/guides/mortgage-repayment", "/mortgages/first-time-buyers", "/calculators/affordability"],
+    related: [
+      "/mortgages/guides/mortgage-repayment",
+      "/mortgages/first-time-buyers",
+      "/calculators/affordability",
+    ],
     legacyUrls: ["/introduction-to-mortgages"],
-    complianceFlags: ["Affordability and stress-testing wording", "Repossession risk warning"],
+    complianceFlags: [
+      "Affordability and stress-testing wording",
+      "Repossession risk warning",
+    ],
     imageAlt: "Image required — editorial residential property",
   },
   {
@@ -411,7 +491,11 @@ export const mortgageGuides: readonly ServicePage[] = [
       "The term affects both the monthly payment and the total interest paid.",
     ],
     faqs: [{ question: "Which basis is right for me?", answer: null }],
-    related: ["/mortgages/guides/introduction-to-mortgages", "/mortgages/retirement-interest-only", "/calculators/mortgage-repayment"],
+    related: [
+      "/mortgages/guides/introduction-to-mortgages",
+      "/mortgages/retirement-interest-only",
+      "/calculators/mortgage-repayment",
+    ],
     legacyUrls: ["/mortgage-repayment"],
     complianceFlags: [
       "Interest-only repayment strategy wording — a known high-risk area; the requirement for a repayment plan must be explicit",
@@ -434,7 +518,11 @@ export const mortgageGuides: readonly ServicePage[] = [
       "At the end of the period the mortgage usually moves onto the lender's variable rate unless a new product is arranged.",
     ],
     faqs: [{ question: "What happens when my fixed rate ends?", answer: null }],
-    related: ["/mortgages/guides/tracker", "/mortgages/guides/standard-variable-rate", "/mortgages/remortgaging"],
+    related: [
+      "/mortgages/guides/tracker",
+      "/mortgages/guides/standard-variable-rate",
+      "/mortgages/remortgaging",
+    ],
     legacyUrls: ["/fixed-rate-mortgages"],
     imageAlt: "Image required — editorial finance",
   },
@@ -454,7 +542,11 @@ export const mortgageGuides: readonly ServicePage[] = [
       "Some products set a minimum rate below which the tracker will not fall.",
     ],
     faqs: [{ question: "What does my payment track?", answer: null }],
-    related: ["/mortgages/guides/fixed-rate", "/mortgages/guides/standard-variable-rate", "/mortgages/remortgaging"],
+    related: [
+      "/mortgages/guides/fixed-rate",
+      "/mortgages/guides/standard-variable-rate",
+      "/mortgages/remortgaging",
+    ],
     legacyUrls: ["/tracker-mortgages"],
     imageAlt: "Image required — editorial finance",
   },
@@ -473,8 +565,17 @@ export const mortgageGuides: readonly ServicePage[] = [
       "It may move in relation to the Bank of England base rate, but is not required to follow it.",
       "Payments are less predictable than on a fixed product.",
     ],
-    faqs: [{ question: "Should I stay on the standard variable rate?", answer: null }],
-    related: ["/mortgages/remortgaging", "/mortgages/guides/fixed-rate", "/mortgages/guides/tracker"],
+    faqs: [
+      {
+        question: "Should I stay on the standard variable rate?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/mortgages/remortgaging",
+      "/mortgages/guides/fixed-rate",
+      "/mortgages/guides/tracker",
+    ],
     legacyUrls: ["/standard-variable-rate-mortgages"],
     imageAlt: "Image required — editorial finance",
   },
@@ -494,7 +595,11 @@ export const mortgageGuides: readonly ServicePage[] = [
       "Linked savings usually do not earn interest separately.",
     ],
     faqs: [{ question: "Who does an offset arrangement suit?", answer: null }],
-    related: ["/mortgages/guides/mortgage-repayment", "/mortgages/self-employed", "/calculators/overpayment"],
+    related: [
+      "/mortgages/guides/mortgage-repayment",
+      "/mortgages/self-employed",
+      "/calculators/overpayment",
+    ],
     legacyUrls: ["/offset-mortgages"],
     imageAlt: "Image required — editorial finance",
   },
@@ -514,7 +619,11 @@ export const mortgageGuides: readonly ServicePage[] = [
       "Cashback may have to be repaid if the mortgage is redeemed early.",
     ],
     faqs: [{ question: "Is a cashback product better value?", answer: null }],
-    related: ["/mortgages/guides/fixed-rate", "/mortgages/first-time-buyers", "/mortgages/remortgaging"],
+    related: [
+      "/mortgages/guides/fixed-rate",
+      "/mortgages/first-time-buyers",
+      "/mortgages/remortgaging",
+    ],
     legacyUrls: ["/cashback-mortgages"],
     imageAlt: "Image required — editorial finance",
   },
@@ -533,8 +642,14 @@ export const mortgageGuides: readonly ServicePage[] = [
       "The type, size and age of an adverse entry all matter.",
       "Pricing and deposit expectations may differ from mainstream lending.",
     ],
-    faqs: [{ question: "Will a past default stop me borrowing?", answer: null }],
-    related: ["/mortgages/first-time-buyers", "/mortgages/remortgaging", "/mortgages/self-employed"],
+    faqs: [
+      { question: "Will a past default stop me borrowing?", answer: null },
+    ],
+    related: [
+      "/mortgages/first-time-buyers",
+      "/mortgages/remortgaging",
+      "/mortgages/self-employed",
+    ],
     legacyUrls: ["/bad-credit-mortgages-direct"],
     complianceFlags: [
       "Wording must avoid implying any application will be accepted, and must not promise credit repair",

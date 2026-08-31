@@ -135,6 +135,55 @@ export const pendingContent: readonly PendingItem[] = [
     blocks: "review",
     status: "placeholder",
   },
+  {
+    id: "service.intros",
+    what: "An approved introduction for each of the 38 service and guide pages. Scope lines are derived from the migration pack; the introductions are not.",
+    from: "Firm / compliance",
+    blocks: "review",
+    status: "placeholder",
+  },
+  {
+    id: "service.compliance",
+    what: "Compliance sign-off on the flagged topics per page: interest-only repayment strategy, Buy-to-Let regulation, debt consolidation, commercial mortgage regulation, later-life lending, trust and IHT wording, policy lapse warnings.",
+    from: "Compliance",
+    blocks: "launch",
+    status: "placeholder",
+  },
+  {
+    id: "faqs.answers",
+    what: "Answers for every FAQ across the four groups. Two legacy questions - indicative borrowing and typical completion timing - are carried with review notes rather than reproduced.",
+    from: "Firm / compliance",
+    blocks: "launch",
+    status: "placeholder",
+  },
+  {
+    id: "legal.documents",
+    what: "Verbatim privacy notice, terms of business, cookies policy, complaints procedure and accessibility statement. Legal wording is reproduced, never paraphrased.",
+    from: "Firm / compliance",
+    blocks: "launch",
+    status: "placeholder",
+  },
+  {
+    id: "calculators.rates",
+    what: "Stamp duty rates and thresholds per UK nation, and confirmation of whether any borrowing or affordability model may be published at all.",
+    from: "Firm / compliance",
+    blocks: "review",
+    status: "placeholder",
+  },
+  {
+    id: "contact.delivery",
+    what: "CRM endpoint and credentials, Turnstile keys, and a defined retention policy. Until these exist the form validates but delivers nothing, and says so.",
+    from: "Firm",
+    blocks: "launch",
+    status: "placeholder",
+  },
+  {
+    id: "locations.copy",
+    what: "Approved local copy, adviser details and map embeds for each office.",
+    from: "Firm",
+    blocks: "review",
+    status: "placeholder",
+  },
 ];
 
 export const unresolved = (): readonly PendingItem[] =>

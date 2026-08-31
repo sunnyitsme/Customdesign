@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { redirects as legacyRedirects } from './content/redirects';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -27,8 +28,11 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Legacy URL redirects (all 59 mapped) are added in a later phase from
-  // content/redirects.ts. See docs/02-decisions.md D-002.
+  // Legacy URL redirects, derived from each service page's own legacyUrls so
+  // a renamed slug cannot orphan an inbound link. See docs/seo-route-migration.md.
+  async redirects() {
+    return legacyRedirects.map((entry) => ({ ...entry }));
+  },
 };
 
 export default nextConfig;

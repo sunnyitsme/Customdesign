@@ -1,14 +1,14 @@
-import { mortgageGuides, mortgagePages } from "./mortgages";
-import { propertyFinancePages } from "./property-finance";
-import { businessProtectionPages, protectionPages } from "./protection";
-import type { ServicePage, ServiceParent } from "./types";
-import { willsPages } from "./wills";
+import { mortgageGuides, mortgagePages } from "./mortgages.ts";
+import { propertyFinancePages } from "./property-finance.ts";
+import { businessProtectionPages, protectionPages } from "./protection.ts";
+import type { ServicePage, ServiceParent } from "./types.ts";
+import { willsPages } from "./wills.ts";
 
-export * from "./types";
-export { mortgagePages, mortgageGuides } from "./mortgages";
-export { propertyFinancePages } from "./property-finance";
-export { protectionPages, businessProtectionPages } from "./protection";
-export { willsPages, plannedWillsRoutes } from "./wills";
+export * from "./types.ts";
+export { mortgagePages, mortgageGuides } from "./mortgages.ts";
+export { propertyFinancePages } from "./property-finance.ts";
+export { protectionPages, businessProtectionPages } from "./protection.ts";
+export { willsPages, plannedWillsRoutes } from "./wills.ts";
 
 /** Every published service page, across all hubs. */
 export const allServicePages: readonly ServicePage[] = [

@@ -36,7 +36,10 @@ export function ServiceIndex({
       <Container>
         <DatumGrid>
           <Eyebrow tone={dark ? "dark" : "light"}>{eyebrow}</Eyebrow>
-          <h2 id={headingId} className="max-w-[20ch] text-display-2 font-medium text-balance">
+          <h2
+            id={headingId}
+            className="max-w-[20ch] text-display-2 font-medium text-balance"
+          >
             {heading}
           </h2>
         </DatumGrid>
@@ -51,7 +54,10 @@ export function ServiceIndex({
               key={page.slug}
               className={`border-b ${dark ? "border-line-inverse" : "border-line"}`}
             >
-              <Link href={`/${page.parent}/${page.slug}`} className="group block py-7">
+              <Link
+                href={`/${page.parent}/${page.slug}`}
+                className="group block py-7"
+              >
                 <div className="grid gap-x-8 gap-y-2 lg:grid-cols-[var(--datum-rail)_minmax(0,1fr)]">
                   {numbered ? (
                     <span
@@ -66,7 +72,9 @@ export function ServiceIndex({
                   <div>
                     <h3
                       className={`text-heading-1 font-medium tracking-tight text-balance transition-colors duration-base ${
-                        dark ? "group-hover:text-accent-bright" : "group-hover:text-accent"
+                        dark
+                          ? "group-hover:text-accent-bright"
+                          : "group-hover:text-accent"
                       }`}
                     >
                       {page.navLabel}

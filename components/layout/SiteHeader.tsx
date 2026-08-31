@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { hubs, primaryCta } from "@/content/navigation";
 import { site } from "@/content/site";
@@ -40,6 +41,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [openHub, setOpenHub] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -72,7 +74,14 @@ export function SiteHeader() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
   };
 
-  const solid = scrolled || openHub !== null;
+  // Transparent-over-hero is a homepage behaviour: the cinematic hero is dark
+  // and full-bleed. Interior pages open on light or short heroes, where a
+  // transparent header rendered the wordmark light-on-light at 1.08:1 — the
+  // logo was invisible until you scrolled. Everywhere but the homepage the
+  // header is solid from the start. Breakpoints and disclosure behaviour are
+  // untouched.
+  const overCinematicHero = pathname === "/";
+  const solid = scrolled || openHub !== null || !overCinematicHero;
 
   return (
     <header

@@ -29,12 +29,22 @@ export const propertyFinancePages: readonly ServicePage[] = [
       "The security property and its condition shape what is available.",
     ],
     faqs: [
-      { question: "How quickly can bridging finance be arranged?", answer: null },
+      {
+        question: "How quickly can bridging finance be arranged?",
+        answer: null,
+      },
       { question: "What counts as an exit?", answer: null },
     ],
-    related: ["/property-finance/auction-finance", "/property-finance/development-finance", "/property-finance/commercial-finance"],
+    related: [
+      "/property-finance/auction-finance",
+      "/property-finance/development-finance",
+      "/property-finance/commercial-finance",
+    ],
     legacyUrls: ["/gfs-bridging-loans"],
-    complianceFlags: ["Speed and turnaround claims require firm confirmation", "Regulated versus unregulated bridging must be distinguished"],
+    complianceFlags: [
+      "Speed and turnaround claims require firm confirmation",
+      "Regulated versus unregulated bridging must be distinguished",
+    ],
     imageAlt: "Image required — transitional or refurbishment property",
     ctaLabel: "Discuss bridging finance",
   },
@@ -61,7 +71,11 @@ export const propertyFinancePages: readonly ServicePage[] = [
       { question: "How are drawdowns structured?", answer: null },
       { question: "Is planning permission required first?", answer: null },
     ],
-    related: ["/property-finance/bridging", "/property-finance/commercial-finance", "/mortgages/self-build"],
+    related: [
+      "/property-finance/bridging",
+      "/property-finance/commercial-finance",
+      "/mortgages/self-build",
+    ],
     legacyUrls: ["/gfs-development-finance"],
     imageAlt: "Image required — development site or scheme under construction",
     ctaLabel: "Discuss development finance",
@@ -86,7 +100,11 @@ export const propertyFinancePages: readonly ServicePage[] = [
       "Mixed-use property can fall between residential and commercial criteria.",
     ],
     faqs: [{ question: "What counts as semi-commercial?", answer: null }],
-    related: ["/property-finance/development-finance", "/property-finance/bridging", "/property-finance/portfolio-landlords"],
+    related: [
+      "/property-finance/development-finance",
+      "/property-finance/bridging",
+      "/property-finance/portfolio-landlords",
+    ],
     legacyUrls: ["/gfs-commercial-and-semi-commercial-mortgages"],
     complianceFlags: [
       "Commercial mortgages are generally not regulated by the FCA — the footer statement must be carried and the boundary made explicit",
@@ -113,10 +131,22 @@ export const propertyFinancePages: readonly ServicePage[] = [
       "Overall borrowing capacity is shaped by the portfolio's performance.",
       "Structure — personal or corporate — affects which lenders will consider the case.",
     ],
-    faqs: [{ question: "How many properties makes someone a portfolio landlord?", answer: null }],
-    related: ["/mortgages/buy-to-let", "/mortgages/limited-company", "/property-finance/hmo-finance"],
+    faqs: [
+      {
+        question: "How many properties makes someone a portfolio landlord?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/mortgages/buy-to-let",
+      "/mortgages/limited-company",
+      "/property-finance/hmo-finance",
+    ],
     legacyUrls: ["/gfs-portfolio-landlord-finance"],
-    complianceFlags: ["Buy-to-Let regulatory qualification", "Any portfolio-size threshold requires confirmation"],
+    complianceFlags: [
+      "Buy-to-Let regulatory qualification",
+      "Any portfolio-size threshold requires confirmation",
+    ],
     imageAlt: "Image required — residential portfolio or terrace",
     ctaLabel: "Discuss portfolio finance",
   },
@@ -139,8 +169,14 @@ export const propertyFinancePages: readonly ServicePage[] = [
       "Completion deadlines are fixed and short.",
       "Property condition often rules out mainstream lending.",
     ],
-    faqs: [{ question: "Should finance be arranged before bidding?", answer: null }],
-    related: ["/property-finance/bridging", "/property-finance/development-finance", "/mortgages/buy-to-let"],
+    faqs: [
+      { question: "Should finance be arranged before bidding?", answer: null },
+    ],
+    related: [
+      "/property-finance/bridging",
+      "/property-finance/development-finance",
+      "/mortgages/buy-to-let",
+    ],
     legacyUrls: ["/gfs-auction-finance"],
     imageAlt: "Image required — auction or refurbishment property",
     ctaLabel: "Discuss auction finance",
@@ -164,10 +200,18 @@ export const propertyFinancePages: readonly ServicePage[] = [
       "Lenders differ on room counts, layouts and tenant types.",
       "Valuation may be assessed on investment value rather than bricks and mortar.",
     ],
-    faqs: [{ question: "Does the property need a licence first?", answer: null }],
-    related: ["/property-finance/portfolio-landlords", "/mortgages/limited-company", "/property-finance/development-finance"],
+    faqs: [
+      { question: "Does the property need a licence first?", answer: null },
+    ],
+    related: [
+      "/property-finance/portfolio-landlords",
+      "/mortgages/limited-company",
+      "/property-finance/development-finance",
+    ],
     legacyUrls: ["/gfs-house-in-multiple-occupation-finance"],
-    complianceFlags: ["Licensing and safety obligations vary by authority — do not state requirements without confirmation"],
+    complianceFlags: [
+      "Licensing and safety obligations vary by authority — do not state requirements without confirmation",
+    ],
     imageAlt: "Image required — multi-occupancy residential property",
     ctaLabel: "Discuss HMO finance",
   },
@@ -190,8 +234,18 @@ export const propertyFinancePages: readonly ServicePage[] = [
       "Secured lenders are repaid in the order of their charge on a sale.",
       "Consolidating existing debt into secured borrowing changes its nature.",
     ],
-    faqs: [{ question: "When does a second charge make more sense than a remortgage?", answer: null }],
-    related: ["/mortgages/second-charge", "/mortgages/remortgaging", "/property-finance/portfolio-landlords"],
+    faqs: [
+      {
+        question:
+          "When does a second charge make more sense than a remortgage?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/mortgages/second-charge",
+      "/mortgages/remortgaging",
+      "/property-finance/portfolio-landlords",
+    ],
     legacyUrls: ["/gfs-second-charge-and-debt-consolidation"],
     complianceFlags: [
       "Debt consolidation — consolidating unsecured debt into secured borrowing may increase the total repaid and puts the property at risk. Wording is compliance-critical",

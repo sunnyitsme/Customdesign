@@ -35,9 +35,16 @@ export const protectionPages: readonly ServicePage[] = [
       { question: "How much cover is appropriate?", answer: null },
       { question: "Should the policy be written in trust?", answer: null },
     ],
-    related: ["/protection/critical-illness", "/protection/family-income-benefit", "/wills-estate-planning"],
+    related: [
+      "/protection/critical-illness",
+      "/protection/family-income-benefit",
+      "/wills-estate-planning",
+    ],
     legacyUrls: ["/life-assurance", "/why-protection-is-important"],
-    complianceFlags: ["Policy lapse warning", "Trust wording must not stray into legal or tax advice"],
+    complianceFlags: [
+      "Policy lapse warning",
+      "Trust wording must not stray into legal or tax advice",
+    ],
     imageAlt: "Image required — calm family or home context, not distressing",
     ctaLabel: "Talk about protection",
   },
@@ -62,9 +69,16 @@ export const protectionPages: readonly ServicePage[] = [
     ],
     faqs: [
       { question: "Which conditions are covered?", answer: null },
-      { question: "How does this differ from income protection?", answer: null },
+      {
+        question: "How does this differ from income protection?",
+        answer: null,
+      },
     ],
-    related: ["/protection/life-assurance", "/protection/income-protection", "/protection/private-medical-insurance"],
+    related: [
+      "/protection/life-assurance",
+      "/protection/income-protection",
+      "/protection/private-medical-insurance",
+    ],
     legacyUrls: ["/critical-illness"],
     complianceFlags: [
       "Policy definitions limitation — wording must be explicit that cover depends on the policy's own definitions",
@@ -96,9 +110,16 @@ export const protectionPages: readonly ServicePage[] = [
       { question: "How much of my income can be covered?", answer: null },
       { question: "What is a deferred period?", answer: null },
     ],
-    related: ["/protection/critical-illness", "/protection/business/income-protection", "/mortgages/self-employed"],
+    related: [
+      "/protection/critical-illness",
+      "/protection/business/income-protection",
+      "/mortgages/self-employed",
+    ],
     legacyUrls: ["/income-protection"],
-    complianceFlags: ["Policy lapse warning", "Any stated proportion of income requires confirmation"],
+    complianceFlags: [
+      "Policy lapse warning",
+      "Any stated proportion of income requires confirmation",
+    ],
     imageAlt: "Image required — everyday working context",
     ctaLabel: "Talk about protection",
   },
@@ -119,10 +140,21 @@ export const protectionPages: readonly ServicePage[] = [
       "Benefit is paid as a regular income for the remaining term, not as a single sum.",
       "The total paid reduces as the term runs down.",
     ],
-    faqs: [{ question: "How does this compare with a lump sum policy?", answer: null }],
-    related: ["/protection/life-assurance", "/protection/critical-illness", "/wills-estate-planning"],
+    faqs: [
+      {
+        question: "How does this compare with a lump sum policy?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/protection/life-assurance",
+      "/protection/critical-illness",
+      "/wills-estate-planning",
+    ],
     legacyUrls: ["/family-income-benefit"],
-    complianceFlags: ["Policy lapse warning — explicitly noted on the legacy page"],
+    complianceFlags: [
+      "Policy lapse warning — explicitly noted on the legacy page",
+    ],
     imageAlt: "Image required — calm family context",
     ctaLabel: "Talk about protection",
   },
@@ -145,9 +177,16 @@ export const protectionPages: readonly ServicePage[] = [
       "What is covered, and where, varies by policy.",
     ],
     faqs: [{ question: "Are pre-existing conditions covered?", answer: null }],
-    related: ["/protection/critical-illness", "/protection/business/directors-staff-benefits", "/protection/income-protection"],
+    related: [
+      "/protection/critical-illness",
+      "/protection/business/directors-staff-benefits",
+      "/protection/income-protection",
+    ],
     legacyUrls: ["/private-medical"],
-    complianceFlags: ["Underwriting and exclusions wording", "Reviewable premium wording"],
+    complianceFlags: [
+      "Underwriting and exclusions wording",
+      "Reviewable premium wording",
+    ],
     imageAlt: "Image required — calm clinical or everyday context",
     ctaLabel: "Talk about protection",
   },
@@ -169,8 +208,14 @@ export const protectionPages: readonly ServicePage[] = [
       "Buildings, contents and liability are separate considerations.",
       "Portfolio cover can be arranged across multiple properties.",
     ],
-    faqs: [{ question: "Is landlord insurance a legal requirement?", answer: null }],
-    related: ["/mortgages/buy-to-let", "/property-finance/portfolio-landlords", "/mortgages/holiday-let"],
+    faqs: [
+      { question: "Is landlord insurance a legal requirement?", answer: null },
+    ],
+    related: [
+      "/mortgages/buy-to-let",
+      "/property-finance/portfolio-landlords",
+      "/mortgages/holiday-let",
+    ],
     legacyUrls: ["/landlord-insurance-direct"],
     imageAlt: "Image required — rental residential property",
     ctaLabel: "Talk about protection",
@@ -189,10 +234,21 @@ export const protectionPages: readonly ServicePage[] = [
       "Some mainstream policies exclude or limit cover related to service.",
       "Kit, travel and life cover are commonly considered together.",
     ],
-    faqs: [{ question: "Do standard policies exclude active service?", answer: null }],
-    related: ["/protection/life-assurance", "/protection/income-protection", "/mortgages/first-time-buyers"],
+    faqs: [
+      {
+        question: "Do standard policies exclude active service?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/protection/life-assurance",
+      "/protection/income-protection",
+      "/mortgages/first-time-buyers",
+    ],
     legacyUrls: ["/military-personnel-direct"],
-    complianceFlags: ["Exclusions relating to active service must be stated in approved wording"],
+    complianceFlags: [
+      "Exclusions relating to active service must be stated in approved wording",
+    ],
     imageAlt: "Image required — respectful, non-dramatic context",
     ctaLabel: "Talk about protection",
   },
@@ -214,16 +270,25 @@ export const businessProtectionPages: readonly ServicePage[] = [
     scope:
       "Cover taken out by a business against the death or incapacity of an individual whose loss would materially affect it.",
     intro: null,
-    audience: ["Businesses dependent on a small number of individuals", "Owner-managed companies"],
+    audience: [
+      "Businesses dependent on a small number of individuals",
+      "Owner-managed companies",
+    ],
     considerations: [
       "The business arranges and owns the cover.",
       "Proceeds may be used towards recruitment, temporary cover or lost profit.",
       "Identifying who is genuinely key is the starting point.",
     ],
     faqs: [{ question: "Who counts as a key person?", answer: null }],
-    related: ["/protection/business/share-protection", "/protection/business/relevant-life", "/protection/income-protection"],
+    related: [
+      "/protection/business/share-protection",
+      "/protection/business/relevant-life",
+      "/protection/income-protection",
+    ],
     legacyUrls: ["/keyperson-insurance", "/introduction-to-business-insurance"],
-    complianceFlags: ["Tax treatment of premiums and proceeds — Guide does not give tax advice"],
+    complianceFlags: [
+      "Tax treatment of premiums and proceeds — Guide does not give tax advice",
+    ],
     imageAlt: "Image required — commercial workplace",
     ctaLabel: "Discuss business protection",
   },
@@ -236,13 +301,22 @@ export const businessProtectionPages: readonly ServicePage[] = [
     scope:
       "Life-assurance-backed arrangements intended to help remaining owners fund the purchase of a deceased shareholder's or partner's interest.",
     intro: null,
-    audience: ["Companies with more than one shareholder", "Partnerships and LLPs"],
+    audience: [
+      "Companies with more than one shareholder",
+      "Partnerships and LLPs",
+    ],
     considerations: [
       "The arrangement usually sits alongside a legal agreement between the owners.",
       "How the arrangement is structured affects how it operates on a claim.",
     ],
-    faqs: [{ question: "Does this need a cross-option agreement?", answer: null }],
-    related: ["/protection/business/key-person", "/protection/business/relevant-life", "/wills-estate-planning"],
+    faqs: [
+      { question: "Does this need a cross-option agreement?", answer: null },
+    ],
+    related: [
+      "/protection/business/key-person",
+      "/protection/business/relevant-life",
+      "/wills-estate-planning",
+    ],
     legacyUrls: ["/share-protection"],
     complianceFlags: [
       "Legal agreements are a solicitor's work, not Guide's — the boundary must be explicit",
@@ -266,10 +340,18 @@ export const businessProtectionPages: readonly ServicePage[] = [
       "Cover is normally written in trust.",
       "Arrangements may be portable if the employee leaves.",
     ],
-    faqs: [{ question: "Can a sole trader take relevant life cover?", answer: null }],
-    related: ["/protection/business/key-person", "/protection/business/directors-staff-benefits", "/protection/life-assurance"],
+    faqs: [
+      { question: "Can a sole trader take relevant life cover?", answer: null },
+    ],
+    related: [
+      "/protection/business/key-person",
+      "/protection/business/directors-staff-benefits",
+      "/protection/life-assurance",
+    ],
     legacyUrls: ["/relevant-life-cover"],
-    complianceFlags: ["Tax treatment is a common overclaim area — no tax benefit may be asserted without confirmation"],
+    complianceFlags: [
+      "Tax treatment is a common overclaim area — no tax benefit may be asserted without confirmation",
+    ],
     imageAlt: "Image required — commercial workplace",
     ctaLabel: "Discuss business protection",
   },
@@ -282,13 +364,20 @@ export const businessProtectionPages: readonly ServicePage[] = [
     scope:
       "Benefit arrangements for directors and employees, spanning pensions, life cover and other rewards used in recruitment and retention.",
     intro: null,
-    audience: ["Employers building a benefits package", "Owner-managed businesses reviewing director remuneration"],
+    audience: [
+      "Employers building a benefits package",
+      "Owner-managed businesses reviewing director remuneration",
+    ],
     considerations: [
       "Benefits form part of a wider remuneration picture.",
       "Different benefits carry different treatment for the employer and the employee.",
     ],
     faqs: [{ question: "Where should a small employer start?", answer: null }],
-    related: ["/protection/business/relevant-life", "/protection/private-medical-insurance", "/protection/business/income-protection"],
+    related: [
+      "/protection/business/relevant-life",
+      "/protection/private-medical-insurance",
+      "/protection/business/income-protection",
+    ],
     legacyUrls: ["/directors-and-staff-benefits"],
     complianceFlags: [
       "Pensions are a regulated advice area — confirm what Guide is permitted to advise on before publishing",
@@ -306,15 +395,29 @@ export const businessProtectionPages: readonly ServicePage[] = [
     scope:
       "Employer arrangements covering sickness absence, including long-term and short-term income replacement for employees.",
     intro: null,
-    audience: ["Employers formalising sick pay arrangements", "Businesses with contractual sick pay obligations"],
+    audience: [
+      "Employers formalising sick pay arrangements",
+      "Businesses with contractual sick pay obligations",
+    ],
     considerations: [
       "Short-term and long-term arrangements serve different purposes.",
       "Cover interacts with any contractual sick pay the employer already provides.",
     ],
-    faqs: [{ question: "How does this interact with contractual sick pay?", answer: null }],
-    related: ["/protection/income-protection", "/protection/business/directors-staff-benefits", "/protection/business/key-person"],
+    faqs: [
+      {
+        question: "How does this interact with contractual sick pay?",
+        answer: null,
+      },
+    ],
+    related: [
+      "/protection/income-protection",
+      "/protection/business/directors-staff-benefits",
+      "/protection/business/key-person",
+    ],
     legacyUrls: ["/income-protection-insurance"],
-    complianceFlags: ["Employment law obligations are not Guide's advice to give"],
+    complianceFlags: [
+      "Employment law obligations are not Guide's advice to give",
+    ],
     imageAlt: "Image required — commercial workplace",
     ctaLabel: "Discuss business protection",
   },
@@ -333,7 +436,10 @@ export const businessProtectionPages: readonly ServicePage[] = [
       "Cover responds to claims arising from employment.",
     ],
     faqs: [{ question: "Is this legally required?", answer: null }],
-    related: ["/protection/business/professional-indemnity", "/protection/business/directors-staff-benefits"],
+    related: [
+      "/protection/business/professional-indemnity",
+      "/protection/business/directors-staff-benefits",
+    ],
     legacyUrls: ["/employers-liability-insurance"],
     complianceFlags: [
       "The legal requirement, its exceptions and minimum cover levels must be stated in approved wording only",
@@ -350,14 +456,20 @@ export const businessProtectionPages: readonly ServicePage[] = [
     scope:
       "Cover for businesses providing advice, knowledge or professional services, responding to claims of negligence.",
     intro: null,
-    audience: ["Consultancies and professional practices", "Businesses contractually required to hold cover"],
+    audience: [
+      "Consultancies and professional practices",
+      "Businesses contractually required to hold cover",
+    ],
     considerations: [
       "Cover responds to claims arising from professional work.",
       "Many client contracts and professional bodies require it.",
       "Policies are usually written on a claims-made basis.",
     ],
     faqs: [{ question: "What does claims-made mean?", answer: null }],
-    related: ["/protection/business/employers-liability", "/protection/business/key-person"],
+    related: [
+      "/protection/business/employers-liability",
+      "/protection/business/key-person",
+    ],
     legacyUrls: ["/professional-indemnity-insurance"],
     imageAlt: "Image required — professional workplace",
     ctaLabel: "Discuss business protection",

@@ -37,7 +37,10 @@ export default function BusinessProtectionPage() {
           <DatumGrid className="mt-10">
             <Eyebrow tone="dark">Business protection</Eyebrow>
             <div>
-              <h1 id="bp-heading" className="max-w-[18ch] text-display-1 font-medium text-balance">
+              <h1
+                id="bp-heading"
+                className="max-w-[18ch] text-display-1 font-medium text-balance"
+              >
                 Risks a business carries, covered deliberately.
               </h1>
               <p className="mt-8 max-w-[56ch] text-body-lg text-ink-inverse-secondary">

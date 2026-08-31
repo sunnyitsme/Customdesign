@@ -1,5 +1,5 @@
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 /**
  * Whether the hero video assets have been supplied.
@@ -9,9 +9,10 @@ import { join } from 'node:path';
  * placeholder is a state, not a different component tree.
  */
 export function heroMediaExists(): boolean {
-  const dir = join(process.cwd(), 'public', 'media', 'hero');
+  const dir = join(process.cwd(), "public", "media", "hero");
   return (
-    existsSync(join(dir, 'guide-london-poster.webp')) &&
-    (existsSync(join(dir, 'guide-london.webm')) || existsSync(join(dir, 'guide-london.mp4')))
+    existsSync(join(dir, "guide-london-poster.webp")) &&
+    (existsSync(join(dir, "guide-london.webm")) ||
+      existsSync(join(dir, "guide-london.mp4")))
   );
 }

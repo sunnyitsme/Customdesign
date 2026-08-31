@@ -57,14 +57,20 @@ export default function MortgagesPage() {
               From first conversation to completion.
             </h2>
           </DatumGrid>
-          <PendingContent label="process.copy — wording needs firm approval" className="mt-12">
+          <PendingContent
+            label="process.copy — wording needs firm approval"
+            className="mt-12"
+          >
             <ol className="relative m-0 grid list-none grid-cols-1 gap-y-10 p-0 md:grid-cols-2 xl:grid-cols-4 xl:gap-x-10">
               <span
                 aria-hidden="true"
                 className="absolute top-0 bottom-0 left-[7px] w-px bg-line xl:top-[7px] xl:right-0 xl:bottom-auto xl:left-0 xl:h-px xl:w-auto"
               />
               {processSteps.map((step) => (
-                <li key={step.index} className="relative pl-10 xl:pt-10 xl:pl-0">
+                <li
+                  key={step.index}
+                  className="relative pl-10 xl:pt-10 xl:pl-0"
+                >
                   <span
                     aria-hidden="true"
                     className="absolute top-1.5 left-0 block h-3.5 w-3.5 rounded-full border border-accent bg-surface xl:top-0"
@@ -72,7 +78,9 @@ export default function MortgagesPage() {
                   <span className="block text-eyebrow font-medium tabular text-accent uppercase">
                     {step.index}
                   </span>
-                  <h3 className="mt-4 text-heading-2 font-medium tracking-tight">{step.title}</h3>
+                  <h3 className="mt-4 text-heading-2 font-medium tracking-tight">
+                    {step.title}
+                  </h3>
                   <p className="mt-3 max-w-[34ch] text-body text-ink-secondary">
                     {step.description}
                   </p>

@@ -51,24 +51,46 @@ export default function WillsPage() {
         <Container>
           <DatumGrid>
             <Eyebrow>Process</Eyebrow>
-            <h2 id="wills-process-heading" className="max-w-[22ch] text-display-2 font-medium text-balance">
+            <h2
+              id="wills-process-heading"
+              className="max-w-[22ch] text-display-2 font-medium text-balance"
+            >
               How a will is put together.
             </h2>
           </DatumGrid>
-          <PendingContent label="wills.process — approved wording required" className="mt-12">
+          <PendingContent
+            label="wills.process — approved wording required"
+            className="mt-12"
+          >
             <ol className="m-0 grid list-none grid-cols-1 gap-x-12 gap-y-9 border-t border-line p-0 pt-10 md:grid-cols-2 xl:grid-cols-4">
               {[
-                ["Discuss", "A conversation about your circumstances, your family and what you want to happen."],
-                ["Draft", "A draft prepared to reflect those wishes, for you to read at your own pace."],
-                ["Review", "Any changes made, and the document explained clearly before anything is signed."],
-                ["Store", "Signing and witnessing arranged, and the will kept somewhere it can be found."],
+                [
+                  "Discuss",
+                  "A conversation about your circumstances, your family and what you want to happen.",
+                ],
+                [
+                  "Draft",
+                  "A draft prepared to reflect those wishes, for you to read at your own pace.",
+                ],
+                [
+                  "Review",
+                  "Any changes made, and the document explained clearly before anything is signed.",
+                ],
+                [
+                  "Store",
+                  "Signing and witnessing arranged, and the will kept somewhere it can be found.",
+                ],
               ].map(([title, body], index) => (
                 <li key={title}>
                   <span className="block text-eyebrow font-medium tabular text-accent uppercase">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-4 text-heading-2 font-medium tracking-tight">{title}</h3>
-                  <p className="mt-3 max-w-[34ch] text-body text-ink-secondary">{body}</p>
+                  <h3 className="mt-4 text-heading-2 font-medium tracking-tight">
+                    {title}
+                  </h3>
+                  <p className="mt-3 max-w-[34ch] text-body text-ink-secondary">
+                    {body}
+                  </p>
                 </li>
               ))}
             </ol>
@@ -85,7 +107,10 @@ export default function WillsPage() {
           <DatumGrid>
             <Eyebrow>In preparation</Eyebrow>
             <div>
-              <h2 id="wills-planned-heading" className="max-w-[24ch] text-heading-1 font-medium text-balance">
+              <h2
+                id="wills-planned-heading"
+                className="max-w-[24ch] text-heading-1 font-medium text-balance"
+              >
                 Further estate planning services.
               </h2>
               <p className="mt-6 max-w-[54ch] text-body-lg text-ink-secondary">
@@ -99,8 +124,12 @@ export default function WillsPage() {
                     key={route.slug}
                     className="flex flex-wrap items-center justify-between gap-3 bg-ground py-5"
                   >
-                    <span className="text-heading-3 font-medium text-ink-tertiary">{route.label}</span>
-                    <span className="text-body-sm text-accent">[APPROVED COPY REQUIRED]</span>
+                    <span className="text-heading-3 font-medium text-ink-tertiary">
+                      {route.label}
+                    </span>
+                    <span className="text-body-sm text-accent">
+                      [APPROVED COPY REQUIRED]
+                    </span>
                   </li>
                 ))}
               </ul>

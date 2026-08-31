@@ -34,7 +34,10 @@ export function PageOpening({
         <DatumGrid className="mt-10">
           <Eyebrow tone="dark">{eyebrow}</Eyebrow>
           <div>
-            <h1 id={headingId} className="max-w-[20ch] text-display-1 font-medium text-balance">
+            <h1
+              id={headingId}
+              className="max-w-[20ch] text-display-1 font-medium text-balance"
+            >
               {title}
             </h1>
             {standfirst && (

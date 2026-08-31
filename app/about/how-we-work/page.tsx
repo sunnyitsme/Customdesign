@@ -21,23 +21,37 @@ export default function Page() {
           { label: "How we work" },
         ]}
       />
-      <section aria-labelledby="page-body-heading" className="py-[var(--section-md)]">
+      <section
+        aria-labelledby="page-body-heading"
+        className="py-[var(--section-md)]"
+      >
         <Container>
           <DatumGrid>
             <Eyebrow>Detail</Eyebrow>
             <div>
-              <h2 id="page-body-heading" className="max-w-[22ch] text-display-2 font-medium text-balance">
+              <h2
+                id="page-body-heading"
+                className="max-w-[22ch] text-display-2 font-medium text-balance"
+              >
                 How we work.
               </h2>
-              <PendingContent label="process.copy — approved wording required" className="mt-9">
+              <PendingContent
+                label="process.copy — approved wording required"
+                className="mt-9"
+              >
                 <ol className="m-0 flex list-none flex-col gap-8 border-t border-line p-0 pt-9">
                   {processSteps.map((step) => (
-                    <li key={step.index} className="grid grid-cols-[3rem_minmax(0,1fr)] gap-4">
+                    <li
+                      key={step.index}
+                      className="grid grid-cols-[3rem_minmax(0,1fr)] gap-4"
+                    >
                       <span className="text-eyebrow font-medium tabular text-accent uppercase">
                         {step.index}
                       </span>
                       <div>
-                        <h3 className="text-heading-2 font-medium tracking-tight">{step.title}</h3>
+                        <h3 className="text-heading-2 font-medium tracking-tight">
+                          {step.title}
+                        </h3>
                         <p className="mt-3 max-w-[54ch] text-body-lg text-ink-secondary">
                           {step.description}
                         </p>

@@ -28,7 +28,10 @@ export default function MortgageGuidesPage() {
           <DatumGrid className="mt-10">
             <Eyebrow tone="dark">Guides</Eyebrow>
             <div>
-              <h1 id="guides-heading" className="max-w-[18ch] text-display-1 font-medium text-balance">
+              <h1
+                id="guides-heading"
+                className="max-w-[18ch] text-display-1 font-medium text-balance"
+              >
                 How each type of mortgage works.
               </h1>
               <p className="mt-8 max-w-[56ch] text-body-lg text-ink-inverse-secondary">

@@ -1,4 +1,22 @@
+import {
+  businessProtectionPages,
+  mortgagePages,
+  propertyFinancePages,
+  protectionPages,
+  willsPages,
+  type ServicePage,
+} from "./service-pages";
 import { site } from "./site";
+
+/** Footer links derived from content, so a renamed slug cannot orphan them. */
+const pick = (pages: readonly ServicePage[], slugs: readonly string[]) =>
+  slugs
+    .map((slug) => pages.find((page) => page.slug === slug))
+    .filter((page): page is ServicePage => page !== undefined)
+    .map((page) => ({
+      label: page.navLabel,
+      href: `/${page.parent}/${page.slug}`,
+    }));
 
 /**
  * Footer structure.
@@ -30,58 +48,63 @@ export const footerGroups: readonly FooterGroup[] = [
     title: "Mortgages",
     links: [
       { label: "Overview", href: "/mortgages" },
-      { label: "First-time buyers", href: "/mortgages/first-time-buyers" },
-      { label: "Remortgaging", href: "/mortgages/remortgaging" },
-      { label: "Buy-to-let", href: "/mortgages/buy-to-let" },
-      { label: "High-value lending", href: "/mortgages/high-value" },
-      { label: "Self-employed", href: "/mortgages/self-employed" },
+      ...pick(mortgagePages, [
+        "first-time-buyers",
+        "remortgaging",
+        "buy-to-let",
+        "high-value-mortgages",
+        "self-employed",
+      ]),
+      { label: "Guides", href: "/mortgages/guides" },
     ],
   },
   {
     title: "Property finance",
     links: [
       { label: "Overview", href: "/property-finance" },
-      { label: "Bridging finance", href: "/property-finance/bridging" },
-      { label: "Development finance", href: "/property-finance/development" },
-      { label: "Commercial mortgages", href: "/property-finance/commercial" },
-      {
-        label: "Portfolio landlord finance",
-        href: "/property-finance/portfolio",
-      },
-      { label: "Auction finance", href: "/property-finance/auction" },
+      ...pick(propertyFinancePages, [
+        "bridging",
+        "development-finance",
+        "commercial-finance",
+        "portfolio-landlords",
+        "auction-finance",
+      ]),
     ],
   },
   {
     title: "Protection",
     links: [
       { label: "Overview", href: "/protection" },
-      { label: "Life assurance", href: "/protection/life-assurance" },
-      { label: "Income protection", href: "/protection/income-protection" },
-      { label: "Critical illness", href: "/protection/critical-illness" },
+      ...pick(protectionPages, [
+        "life-assurance",
+        "income-protection",
+        "critical-illness",
+      ]),
       { label: "Business protection", href: "/protection/business" },
+      ...pick(businessProtectionPages, ["key-person", "share-protection"]),
     ],
   },
   {
     title: "Wills & estate planning",
     links: [
       { label: "Overview", href: "/wills-estate-planning" },
-      {
-        label: "Standard wills",
-        href: "/wills-estate-planning/standard-wills",
-      },
-      { label: "Mirror wills", href: "/wills-estate-planning/mirror-wills" },
-      { label: "Trust wills", href: "/wills-estate-planning/trust-wills" },
-      { label: "Reviews & updates", href: "/wills-estate-planning/reviews" },
+      ...pick(willsPages, [
+        "wills",
+        "mirror-wills",
+        "trust-wills",
+        "will-reviews",
+      ]),
     ],
   },
   {
     title: "Guide",
     links: [
       { label: "About", href: "/about" },
-      { label: "Our team", href: "/about/team" },
+      { label: "Our team", href: "/about/our-team" },
       { label: "Insights", href: "/insights" },
       { label: "Contact", href: "/contact" },
       { label: "Locations", href: "/locations" },
+      { label: "Calculators", href: "/calculators" },
     ],
   },
   {
@@ -113,9 +136,9 @@ export const legalLinks: readonly FooterLink[] = [
     href: "https://guidefs.co.uk/sites/default/files/clients/966/Gfs-tob-may2025.pdf",
     external: true,
   },
-  { label: "Cookies", href: null, pending: true },
-  { label: "Complaints", href: null, pending: true },
-  { label: "Accessibility", href: null, pending: true },
+  { label: "Cookies", href: "/cookies" },
+  { label: "Complaints", href: "/complaints" },
+  { label: "Accessibility", href: "/accessibility" },
 ];
 
 /**

@@ -63,4 +63,5 @@ export interface ServicePage {
 }
 
 export const hubPath = (parent: ServiceParent) => `/${parent}`;
-export const servicePath = (page: ServicePage) => `/${page.parent}/${page.slug}`;
+export const servicePath = (page: ServicePage) =>
+  `/${page.parent}/${page.slug}`;

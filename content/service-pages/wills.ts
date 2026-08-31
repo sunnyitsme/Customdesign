@@ -36,7 +36,11 @@ export const willsPages: readonly ServicePage[] = [
       { question: "What happens if I die without a will?", answer: null },
       { question: "Who should I appoint as executor?", answer: null },
     ],
-    related: ["/wills-estate-planning/mirror-wills", "/wills-estate-planning/trust-wills", "/wills-estate-planning/will-reviews"],
+    related: [
+      "/wills-estate-planning/mirror-wills",
+      "/wills-estate-planning/trust-wills",
+      "/wills-estate-planning/will-reviews",
+    ],
     legacyUrls: ["/gfs-wills-writing"],
     complianceFlags: [
       "Intestacy rules differ across UK jurisdictions — wording must state which applies",
@@ -54,14 +58,23 @@ export const willsPages: readonly ServicePage[] = [
     scope:
       "Two substantially matching wills, usually made by a couple, each leaving their estate on similar terms.",
     intro: null,
-    audience: ["Married couples and civil partners", "Unmarried couples planning together"],
+    audience: [
+      "Married couples and civil partners",
+      "Unmarried couples planning together",
+    ],
     considerations: [
       "Mirror wills are two separate documents, not one joint one.",
       "Either person can change their own will later.",
       "They are often considered where a couple's wishes align.",
     ],
-    faqs: [{ question: "Can one of us change a mirror will later?", answer: null }],
-    related: ["/wills-estate-planning/wills", "/wills-estate-planning/trust-wills", "/protection/life-assurance"],
+    faqs: [
+      { question: "Can one of us change a mirror will later?", answer: null },
+    ],
+    related: [
+      "/wills-estate-planning/wills",
+      "/wills-estate-planning/trust-wills",
+      "/protection/life-assurance",
+    ],
     legacyUrls: ["/gfs-wills-writing"],
     complianceFlags: ["Wills and estate planning are not regulated by the FCA"],
     imageAlt: "Image required — considered domestic context",
@@ -90,7 +103,11 @@ export const willsPages: readonly ServicePage[] = [
       { question: "When is a trust appropriate?", answer: null },
       { question: "What do trustees actually do?", answer: null },
     ],
-    related: ["/wills-estate-planning/wills", "/wills-estate-planning/will-reviews", "/protection/life-assurance"],
+    related: [
+      "/wills-estate-planning/wills",
+      "/wills-estate-planning/will-reviews",
+      "/protection/life-assurance",
+    ],
     legacyUrls: ["/gfs-wills-writing"],
     complianceFlags: [
       "Trusts carry tax and legal consequences. No inheritance tax, care-fee or asset-protection outcome may be asserted",
@@ -119,7 +136,11 @@ export const willsPages: readonly ServicePage[] = [
       "Property, business interests and beneficiaries all change over time.",
     ],
     faqs: [{ question: "How often should a will be reviewed?", answer: null }],
-    related: ["/wills-estate-planning/wills", "/wills-estate-planning/trust-wills", "/wills-estate-planning/mirror-wills"],
+    related: [
+      "/wills-estate-planning/wills",
+      "/wills-estate-planning/trust-wills",
+      "/wills-estate-planning/mirror-wills",
+    ],
     legacyUrls: ["/gfs-wills-writing"],
     complianceFlags: [
       "The effect of marriage and divorce on a will differs across UK jurisdictions",
