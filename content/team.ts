@@ -17,6 +17,8 @@
 
 export interface TeamMember {
   readonly id: string;
+  /** URL segment for /about/team/[slug]. */
+  readonly slug: string;
   /** From the migration pack. Pending confirmation the team is current. */
   readonly name: string;
   /** Approved role. Null — the pack records that one exists, not what it says. */
@@ -34,6 +36,7 @@ const portraitPlaceholder = (name: string) => ({
 export const team: readonly TeamMember[] = [
   {
     id: "jiwan-singh-dhanik",
+    slug: "jiwan-singh-dhanik",
     name: "Jiwan Singh Dhanik",
     role: null,
     qualifications: null,
@@ -41,6 +44,7 @@ export const team: readonly TeamMember[] = [
   },
   {
     id: "pravin-singh",
+    slug: "pravin-singh",
     name: "Pravin Singh",
     role: null,
     qualifications: null,
@@ -48,6 +52,7 @@ export const team: readonly TeamMember[] = [
   },
   {
     id: "rajesh-dsa",
+    slug: "rajesh-dsa",
     name: "Rajesh D'sa",
     role: null,
     qualifications: null,
@@ -55,6 +60,7 @@ export const team: readonly TeamMember[] = [
   },
   {
     id: "prasanna-shetty",
+    slug: "prasanna-shetty",
     name: "Prasanna Shetty",
     role: null,
     qualifications: null,
