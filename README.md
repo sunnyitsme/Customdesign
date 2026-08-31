@@ -6,6 +6,17 @@ The existing site is treated **only** as a source of approved content and existi
 knowledge. None of its visual design, layout, component styling or page templates are carried
 over.
 
+## Run it locally
+
+```bash
+pnpm install
+pnpm dev          # http://localhost:3000
+```
+
+See [`docs/03-local-preview.md`](docs/03-local-preview.md) for the full preview
+workflow, including why the cloud session cannot expose its own dev server, and
+what to exercise when reviewing.
+
 ## Status
 
 **Phase 0 — foundation proposal. Awaiting approval.** No application code yet.

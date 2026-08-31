@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check:content": "node scripts/check-pending.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "preview": "next dev -H 0.0.0.0 -p 3000",
+    "preview:prod": "next build && next start -H 0.0.0.0 -p 3000"
   },
   "dependencies": {
     "next": "^16.3.3",
