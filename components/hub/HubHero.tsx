@@ -45,7 +45,7 @@ export function HubHero({
           <div
             className={
               media === "portrait"
-                ? "grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end"
+                ? "grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:items-start"
                 : ""
             }
           >
@@ -87,7 +87,7 @@ export function HubHero({
             </div>
 
             {media === "portrait" && (
-              <div className="relative aspect-4/5 w-full lg:aspect-3/4">
+              <div className="relative aspect-4/3 w-full lg:aspect-4/5">
                 <DrawingPlate label={imageAlt} tone={dark ? "dark" : "light"} />
               </div>
             )}

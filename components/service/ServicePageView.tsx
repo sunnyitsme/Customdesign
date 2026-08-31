@@ -50,7 +50,7 @@ function ServiceHero({
           <Eyebrow tone={dark ? "dark" : "light"}>
             {page.variant === "educational" ? "Guide" : "Service"}
           </Eyebrow>
-          <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end">
+          <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start">
             <div>
               <h1
                 id="service-heading"
@@ -92,7 +92,7 @@ function ServiceHero({
             </div>
 
             {page.variant !== "educational" && (
-              <div className="relative aspect-4/5 w-full lg:aspect-3/4">
+              <div className="relative aspect-4/3 w-full lg:aspect-4/5">
                 <DrawingPlate
                   label={page.imageAlt}
                   tone={dark ? "dark" : "light"}

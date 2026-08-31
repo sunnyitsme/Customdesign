@@ -79,7 +79,7 @@ export default function ContactPage() {
                   </p>
                 </PendingContent>
 
-                <h3 className="mt-10 text-eyebrow font-medium tracking-[0.16em] text-ink-tertiary uppercase">
+                <h3 className="mt-10 border-t border-line pt-8 text-eyebrow font-medium tracking-[0.16em] text-ink-tertiary uppercase">
                   Offices
                 </h3>
                 <ul className="m-0 mt-4 flex list-none flex-col gap-4 p-0">

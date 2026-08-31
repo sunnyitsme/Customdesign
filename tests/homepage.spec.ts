@@ -203,6 +203,10 @@ for (const width of [390, 768, 1024, DESKNAV_FROM - 1]) {
  * it, in the disclosure above it, and never neither.
  */
 test('no width leaves the portals unreachable from the header', async ({ page }) => {
+  // 56 sequential page loads; under parallel workers this exceeds the default
+  // timeout on a loaded machine. The walk itself is the point, so give it room
+  // rather than sampling fewer widths.
+  test.setTimeout(120_000);
   const dead: number[] = [];
   for (let width = 1180; width <= 1400; width += 4) {
     await page.setViewportSize({ width, height: 900 });

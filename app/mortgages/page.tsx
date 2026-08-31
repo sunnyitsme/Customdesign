@@ -28,8 +28,8 @@ export default function MortgagesPage() {
       <HubHero
         eyebrow="Mortgages"
         headingId="mortgages-heading"
-        title="Advice for the property you are actually buying."
-        standfirst="Purchases, remortgaging, buy-to-let, and lending where income or property does not fit a standard template. Advice from a named adviser who stays with the case."
+        title="Advice for the property in front of you."
+        standfirst="Purchases, remortgaging, buy-to-let, and lending where the income or the property does not fit a standard template."
         ctaLabel="Speak to a mortgage adviser"
         imageAlt="Image required — residential property, warm domestic register"
       />

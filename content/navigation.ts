@@ -131,10 +131,20 @@ export const hubs: readonly NavHub[] = [
     href: "/insights",
     summary:
       "Commentary on lending conditions, property finance and protection.",
+    // Deliberately no featured children: a dropdown here widened the desktop
+    // nav by ~5px and pushed the nav-to-actions gap to 55px, below the header's
+    // measured >=56px guarantee (docs/02-decisions.md D-002). The header
+    // architecture is frozen, so Insights stays a direct link and its four
+    // categories lead the hub page instead — which is where a reader browsing
+    // insights is going anyway.
     children: [
-      { label: "Guides", href: "/insights/guides", featured: true },
-      { label: "Case studies", href: "/insights/case-studies", featured: true },
-      { label: "FAQs", href: "/insights/faqs", featured: true },
+      { label: "Guides", href: "/insights/guides", featured: false },
+      {
+        label: "Case studies",
+        href: "/insights/case-studies",
+        featured: false,
+      },
+      { label: "FAQs", href: "/insights/faqs", featured: false },
       { label: "News", href: "/insights/news", featured: false },
     ],
   },
