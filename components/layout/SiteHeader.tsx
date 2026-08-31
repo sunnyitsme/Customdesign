@@ -160,7 +160,7 @@ export function SiteHeader() {
                               Overview
                             </span>
                           </Link>
-                          <p className="mt-4 max-w-[32ch] font-prose text-body-sm text-ink-secondary">
+                          <p className="mt-4 max-w-[32ch] text-body-sm text-ink-secondary">
                             {hub.summary}
                           </p>
                         </div>

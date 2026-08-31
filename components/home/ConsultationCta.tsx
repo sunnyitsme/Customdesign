@@ -1,4 +1,5 @@
 import { Container, DatumGrid } from "@/components/ui/Container";
+import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { divisions } from "@/content/services";
 import { site } from "@/content/site";
@@ -6,11 +7,15 @@ import { site } from "@/content/site";
 /**
  * The page's closing moment.
  *
- * Dark, tall and deliberately quiet — one statement, the four disciplines named
- * as a hairline-separated index, and two real ways to make contact. Confident
- * rather than salesy: no urgency device, no form, no countdown.
+ * Roughly 60/40: the statement and the two ways to make contact on the left, a
+ * tall architectural crop as counterweight on the right. Without the image the
+ * right half read as unfinished rather than calm.
  *
- * Only verified contact detail is used. Note the address and email both conflict
+ * The four disciplines run full width beneath both columns as a hairline index.
+ * Inside the left column they were squeezed into four narrow cells and the
+ * longer labels wrapped.
+ *
+ * Only verified contact detail is used. The address and email both conflict
  * between the public site and the legal PDFs, so neither is repeated here — the
  * footer carries that conflict where it is flagged.
  */
@@ -18,56 +23,70 @@ export function ConsultationCta() {
   return (
     <section
       aria-labelledby="cta-heading"
-      className="on-deep bg-deep py-[var(--section-lg)] text-ink-inverse"
+      className="on-deep bg-deep py-[var(--section-md)] text-ink-inverse"
     >
       <Container>
         <DatumGrid>
           <Eyebrow tone="dark">Speak to Guide</Eyebrow>
-          <div>
-            <h2
-              id="cta-heading"
-              className="max-w-[16ch] text-display-1 font-medium text-balance"
-            >
-              Let&rsquo;s discuss what you&rsquo;re looking to achieve.
-            </h2>
 
-            <p className="mt-8 max-w-[46ch] font-prose text-body-lg text-ink-inverse-secondary">
-              A conversation about the property, the timing, and the
-              circumstances behind them — across mortgages, property finance,
-              protection, and wills and estate planning.
-            </p>
+          <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-center">
+            <div>
+              <h2
+                id="cta-heading"
+                className="max-w-[16ch] text-display-1 font-medium text-balance"
+              >
+                Let&rsquo;s discuss what you&rsquo;re looking to achieve.
+              </h2>
 
-            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-sm bg-ink-inverse px-7 py-4 text-body-sm font-medium text-ink transition-colors duration-base hover:bg-accent-bright"
-              >
-                Speak to an adviser
-              </a>
-              <a
-                href={site.phoneHref}
-                className="text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse underline-offset-[6px] transition-colors duration-base hover:decoration-accent-bright"
-              >
-                {site.phone}
-              </a>
+              <p className="mt-9 max-w-[46ch] text-body-lg text-ink-inverse-secondary">
+                A conversation about the property, the timing, and the
+                circumstances behind them — across mortgages, property finance,
+                protection, and wills and estate planning.
+              </p>
+
+              <div className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center rounded-sm bg-ink-inverse px-7 py-4 text-body-sm font-medium text-ink transition-colors duration-base hover:bg-accent-bright"
+                >
+                  Speak to an adviser
+                </a>
+                <a
+                  href={site.phoneHref}
+                  className="text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse underline-offset-[6px] transition-colors duration-base hover:decoration-accent-bright"
+                >
+                  {site.phone}
+                </a>
+              </div>
             </div>
 
-            <ul className="m-0 mt-16 grid list-none grid-cols-1 border-t border-line-inverse p-0 sm:grid-cols-2 lg:grid-cols-4">
-              {divisions.map((division) => (
-                <li
-                  key={division.id}
-                  className="border-b border-line-inverse py-5 lg:border-b-0 lg:border-l lg:px-6 lg:py-6 lg:first:border-l-0 lg:first:pl-0"
-                >
-                  <a
-                    href={division.href}
-                    className="text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:text-accent-bright"
-                  >
-                    {division.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {/* Counterweight — London or property architectural crop. */}
+            <div className="relative aspect-4/5 w-full lg:aspect-3/4">
+              <DrawingPlate
+                label="Image required — London or property architectural crop"
+                tone="dark"
+              />
+            </div>
           </div>
+        </DatumGrid>
+
+        <DatumGrid className="mt-14">
+          <div />
+          <ul className="m-0 grid list-none grid-cols-2 border-t border-line-inverse p-0 lg:grid-cols-4">
+            {divisions.map((division) => (
+              <li
+                key={division.id}
+                className="border-b border-line-inverse py-4 lg:border-b-0 lg:border-l lg:px-6 lg:py-5 lg:first:border-l-0 lg:first:pl-0"
+              >
+                <a
+                  href={division.href}
+                  className="text-body-sm font-medium whitespace-nowrap text-ink-inverse transition-colors duration-base hover:text-accent-bright"
+                >
+                  {division.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </DatumGrid>
       </Container>
     </section>

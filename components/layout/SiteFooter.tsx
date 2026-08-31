@@ -73,7 +73,8 @@ export function SiteFooter() {
               Offices
             </h2>
             <PendingContent
-              label={`conflicts.contact — ${sourceConflicts.length} unresolved conflicts in the source material`}
+              tone="dark"
+              label={`conflicts.contact — ${sourceConflicts.length} unresolved source conflicts`}
               className="mt-5"
             >
               <ul className="m-0 flex list-none flex-col gap-6 p-0">
@@ -82,13 +83,13 @@ export function SiteFooter() {
                     <p className="text-body-sm font-medium text-ink-inverse">
                       {office.city}
                     </p>
-                    <p className="mt-1 max-w-[30ch] font-prose text-body-sm text-ink-inverse-secondary">
+                    <p className="mt-1 max-w-[30ch] text-body-sm text-ink-inverse-secondary">
                       {office.address}
                     </p>
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 max-w-[34ch] border-t border-line-inverse pt-5 font-prose text-body-sm text-accent-bright">
+              <p className="mt-6 max-w-[34ch] border-t border-line-inverse pt-5 text-body-sm text-accent-bright">
                 The company page names three offices and the footer lists four.
                 Contact address and email also differ between the public site
                 and the legal PDFs. [FIRM CONFIRMATION REQUIRED]
@@ -115,29 +116,27 @@ export function SiteFooter() {
 
       {/* Regulatory band — quiet, readable, and last. */}
       <div className="border-t border-line-inverse">
-        <Container className="py-10">
+        <Container className="py-9">
           <div className="grid gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-            <PendingContent label="footer.regulatory — verbatim approved wording required for all seven topics">
-              <p className="max-w-[64ch] font-prose text-body-sm text-ink-inverse-secondary">
+            <PendingContent
+              tone="dark"
+              label="footer.regulatory — verbatim approved wording required"
+            >
+              <p className="max-w-[64ch] text-body-sm text-ink-inverse-secondary">
                 {site.legalEntity}, trading as {site.tradingNames.join(" and ")}
                 . Registered in England and Wales, company number{" "}
                 {site.registrations.companyNumber}. FCA firm reference number{" "}
                 {site.registrations.fcaFrn}. ICO registration{" "}
                 {site.registrations.icoNumber}.
               </p>
-              <ul className="m-0 mt-5 flex list-none flex-col gap-1.5 p-0">
-                {regulatoryTopics.map((topic) => (
-                  <li
-                    key={topic}
-                    className="font-prose text-body-sm text-ink-inverse-secondary"
-                  >
-                    <span className="text-accent-bright">
-                      [APPROVED WORDING REQUIRED]
-                    </span>{" "}
-                    {topic}
-                  </li>
-                ))}
-              </ul>
+              {/* Seven briefs to compliance, set as one line rather than seven.
+                  As a stacked list it dominated the whole footer. */}
+              <p className="mt-4 max-w-[70ch] text-body-sm text-ink-inverse-secondary">
+                <span className="text-accent-bright">
+                  [APPROVED WORDING REQUIRED]
+                </span>{" "}
+                {regulatoryTopics.join(" · ")}.
+              </p>
             </PendingContent>
 
             <div>
@@ -153,7 +152,7 @@ export function SiteFooter() {
                       <a
                         href={link.href}
                         rel="noopener noreferrer"
-                        className="text-body-sm text-ink-inverse-secondary transition-colors duration-base hover:text-accent-bright"
+                        className="text-[0.8rem] text-ink-inverse-secondary transition-colors duration-base hover:text-accent-bright"
                       >
                         {link.label}
                       </a>
@@ -161,7 +160,7 @@ export function SiteFooter() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 font-prose text-body-sm text-ink-inverse-secondary">
+              <p className="mt-6 text-body-sm text-ink-inverse-secondary">
                 © {new Date().getFullYear()} {site.legalEntity}.
               </p>
             </div>

@@ -8,14 +8,14 @@ import { insights } from "@/content/insights";
 /**
  * Insights.
  *
- * Unequal weighting rather than three matching cards: the lead piece takes a
- * wide 16:10 plate and the two behind it run as a stacked list with narrow
- * plates, so the section reads like a publication front rather than a blog
- * grid.
+ * One dominant lead and two substantial supporting pieces. The supporting
+ * stories previously used narrow thumbnails beside their titles, which read as
+ * an afterthought; they now carry proper 3:2 images and real title weight, so
+ * all three feel published rather than listed.
  *
  * The current site has no insights section at all, so no title, standfirst,
  * author or date is invented. `category` is real — it names one of Guide's
- * documented service lines — and everything else is a placeholder.
+ * documented service lines.
  */
 export function Insights() {
   const [lead, ...rest] = insights;
@@ -30,7 +30,7 @@ export function Insights() {
           eyebrow="Insights"
           id="insights-heading"
           aside={
-            <p className="max-w-[42ch] font-prose text-body-lg text-ink-secondary">
+            <p className="max-w-[40ch] text-body-lg text-ink-secondary">
               Commentary on lending conditions, property finance and protection.
             </p>
           }
@@ -39,59 +39,68 @@ export function Insights() {
         </SectionHeading>
 
         <PendingContent
-          label="insights.articles — supply three approved articles, or confirm the section launches hidden"
-          className="mt-[var(--section-sm)]"
+          label="insights.articles — three approved articles required, or confirm the section launches hidden"
+          className="mt-11"
         >
-          <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+          <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
             {lead ? (
-              <article>
-                <div className="relative aspect-16/10 w-full">
+              <article className="group">
+                <div className="relative aspect-3/2 w-full">
                   <DrawingPlate
-                    label="Lead insight — editorial photography required"
+                    label="Image required — editorial finance / property"
                     tone="light"
                   />
                 </div>
-                <p className="mt-6 text-eyebrow font-medium tracking-[0.16em] text-accent uppercase">
+                <p className="mt-7 text-eyebrow font-medium tracking-[0.16em] text-accent uppercase">
                   {lead.category}
                 </p>
-                <h3 className="mt-4 max-w-[22ch] text-heading-1 font-medium tracking-tight text-balance">
+                <h3 className="mt-4 max-w-[20ch] text-display-2 font-medium tracking-tight text-balance">
                   {lead.title ?? "[APPROVED ARTICLE REQUIRED]"}
                 </h3>
-                <p className="mt-4 max-w-[52ch] font-prose text-body-lg text-ink-secondary">
+                <p className="mt-5 max-w-[52ch] font-prose text-body-lg text-ink-secondary">
                   {lead.standfirst ??
                     "Title, standfirst, author and date supplied by the firm before publication."}
+                </p>
+                <p className="mt-4 text-body-sm text-ink-tertiary">
+                  {lead.publishedAt ? (
+                    <time dateTime={lead.publishedAt}>{lead.publishedAt}</time>
+                  ) : (
+                    "Author and date [TBC]"
+                  )}
                 </p>
               </article>
             ) : null}
 
-            <ul className="m-0 list-none border-t border-line p-0">
+            <div className="flex flex-col gap-8">
               {rest.map((insight) => (
-                <li key={insight.id} className="border-b border-line py-8">
-                  <div className="grid grid-cols-[minmax(0,1fr)_7rem] items-start gap-6 sm:grid-cols-[minmax(0,1fr)_10rem]">
-                    <div>
-                      <p className="text-eyebrow font-medium tracking-[0.16em] text-accent uppercase">
-                        {insight.category}
-                      </p>
-                      <h3 className="mt-3 text-heading-2 font-medium tracking-tight text-balance">
-                        {insight.title ?? "[APPROVED ARTICLE REQUIRED]"}
-                      </h3>
-                      <p className="mt-3 max-w-[38ch] font-prose text-body-sm text-ink-secondary">
-                        {insight.standfirst ?? "Standfirst required."}
-                      </p>
-                    </div>
-                    <div className="relative aspect-4/5 w-full">
-                      <DrawingPlate label="Image required" tone="light" />
-                    </div>
+                <article
+                  key={insight.id}
+                  className="border-t border-line pt-7 first:border-t-0 first:pt-0"
+                >
+                  <div className="relative aspect-16/10 w-full">
+                    <DrawingPlate
+                      label="Image required — editorial"
+                      tone="light"
+                    />
                   </div>
-                </li>
+                  <p className="mt-6 text-eyebrow font-medium tracking-[0.16em] text-accent uppercase">
+                    {insight.category}
+                  </p>
+                  <h3 className="mt-3 max-w-[24ch] text-heading-1 font-medium tracking-tight text-balance">
+                    {insight.title ?? "[APPROVED ARTICLE REQUIRED]"}
+                  </h3>
+                  <p className="mt-3 max-w-[40ch] font-prose text-body text-ink-secondary">
+                    {insight.standfirst ?? "Standfirst required."}
+                  </p>
+                </article>
               ))}
-            </ul>
+            </div>
           </div>
         </PendingContent>
 
         <Link
           href="/insights"
-          className="mt-14 inline-block border-b border-line-interactive pb-1 text-body-sm font-medium text-ink transition-colors duration-base hover:border-accent hover:text-accent"
+          className="mt-12 inline-block border-b border-line-interactive pb-1 text-body-sm font-medium text-ink transition-colors duration-base hover:border-accent hover:text-accent"
         >
           Explore insights
         </Link>

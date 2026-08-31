@@ -28,19 +28,50 @@ export function ReviewsMarquee() {
   const panels = reviews.map((review) => (
     <article
       key={review.id}
-      className="flex h-full w-[19rem] flex-col justify-between border border-line bg-surface p-8 sm:w-[24rem] lg:w-[27rem]"
+      className="flex h-full w-[19rem] flex-col border border-line bg-surface p-8 sm:w-[24rem] lg:w-[27rem]"
     >
-      <blockquote className="m-0">
+      {/* Rating slot. Never inferred — an unapproved review shows no stars. */}
+      <div className="flex items-center gap-2">
+        {review.rating ? (
+          <>
+            <span
+              aria-hidden="true"
+              className="text-body-sm tracking-[0.2em] text-accent"
+            >
+              {"\u2605".repeat(review.rating)}
+            </span>
+            <span className="sr-only">{review.rating} out of 5</span>
+          </>
+        ) : (
+          <span className="text-eyebrow font-medium tracking-[0.14em] text-accent uppercase">
+            Rating required
+          </span>
+        )}
+      </div>
+
+      <blockquote className="m-0 mt-6 flex-1">
         <p className="font-prose text-body-lg text-ink-secondary">
           {review.reviewText ?? "[APPROVED REVIEW REQUIRED]"}
         </p>
       </blockquote>
-      <footer className="mt-10 flex items-end justify-between gap-6 border-t border-line pt-5">
+
+      <footer className="mt-8 border-t border-line pt-5">
         <p className="text-body-sm font-medium text-ink">
           {review.reviewerName ?? "[APPROVED REVIEW REQUIRED]"}
         </p>
-        <p className="text-eyebrow font-medium tracking-[0.16em] text-ink-tertiary uppercase">
-          {review.source ?? "Source"}
+        <p className="mt-1 flex flex-wrap items-center gap-x-3 text-body-sm text-ink-tertiary">
+          <span>{review.source ?? "Source [TBC]"}</span>
+          {review.reviewDate ? (
+            <>
+              <span aria-hidden="true">·</span>
+              <time dateTime={review.reviewDate}>
+                {new Date(review.reviewDate).toLocaleDateString("en-GB", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </time>
+            </>
+          ) : null}
         </p>
       </footer>
     </article>
@@ -61,7 +92,7 @@ export function ReviewsMarquee() {
             >
               What clients say.
             </h2>
-            <p className="max-w-[42ch] font-prose text-body-lg text-ink-secondary lg:pt-2">
+            <p className="max-w-[42ch] text-body-lg text-ink-secondary lg:pt-2">
               Published with the reviewer&rsquo;s permission and reviewed by
               compliance before it appears here.
             </p>
@@ -71,7 +102,7 @@ export function ReviewsMarquee() {
 
       <PendingContent
         label="reviews.approved — testimonial text, reviewer permission and source profiles required"
-        className="mt-[var(--section-sm)]"
+        className="mt-12"
       >
         <div className="[mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
           <Marquee

@@ -22,10 +22,10 @@ export function AboutGuide() {
       <Container>
         <DatumGrid>
           <Eyebrow>{about.eyebrow}</Eyebrow>
-          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] xl:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
-            <div className="relative aspect-4/5 w-full lg:aspect-3/4">
+          <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center">
+            <div className="relative aspect-4/5 w-full lg:aspect-[4/4.4]">
               <DrawingPlate
-                label="About — architectural photography required"
+                label="Image required — premium architectural / private-client interior"
                 tone="light"
               />
             </div>
@@ -40,16 +40,16 @@ export function AboutGuide() {
                 </h2>
               </PendingContent>
 
-              <p className="mt-8 max-w-[54ch] font-prose text-body-lg text-ink-secondary">
+              <p className="mt-8 max-w-[54ch] text-body-lg text-ink-secondary">
                 {about.lead}
               </p>
-              <p className="mt-5 max-w-[54ch] font-prose text-body-lg text-ink-secondary">
+              <p className="mt-5 max-w-[54ch] text-body-lg text-ink-secondary">
                 {about.supporting}
               </p>
 
               <Link
                 href={about.cta.href}
-                className="mt-10 inline-block border-b border-line-interactive pb-1 text-body-sm font-medium text-ink transition-colors duration-base hover:border-accent hover:text-accent"
+                className="mt-9 inline-block border-b border-line-interactive pb-1 text-body-sm font-medium text-ink transition-colors duration-base hover:border-accent hover:text-accent"
               >
                 {about.cta.label}
               </Link>

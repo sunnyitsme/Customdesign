@@ -185,6 +185,11 @@ blockquote {
   margin: 0;
 }
 
+/* Let the browser avoid short last lines rather than editing copy to fit. */
+p {
+  text-wrap: pretty;
+}
+
 img,
 video {
   display: block;

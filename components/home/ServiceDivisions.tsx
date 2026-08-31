@@ -90,7 +90,7 @@ export function ServiceDivisions() {
                         </div>
 
                         <div className="md:order-1">
-                          <p className="max-w-[52ch] font-prose text-body-lg text-ink-secondary">
+                          <p className="max-w-[52ch] text-body-lg text-ink-secondary">
                             {division.scope}
                           </p>
 
@@ -125,7 +125,7 @@ export function ServiceDivisions() {
                   </div>
                 ))}
               </div>
-              <p className="mt-4 font-prose text-body-sm text-ink-tertiary">
+              <p className="mt-4 text-body-sm text-ink-tertiary">
                 {activeDivision?.label}
               </p>
             </div>

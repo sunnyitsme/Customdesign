@@ -49,7 +49,10 @@ export function Hero({ hasMedia }: { hasMedia: boolean }) {
             that keeps the hero aligned with every section below it. */}
         <DatumGrid>
           <div />
-          <PendingContent label="hero.copy — approved headline required">
+          <PendingContent
+            tone="dark"
+            label="hero.copy — approved headline required"
+          >
             <h1
               id="hero-heading"
               className="max-w-[17ch] text-display-1 font-medium text-balance"
@@ -79,10 +82,11 @@ export function Hero({ hasMedia }: { hasMedia: boolean }) {
               </div>
 
               <PendingContent
+                tone="dark"
                 label="hero.copy — supporting line"
                 className="max-w-[36ch] shrink-0"
               >
-                <p className="font-prose text-body-sm text-ink-inverse-secondary">
+                <p className="text-body-sm text-ink-inverse-secondary">
                   Residential and commercial lending, protection, and wills and
                   estate planning.
                 </p>

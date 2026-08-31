@@ -34,7 +34,7 @@ export function Experts() {
 
         <PendingContent
           label="team.current — /our_team is unlinked from navigation; confirm the team is current, and supply roles, qualifications and portraits"
-          className="mt-[var(--section-sm)]"
+          className="mt-12"
         >
           <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-14 p-0 sm:grid-cols-2 xl:grid-cols-4">
             {team.map((member, index) => (
@@ -57,7 +57,7 @@ export function Experts() {
                   </p>
                 ) : null}
                 {member.qualifications ? (
-                  <p className="mt-1 font-prose text-body-sm text-ink-tertiary">
+                  <p className="mt-1 text-body-sm text-ink-tertiary">
                     {member.qualifications}
                   </p>
                 ) : null}

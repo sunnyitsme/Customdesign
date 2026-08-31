@@ -23,7 +23,7 @@ export function CaseStudies() {
   return (
     <section
       aria-labelledby="cases-heading"
-      className="on-deep bg-deep py-[var(--section-lg)] text-ink-inverse"
+      className="on-deep bg-deep py-[var(--section-md)] text-ink-inverse"
     >
       <Container>
         <DatumGrid>
@@ -35,7 +35,7 @@ export function CaseStudies() {
             >
               Selected client cases.
             </h2>
-            <p className="max-w-[42ch] font-prose text-body-lg text-ink-inverse-secondary lg:pt-2">
+            <p className="max-w-[42ch] text-body-lg text-ink-inverse-secondary lg:pt-2">
               Cases are published only where the client has agreed and
               compliance has approved the wording.
             </p>
@@ -43,17 +43,18 @@ export function CaseStudies() {
         </DatumGrid>
 
         <PendingContent
+          tone="dark"
           label="cases.approved — no case-study content exists on the current site; publishing past outcomes needs sign-off"
-          className="mt-[var(--section-sm)]"
+          className="mt-12"
         >
           <ol className="m-0 list-none border-t border-line-inverse p-0">
             {cases.map((entry, index) => (
               <li
                 key={entry.id}
-                className="border-b border-line-inverse py-10 lg:py-12"
+                className="border-b border-line-inverse py-8 lg:py-9"
               >
                 <div
-                  className={`grid items-center gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] ${
+                  className={`grid items-center gap-x-14 gap-y-7 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] ${
                     index % 2 === 1 ? "lg:[&>figure]:order-2" : ""
                   }`}
                 >
@@ -69,7 +70,7 @@ export function CaseStudies() {
                       {entry.discipline}
                     </p>
 
-                    <div className="mt-8">
+                    <div className="mt-6">
                       {entry.figure ? (
                         <>
                           <span className="block text-display-1 leading-none font-medium tabular">
@@ -101,7 +102,7 @@ export function CaseStudies() {
 
         <Link
           href="/property-finance"
-          className="mt-14 inline-block border-b border-line-inverse pb-1 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:border-accent-bright hover:text-accent-bright"
+          className="mt-12 inline-block border-b border-line-inverse pb-1 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:border-accent-bright hover:text-accent-bright"
         >
           Explore property finance
         </Link>

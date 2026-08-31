@@ -103,7 +103,30 @@ test("P — reviews marquee, hovered and paused", async ({ page }) => {
   await page.screenshot({ path: `${OUT}/P-reviews-hovered-paused-1440.png` });
 });
 
-test("Q — services and reviews at 768 and 430", async ({ page }) => {
+test("mobile sections at 390", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/", { waitUntil: "networkidle" });
+  await page.waitForTimeout(600);
+  await page.screenshot({ path: `${OUT}/M1-hero-390.png` });
+
+  for (const [id, name] of [
+    ["divisions-heading", "M2-services-390"],
+    ["reviews-heading", "M3-reviews-390"],
+    ["process-heading", "M4-process-390"],
+    ["cta-heading", "M5-cta-390"],
+  ] as const) {
+    await toSection(page, id);
+    await page.screenshot({ path: `${OUT}/${name}.png` });
+  }
+
+  await page.evaluate(() =>
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }),
+  );
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: `${OUT}/M6-footer-390.png` });
+});
+
+test("tablet spot-checks at 768 and 430", async ({ page }) => {
   for (const width of [768, 430]) {
     await page.setViewportSize({ width, height: width === 768 ? 1024 : 932 });
     await page.goto("/", { waitUntil: "networkidle" });

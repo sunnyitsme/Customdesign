@@ -3,34 +3,42 @@ import type { ReactNode } from "react";
 /**
  * Marks unapproved content so it is impossible to mistake for production copy.
  *
- * The label sits in normal flow rather than absolutely positioned: an absolute
- * marker collided with the fixed header and forced horizontal overflow at
- * mobile widths. In flow it can do neither.
+ * Deliberately quiet: a hairline rule and a small tinted label rather than a
+ * solid bar. The earlier treatment dominated every screenshot and made the page
+ * read as a wireframe, which made the design hard to judge. It still cannot be
+ * mistaken for production content, and the gate behind it is unchanged.
  *
- * Visible in development only; the content gate (scripts/check-pending.ts)
- * refuses a production build under GUIDE_STRICT_CONTENT=1, so unresolved
- * placeholders cannot ship silently.
+ * Development only. The production build strips this chrome, and
+ * scripts/check-pending.ts refuses the build under GUIDE_STRICT_CONTENT=1.
  */
 export function PendingContent({
   label,
   children,
   className = "",
+  tone = "light",
 }: {
   label: string;
   children: ReactNode;
   className?: string;
+  tone?: "light" | "dark";
 }) {
   if (process.env.NODE_ENV === "production")
     return <div className={className}>{children}</div>;
 
   return (
     <div className={className}>
-      <span className="mb-2 inline-block bg-accent px-1.5 py-0.5 text-[9px] leading-snug font-medium tracking-[0.12em] text-ink-inverse uppercase">
-        Placeholder · {label}
+      <span
+        className={`mb-3 flex items-center gap-2 text-[9px] font-medium tracking-[0.14em] uppercase ${
+          tone === "dark" ? "text-accent-bright" : "text-accent"
+        }`}
+      >
+        <span
+          aria-hidden="true"
+          className={`h-px w-4 ${tone === "dark" ? "bg-accent-bright" : "bg-accent"}`}
+        />
+        {label}
       </span>
-      <div className="outline-1 outline-dashed outline-offset-4 outline-accent/35">
-        {children}
-      </div>
+      {children}
     </div>
   );
 }

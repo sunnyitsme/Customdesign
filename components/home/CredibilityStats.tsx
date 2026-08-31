@@ -33,8 +33,11 @@ export function CredibilityStats() {
           </h2>
         </DatumGrid>
 
-        <PendingContent label="stats.figures — every figure needs a value, source, as-at date and approver">
-          <dl className="mt-[var(--section-sm)] m-0 grid grid-cols-1 border-t border-line-inverse sm:grid-cols-2 lg:grid-cols-5">
+        <PendingContent
+          tone="dark"
+          label="stats.figures — every figure needs a value, source, as-at date and approver"
+        >
+          <dl className="mt-12 m-0 grid grid-cols-1 border-t border-line-inverse sm:grid-cols-2 lg:grid-cols-5">
             {stats.map((stat) => (
               <div
                 key={stat.id}
