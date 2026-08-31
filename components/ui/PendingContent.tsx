@@ -8,8 +8,11 @@ import type { ReactNode } from "react";
  * read as a wireframe, which made the design hard to judge. It still cannot be
  * mistaken for production content, and the gate behind it is unchanged.
  *
- * Development only. The production build strips this chrome, and
- * scripts/check-pending.ts refuses the build under GUIDE_STRICT_CONTENT=1.
+ * Visible everywhere EXCEPT a production deployment. A preview deployment is a
+ * review environment, so the markers travel with it — otherwise the reviewer
+ * cannot tell approved content from a placeholder. Only VERCEL_ENV==="production"
+ * strips the chrome, and that build is refused anyway while launch-blocking
+ * items remain (scripts/check-pending.ts).
  */
 export function PendingContent({
   label,
@@ -22,7 +25,7 @@ export function PendingContent({
   className?: string;
   tone?: "light" | "dark";
 }) {
-  if (process.env.NODE_ENV === "production")
+  if (process.env.VERCEL_ENV === "production")
     return <div className={className}>{children}</div>;
 
   return (
