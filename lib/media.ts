@@ -36,8 +36,7 @@ export function publicAssetExists(publicPath: string): boolean {
  */
 export function heroMediaExists(): boolean {
   return (
-    publicAssetExists("/media/home/hero/guide-london-poster.webp") &&
-    (publicAssetExists("/media/home/hero/guide-london.webm") ||
-      publicAssetExists("/media/home/hero/guide-london.mp4"))
-  );
+  publicAssetExists("/media/home/hero/guide-london.webm") ||
+  publicAssetExists("/media/home/hero/guide-london.mp4")
+);
 }
