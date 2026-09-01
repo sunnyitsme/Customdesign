@@ -4,6 +4,12 @@ import { allRoutes } from "@/lib/routes";
 const BASE = process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://guidefs.co.uk";
 
 /**
+ * Evaluated at build time. Required by `output: export`; the route list is
+ * derived from content, which cannot change between build and request.
+ */
+export const dynamic = "force-static";
+
+/**
  * Sitemap.
  *
  * Generated from lib/routes.ts, so it cannot list a page that does not exist or

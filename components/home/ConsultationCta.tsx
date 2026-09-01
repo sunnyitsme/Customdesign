@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -45,12 +46,12 @@ export function ConsultationCta() {
               </p>
 
               <div className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center justify-center rounded-sm bg-ink-inverse px-7 py-4 text-body-sm font-medium text-ink transition-colors duration-base hover:bg-accent-bright"
                 >
                   Speak to an adviser
-                </a>
+                </Link>
                 <a
                   href={site.phoneHref}
                   className="text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse-interactive underline-offset-[6px] transition-colors duration-base hover:decoration-accent-bright"
@@ -78,12 +79,12 @@ export function ConsultationCta() {
                 key={division.id}
                 className="border-b border-line-inverse py-4 lg:border-b-0 lg:border-l lg:px-6 lg:py-5 lg:first:border-l-0 lg:first:pl-0"
               >
-                <a
+                <Link
                   href={division.href}
                   className="text-body-sm font-medium whitespace-nowrap text-ink-inverse transition-colors duration-base hover:text-accent-bright"
                 >
                   {division.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

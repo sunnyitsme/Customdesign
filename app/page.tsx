@@ -13,7 +13,7 @@ import {
   displayableProviders,
   showingUnpermissionedPreview,
 } from "@/content/providers";
-import { heroMediaExists } from "@/lib/media";
+import { heroPosterExists, heroVideoSources } from "@/lib/media";
 
 /**
  * Homepage.
@@ -42,7 +42,7 @@ import { heroMediaExists } from "@/lib/media";
 export default function HomePage() {
   return (
     <>
-      <Hero hasMedia={heroMediaExists()} />
+      <Hero sources={heroVideoSources()} hasPoster={heroPosterExists()} />
       <ServiceDivisions />
       <AboutGuide />
       <CredibilityStats />

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import type { HeroImage } from "@/content/media";
 import { publicAssetExists } from "@/lib/media";
+import { assetPath } from "@/lib/preview";
 
 /**
  * A page's hero photograph, or its placeholder.
@@ -44,7 +45,7 @@ export function HeroMedia({
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
       <Image
-        src={image.src}
+        src={assetPath(image.src)}
         alt={image.alt}
         fill
         sizes={sizes}

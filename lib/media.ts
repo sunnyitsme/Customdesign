@@ -29,14 +29,28 @@ export function publicAssetExists(publicPath: string): boolean {
 }
 
 /**
- * Whether the homepage hero video is available.
+ * Which hero encodes have been supplied.
  *
- * Needs the poster plus at least one encode; a video with no poster pops on
- * load, and a poster with no video is just the still placeholder.
+ * Only existing files are listed, because a <source> pointing at a missing
+ * encode is a real 404 on every page load — the browser requests each source in
+ * order before falling through to the next. The webm was not supplied with the
+ * mp4, and the static export surfaced exactly that.
  */
-export function heroMediaExists(): boolean {
-  return (
-  publicAssetExists("/media/home/hero/guide-london.webm") ||
-  publicAssetExists("/media/home/hero/guide-london.mp4")
-);
+export function heroVideoSources(): readonly { src: string; type: string }[] {
+  return [
+    { src: "/media/home/hero/guide-london.webm", type: "video/webm" },
+    { src: "/media/home/hero/guide-london.mp4", type: "video/mp4" },
+  ].filter((source) => publicAssetExists(source.src));
+}
+
+/**
+ * Whether the poster still is available.
+ *
+ * Separate because it is genuinely optional. Without it the hero must not
+ * reference the file at all — a `poster` attribute and an <img> pointing at a
+ * missing asset are two 404s and a broken image, which is exactly what the
+ * static export surfaced.
+ */
+export function heroPosterExists(): boolean {
+  return publicAssetExists("/media/home/hero/guide-london-poster.webp");
 }

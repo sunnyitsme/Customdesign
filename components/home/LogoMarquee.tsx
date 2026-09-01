@@ -6,6 +6,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MARQUEE_SPEED, Marquee } from "@/components/ui/Marquee";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { providersHeading, type Provider } from "@/content/providers";
+import { assetPath } from "@/lib/preview";
 
 /** Placeholder slots when nothing may be displayed — production, today. */
 const PLACEHOLDER_SLOTS = 10;
@@ -61,7 +62,7 @@ export function LogoMarquee({
             className="relative h-10 w-[9.5rem] lg:h-12 lg:w-[11rem]"
           >
             <Image
-              src={provider.logo ?? ""}
+              src={assetPath(provider.logo ?? "")}
               alt={provider.name ?? ""}
               fill
               sizes="(min-width: 1024px) 176px, 152px"

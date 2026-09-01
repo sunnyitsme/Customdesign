@@ -490,3 +490,61 @@ would need their permission and would pull the panel away from the Guide design.
 Review text carries `whitespace-pre-line` so a reviewer's own line breaks
 survive.
 
+## D-018 — GitHub Pages preview, behind a build flag ✅
+
+A static export for visual review at
+https://sunnyitsme.github.io/Custom-design/, deployed from the review branch by
+`.github/workflows/deploy-pages.yml`. **Not the production hosting
+architecture.** Full detail in docs/05-github-pages-preview.md.
+
+The export config lives behind `GUIDE_STATIC_EXPORT=1`, set only by
+`scripts/build-pages.mjs`. `next dev` and a normal `next build` are byte-for-byte
+unaffected: no basePath, no trailing slashes, image optimisation on, headers and
+redirects live, still `http://localhost:3000/`.
+
+### Nothing server-dependent was removed
+
+The contact route handler, the 55 legacy redirects and the `X-Robots-Tag` header
+all stay defined for production; the static build omits them and the preview
+says so rather than faking them. The form validates client-side and then states
+"Form submission is disabled in this preview" without touching the network — a
+POST to a non-existent route would surface as "could not reach the server",
+which reads as a fault rather than as a property of the preview.
+
+### Three real bugs the subpath exposed
+
+A deployment under `/Custom-design` is an unusually good audit: anything
+assuming the domain root breaks loudly.
+
+1. **`next/image` does not apply basePath to `src` under `output: export`.**
+   The brand logo, all 37 provider marks and every page hero resolved to the
+   domain root — 741 unprefixed references across the export. `assetPath()` in
+   `lib/preview.ts` fixes it and is a no-op elsewhere.
+2. **Raw `<a href="/…">` for internal routes** in `ConsultationCta` and the
+   footer's legal links. Next only prefixes `<Link>`, so five links 404'd. Now
+   `<Link>`, which also restores client navigation.
+3. **The hero referenced two files that do not exist** — `guide-london.webm`
+   was never supplied, and the poster requirement was dropped in `7725b7e` so
+   the mp4 alone would activate the video, leaving the poster referenced
+   anyway. Two 404s on every homepage load. `heroVideoSources()` now lists only
+   encodes present on disk and the poster is omitted when absent.
+
+None of these was visible at the domain root, and none would have been caught by
+the test suite, which also runs at the root.
+
+### `.nojekyll`
+
+Written by the build script. Without it Pages runs the output through Jekyll,
+which ignores underscore-prefixed paths — including `_next/`, where all the CSS
+and JS live. The site deploys successfully and renders completely unstyled,
+which is a confusing failure to debug after the fact.
+
+### Verified before pushing
+
+Served from `out/` under `/Custom-design/` and driven in a browser: 11 routes at
+1440 and 390 (all 200, CSS applied, one h1, no horizontal overflow), navigation,
+footer legal links, both marquees autoplaying and pausing on hover, all 37
+provider marks rendering, the contact form validating and refusing to submit,
+`meta robots` and `robots.txt`, and zero broken asset requests. 138 distinct
+asset paths all prefixed and all resolving.
+

@@ -157,7 +157,7 @@ export function SiteFooter() {
                         {link.label}{" "}
                         <span className="text-accent-bright">[TBC]</span>
                       </span>
-                    ) : (
+                    ) : link.external ? (
                       <a
                         href={link.href}
                         rel="noopener noreferrer"
@@ -165,6 +165,17 @@ export function SiteFooter() {
                       >
                         {link.label}
                       </a>
+                    ) : (
+                      // Internal routes go through Link: it gives client
+                      // navigation, and it is what applies basePath. As a plain
+                      // <a href="/cookies"> these three 404'd in the static
+                      // preview, which is served from a repository subpath.
+                      <Link
+                        href={link.href}
+                        className="text-[0.8rem] text-ink-inverse-secondary transition-colors duration-base hover:text-accent-bright"
+                      >
+                        {link.label}
+                      </Link>
                     )}
                   </li>
                 ))}

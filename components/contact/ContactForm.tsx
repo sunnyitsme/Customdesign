@@ -9,11 +9,15 @@ import {
   enquiryTypes,
   type ContactInput,
 } from "@/lib/contact-schema";
+import { isStaticPreview } from "@/lib/preview";
+import { site } from "@/content/site";
 
 type Status =
   | { kind: "idle" }
   | { kind: "sending" }
   | { kind: "validated"; message: string }
+  /** Static preview: validated locally, deliberately never sent. */
+  | { kind: "preview"; message: string }
   | { kind: "error"; message: string };
 
 /**
@@ -27,6 +31,18 @@ type Status =
  * On success it says the enquiry was validated but NOT delivered, because in
  * this environment it was not. Telling someone their mortgage enquiry has been
  * received when nobody received it is not a small lie.
+ *
+ * ## Static preview
+ *
+ * The GitHub Pages build has no server, so /api/contact does not exist there.
+ * The form still renders and still validates — that is the part worth
+ * reviewing — but the submit stops short of the network and says plainly that
+ * submission is disabled. It does not fire a request that would 404 and then
+ * surface as "could not reach the server", which reads like a fault rather than
+ * a property of the preview.
+ *
+ * The production handler at app/api/contact/route.ts is untouched; the static
+ * export simply omits it.
  */
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
@@ -47,6 +63,17 @@ export function ContactForm() {
   });
 
   const onSubmit = async (values: ContactInput) => {
+    // Validation has already passed by the time this runs, so the preview still
+    // exercises everything the reviewer needs to see.
+    if (isStaticPreview) {
+      setStatus({
+        kind: "preview",
+        message:
+          "Form submission is disabled in this preview. Your details were validated but nothing was sent — this is a static visual preview with no server.",
+      });
+      return;
+    }
+
     setStatus({ kind: "sending" });
     try {
       const response = await fetch("/api/contact", {
@@ -214,6 +241,23 @@ export function ContactForm() {
             <p className="mt-2 max-w-[52ch] text-body-sm text-ink-secondary">
               {status.message} This is a preview environment with no CRM
               connected, so nobody has received this. Please call instead.
+            </p>
+          </div>
+        )}
+        {status.kind === "preview" && (
+          <div className="border border-accent bg-surface p-5">
+            <p className="text-body-sm font-medium text-accent">
+              Form submission is disabled in this preview
+            </p>
+            <p className="mt-2 max-w-[52ch] text-body-sm text-ink-secondary">
+              {status.message} Please call {""}
+              <a
+                href={site.phoneHref}
+                className="font-medium tabular text-ink underline decoration-line-interactive underline-offset-4 transition-colors duration-base hover:decoration-accent"
+              >
+                {site.phone}
+              </a>
+              .
             </p>
           </div>
         )}

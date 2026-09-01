@@ -1,0 +1,78 @@
+# Guide Financial Services — GitHub Pages static preview.
+#
+# This publishes a VISUAL REVIEW build. It is not the production hosting
+# architecture, and it is not a substitute for one: the server-dependent parts
+# of the project (the contact route handler, the legacy-URL redirects, image
+# optimisation, the noindex response header) cannot run on static hosting and
+# are documented in docs/05-github-pages-preview.md rather than faked.
+#
+# The preview is noindex/nofollow: app/layout.tsx emits the meta tag and
+# app/robots.ts serves a Disallow-all robots.txt on every non-production build.
+name: Deploy GitHub Pages preview
+
+on:
+  push:
+    # The review branch, deliberately. Nothing is merged to main to publish a
+    # preview — see the BRANCH note in docs/05-github-pages-preview.md.
+    branches: [claude/guide-fs-website-rebuild-hx3nlg]
+  # Lets a rebuild be triggered from the Actions tab without a new commit.
+  workflow_dispatch:
+
+# Least privilege: read the repo, and the two grants Pages deployment needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One live deployment at a time. `cancel-in-progress: false` so a run that is
+# already publishing is allowed to finish rather than leaving Pages half-updated.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # Builds with output: export, basePath /Custom-design, and the
+      # preview-safe fallbacks. Writes .nojekyll, without which Pages runs the
+      # output through Jekyll and drops _next/ — the site would deploy and
+      # render completely unstyled.
+      - name: Build static preview
+        run: pnpm build:pages
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

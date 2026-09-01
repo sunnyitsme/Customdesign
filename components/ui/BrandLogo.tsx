@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/preview";
 
 /**
  * The Guide Financial Services brand mark.
@@ -56,7 +57,13 @@ import Image from "next/image";
  * comfortable widths. See SiteHeader and D-002.
  */
 
-/** Intrinsic pixels of the optimised web master. Do not guess these. */
+/**
+ * Intrinsic pixels of the optimised web master. Do not guess these.
+ *
+ * The path goes through `assetPath` because next/image does NOT apply basePath
+ * to a `src` under `output: export` — verified in the GitHub Pages build, where
+ * an unprefixed /media path 404s. No-op in every other build.
+ */
 const LOGO = {
   src: "/media/brand/guide-logo.png",
   width: 900,
@@ -96,7 +103,7 @@ export function BrandLogo({
 }) {
   const image = (
     <Image
-      src={LOGO.src}
+      src={assetPath(LOGO.src)}
       alt="Guide Financial Services"
       width={LOGO.width}
       height={LOGO.height}

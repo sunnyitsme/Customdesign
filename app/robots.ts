@@ -3,6 +3,15 @@ import type { MetadataRoute } from "next";
 const BASE = process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://guidefs.co.uk";
 
 /**
+ * Evaluated at build time, not per request.
+ *
+ * Required by `output: export` (the static preview has no server), and it costs
+ * nothing elsewhere: VERCEL_ENV is fixed for the life of a deployment, so a
+ * build-time read gives the same answer a request-time read would.
+ */
+export const dynamic = "force-static";
+
+/**
  * Robots.
  *
  * Everything except a production deployment is disallowed outright. A preview

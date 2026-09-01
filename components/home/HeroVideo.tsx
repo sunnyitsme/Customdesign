@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { assetPath } from "@/lib/preview";
 
 /**
  * Hero background video.
@@ -13,18 +14,26 @@ import { useEffect, useRef, useState } from "react";
  * The video is never fetched when the viewer prefers reduced motion, has
  * Save-Data on, or is on a narrow viewport — in those cases the poster is the
  * finished treatment, not a degraded one.
+ *
+ * Paths run through `assetPath`: these are raw <img>/<source> attributes, and
+ * Next rewrites neither for basePath. No-op outside the static preview.
  */
 export function HeroVideo({
-  webm,
-  mp4,
+  sources,
   poster,
   label,
 }: {
-  webm: string;
-  mp4: string;
-  poster: string;
+  /** Only encodes that exist on disk — see lib/media.ts heroVideoSources. */
+  sources: readonly { src: string; type: string }[];
+  /**
+   * Null when the still has not been supplied. The video was delivered before
+   * its poster, and referencing a file that is not there costs two 404s and a
+   * broken image — so the plate stands in until the still arrives.
+   */
+  poster: string | null;
   label: string;
 }) {
+  const posterSrc = poster === null ? null : assetPath(poster);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
   const [ready, setReady] = useState(false);
@@ -59,18 +68,20 @@ export function HeroVideo({
 
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden bg-deep">
-      {/* eslint-disable-next-line @next/next/no-img-element -- background plate, sized by CSS not layout */}
-      <img
-        src={poster}
-        alt=""
-        aria-hidden="true"
-        className="h-full w-full object-cover"
-      />
+      {posterSrc !== null && (
+        // eslint-disable-next-line @next/next/no-img-element -- background plate, sized by CSS not layout
+        <img
+          src={posterSrc}
+          alt=""
+          aria-hidden="true"
+          className="h-full w-full object-cover"
+        />
+      )}
 
       {shouldLoad && (
         <video
           ref={videoRef}
-          poster={poster}
+          {...(posterSrc !== null ? { poster: posterSrc } : {})}
           autoPlay
           muted
           loop
@@ -81,8 +92,13 @@ export function HeroVideo({
             ready ? "opacity-100" : "opacity-0"
           }`}
         >
-          <source src={webm} type="video/webm" />
-          <source src={mp4} type="video/mp4" />
+          {sources.map((source) => (
+            <source
+              key={source.src}
+              src={assetPath(source.src)}
+              type={source.type}
+            />
+          ))}
         </video>
       )}
     </div>

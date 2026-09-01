@@ -14,6 +14,7 @@
     "test:e2e": "playwright test",
     "preview": "next dev -H 0.0.0.0 -p 3000",
     "preview:prod": "next build && next start -H 0.0.0.0 -p 3000",
+    "build:pages": "node scripts/build-pages.mjs",
     "seo:doc": "node scripts/seo-doc.ts"
   },
   "dependencies": {

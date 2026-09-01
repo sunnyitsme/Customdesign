@@ -18,17 +18,22 @@ import { HeroVideo } from "./HeroVideo";
  * with no change to this component. Until then a drawing plate holds the slot —
  * an empty frame, not fabricated footage.
  */
-export function Hero({ hasMedia }: { hasMedia: boolean }) {
+export function Hero({
+  sources,
+  hasPoster,
+}: {
+  sources: readonly { src: string; type: string }[];
+  hasPoster: boolean;
+}) {
   return (
     <section
       aria-labelledby="hero-heading"
       className="on-deep relative isolate flex min-h-[min(90svh,50rem)] flex-col justify-end overflow-hidden bg-deep pt-[calc(var(--header-height)+var(--section-sm))] text-ink-inverse"
     >
-      {hasMedia ? (
+      {sources.length > 0 ? (
         <HeroVideo
-          webm={hero.media.webm}
-          mp4={hero.media.mp4}
-          poster={hero.media.poster}
+          sources={sources}
+          poster={hasPoster ? hero.media.poster : null}
           label={hero.media.alt}
         />
       ) : (
