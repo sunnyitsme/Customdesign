@@ -539,6 +539,15 @@ which ignores underscore-prefixed paths — including `_next/`, where all the CS
 and JS live. The site deploys successfully and renders completely unstyled,
 which is a confusing failure to debug after the fact.
 
+### Blocked on one repository setting
+
+Two CI runs failed at `Configure Pages`: *"Create Pages site failed. Error:
+Resource not accessible by integration"*. `GITHUB_TOKEN` cannot create a Pages
+site even with `pages: write` — enabling Pages is an admin-only repository
+setting. Someone with admin access has to select **Settings → Pages → Source:
+GitHub Actions** once, then re-run the workflow. Every step before that one
+passes in CI.
+
 ### Verified before pushing
 
 Served from `out/` under `/Custom-design/` and driven in a browser: 11 routes at

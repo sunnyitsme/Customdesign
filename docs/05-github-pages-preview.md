@@ -9,6 +9,34 @@ a step toward one — it exists so the site can be looked at on a URL.
 - **Build:** `pnpm build:pages` → `out/`
 - **Indexing:** `noindex, nofollow` + a Disallow-all `robots.txt`
 
+## ⚠️ One manual step is required before this can deploy
+
+**GitHub Pages is not yet enabled on the repository, and the workflow cannot
+enable it itself.** Two runs failed at the `Configure Pages` step:
+
+```
+Get Pages site failed.    Error: Not Found
+Create Pages site failed. Error: Resource not accessible by integration
+```
+
+`GITHUB_TOKEN` cannot create a Pages site even with `pages: write` — turning
+Pages on is a repository setting, and only someone with admin access can do it.
+
+**To fix, once:**
+
+1. Go to **https://github.com/sunnyitsme/Custom-design/settings/pages**
+2. Under **Build and deployment → Source**, choose **GitHub Actions**
+3. Re-run the workflow: **Actions → Deploy GitHub Pages preview → Run workflow**
+   (or push any commit to the review branch)
+
+Everything before that step already succeeds in CI — checkout, pnpm, Node and
+`pnpm install --frozen-lockfile` all pass, so the toolchain and lockfile are
+sound. The build itself was verified locally against the same script.
+
+`enablement: true` is left in the workflow deliberately: once Pages exists the
+action simply reads it, and in a repository whose token does carry the
+permission it would set everything up unattended.
+
 ## Running it locally
 
 ```bash
