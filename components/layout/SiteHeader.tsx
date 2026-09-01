@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { hubs, primaryCta } from "@/content/navigation";
 import { site } from "@/content/site";
 import { MobileNav } from "./MobileNav";
@@ -96,15 +97,14 @@ export function SiteHeader() {
       }}
     >
       <div className="mx-auto flex h-[var(--header-height)] w-full max-w-[var(--container-max)] items-center justify-between gap-6 px-[var(--gutter)]">
-        {/* Wordmark. No Guide logo asset exists — this is typographic, not a
-            fabricated mark. See content/pending.ts brand.identity. */}
+        {/* The official mark. It replaces a typographic placeholder that
+            occupied 127x28px; at 32/36px tall this renders ~100/112px wide, so
+            the header's measured disclosure steps keep the room they were
+            given. `solid` picks the contrast treatment: over the dark hero the
+            black artwork measures 1.21:1 and needs the plaque, on the light
+            header it measures 19.74:1 and needs nothing. See BrandLogo. */}
         <Link href="/" className="shrink-0 leading-none">
-          <span className="block text-[1.0625rem] font-semibold tracking-[-0.02em]">
-            Guide
-          </span>
-          <span className="mt-0.5 block text-[9px] font-medium tracking-[0.2em] uppercase opacity-70">
-            Financial Services
-          </span>
+          <BrandLogo priority tone={solid ? "light" : "dark"} />
         </Link>
 
         <div ref={navRef} className="hidden shrink-0 desknav:block">

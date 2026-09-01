@@ -39,9 +39,30 @@ export const pendingContent: readonly PendingItem[] = [
   },
   {
     id: "brand.identity",
-    what: "Logo SVG, brand colour values, licensed typefaces. The current palette and type are provisional.",
-    from: "Firm — see docs/02-decisions.md D-003",
+    what: "Vector (SVG) master of the logo, brand colour values, licensed typefaces. The official PNG lockup is now in use, but a PNG cannot scale losslessly and carries no reversed variant. The palette and typefaces remain provisional.",
+    from: "Firm — see docs/02-decisions.md D-003 and D-015",
     blocks: "launch",
+    status: "placeholder",
+  },
+  {
+    id: "brand.logoReversed",
+    what: "A reversed (light) version of the logo for dark grounds. The supplied artwork is black and measures 1.21:1 on the navy sections, so every dark placement currently sits on a light backing plaque. A reversed master would remove the plaque entirely.",
+    from: "Firm",
+    blocks: "review",
+    status: "placeholder",
+  },
+  {
+    id: "brand.favicon",
+    what: "A standalone icon/favicon asset (ideally SVG plus a 512px PNG). Not derived here: cropping the symbol out of the lockup would be inventing an icon the firm has not approved. The site currently ships no favicon.",
+    from: "Firm",
+    blocks: "review",
+    status: "placeholder",
+  },
+  {
+    id: "brand.paletteAlignment",
+    what: "Confirmation of how the logo's colours relate to the site palette. The approved lockup is black plus orange #E74423; the approved site palette is navy/royal blue with a gold accent. They share no colour. Neither was changed to suit the other — the firm should confirm which is authoritative.",
+    from: "Firm — see docs/02-decisions.md D-015",
+    blocks: "review",
     status: "placeholder",
   },
   {

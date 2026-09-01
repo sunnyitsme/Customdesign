@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Container } from "@/components/ui/Container";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { footerGroups, legalLinks, regulatoryTopics } from "@/content/footer";
@@ -118,26 +119,34 @@ export function SiteFooter() {
       <div className="border-t border-line-inverse">
         <Container className="py-9">
           <div className="grid gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-            <PendingContent
-              tone="dark"
-              label="footer.regulatory — verbatim approved wording required"
-            >
-              <p className="max-w-[64ch] text-body-sm text-ink-inverse-secondary">
-                {site.legalEntity}, trading as {site.tradingNames.join(" and ")}
-                . Registered in England and Wales, company number{" "}
-                {site.registrations.companyNumber}. FCA firm reference number{" "}
-                {site.registrations.fcaFrn}. ICO registration{" "}
-                {site.registrations.icoNumber}.
-              </p>
-              {/* Seven briefs to compliance, set as one line rather than seven.
-                  As a stacked list it dominated the whole footer. */}
-              <p className="mt-4 max-w-[70ch] text-body-sm text-ink-inverse-secondary">
-                <span className="text-accent-bright">
-                  [APPROVED WORDING REQUIRED]
-                </span>{" "}
-                {regulatoryTopics.join(" · ")}.
-              </p>
-            </PendingContent>
+            <div>
+              {/* Brand area. The mark identifies the firm, the regulatory
+                  statement immediately under it says who that firm legally is.
+                  Plaqued, like every instance on a navy ground. */}
+              <BrandLogo size="footer" tone="dark" />
+
+              <PendingContent
+                tone="dark"
+                label="footer.regulatory — verbatim approved wording required"
+                className="mt-7"
+              >
+                <p className="max-w-[64ch] text-body-sm text-ink-inverse-secondary">
+                  {site.legalEntity}, trading as{" "}
+                  {site.tradingNames.join(" and ")}. Registered in England and
+                  Wales, company number {site.registrations.companyNumber}. FCA
+                  firm reference number {site.registrations.fcaFrn}. ICO
+                  registration {site.registrations.icoNumber}.
+                </p>
+                {/* Seven briefs to compliance, set as one line rather than
+                    seven. As a stacked list it dominated the whole footer. */}
+                <p className="mt-4 max-w-[70ch] text-body-sm text-ink-inverse-secondary">
+                  <span className="text-accent-bright">
+                    [APPROVED WORDING REQUIRED]
+                  </span>{" "}
+                  {regulatoryTopics.join(" · ")}.
+                </p>
+              </PendingContent>
+            </div>
 
             <div>
               <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">

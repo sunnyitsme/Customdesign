@@ -82,5 +82,46 @@ for (const shot of shots) {
   await page.close();
 }
 
+// Brand mark in each of its contexts.
+{
+  // Internal page: the header is solid from the first paint here, not scrolled.
+  const desk = await browser.newPage({
+    viewport: { width: 1440, height: 900 },
+    deviceScaleFactor: 2,
+  });
+  await desk.goto(BASE + "/mortgages", { waitUntil: "networkidle" });
+  await desk.screenshot({
+    path: `${OUT}/13-header-internal.png`,
+    clip: { x: 0, y: 0, width: 1440, height: 140 },
+  });
+  await desk.close();
+
+  const mob = await browser.newPage({
+    viewport: { width: 390, height: 844 },
+    deviceScaleFactor: 2,
+  });
+  await mob.goto(BASE + "/", { waitUntil: "networkidle" });
+  await mob.screenshot({
+    path: `${OUT}/14-header-mobile.png`,
+    clip: { x: 0, y: 0, width: 390, height: 110 },
+  });
+
+  await mob.getByRole("button", { name: "Open navigation menu" }).click();
+  await mob.waitForTimeout(400);
+  await mob.screenshot({ path: `${OUT}/15-mobile-menu-open.png` });
+
+  await mob.keyboard.press("Escape");
+  await mob.waitForTimeout(300);
+  await mob.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await mob.waitForTimeout(700);
+  await mob.evaluate(() => {
+    const header = document.querySelector("header");
+    if (header instanceof HTMLElement) header.style.visibility = "hidden";
+  });
+  await mob.getByRole("contentinfo").screenshot({ path: `${OUT}/16-footer-mobile.png` });
+  console.log("captured brand contexts");
+  await mob.close();
+}
+
 await browser.close();
-console.log(`\n${shots.length + 3} screenshots in ${OUT}/`);
+console.log(`\n${shots.length + 7} screenshots in ${OUT}/`);

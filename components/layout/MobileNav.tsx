@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { hubs, primaryCta, utilityNav } from "@/content/navigation";
 import { site } from "@/content/site";
 
@@ -59,9 +60,8 @@ export function MobileNav() {
       >
         <div className="on-deep flex h-full flex-col overflow-y-auto">
           <div className="flex items-center justify-between border-b border-line-inverse px-[var(--gutter)] py-5">
-            <span className="text-heading-3 font-semibold tracking-tight">
-              {site.name}
-            </span>
+            {/* The drawer sits on bg-deep, so the mark takes the plaque. */}
+            <BrandLogo size="drawer" tone="dark" />
             <button
               type="button"
               onClick={closeNav}
