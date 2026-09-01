@@ -88,13 +88,43 @@ what Guide did, the outcome, and compliance sign-off. Also needed:
 
 ## 6. Reviews / social proof 🟠
 
-- The **actual testimonial text** from `/testimonials` (four pages of it, per the crawl) — we
-  hold only the summary that it exists.
-- Whether Guide has a **Google Business Profile** and/or **Trustpilot** listing, and the
-  profile IDs, if we are to display live ratings.
-- Permission to keep reviewer names as currently published.
-- Compliance note: client testimonials on a regulated firm's site are a financial-promotion
-  consideration and should be reviewed before republication.
+Reviews are **manually managed**. No Google API is connected — no Business Profile API, no
+Places API, no OAuth, no live sync — and none is planned for the initial site.
+
+### What we need
+
+- The **review text itself**, pasted into `content/reviews.ts`. **We currently hold none.**
+  The migration pack records four pages of testimonials at `/testimonials` but not their
+  wording, and nothing has been supplied since. The file is empty and ready.
+- Permission to reproduce **reviewer names** as they appear on the listing.
+- Compliance sign-off: client testimonials on a regulated firm's site are a
+  financial-promotion consideration and should be reviewed before republication.
+- The **aggregate figures** — the listing was reported as 5.0 from 41 reviews. Those values
+  are in `content/reviews.ts` but marked `verified: false`, so nothing is published. Someone
+  needs to check the live listing, confirm the numbers, record the date and the profile URL.
+
+### How to add one
+
+Copy each review from the verified Google listing and reproduce the wording **exactly**.
+Do not correct spelling, fix grammar, re-punctuate, tidy capitalisation, shorten, or merge
+two reviews. A long review is entered in full — the panel design flexes, the client's words
+do not. Copy the star rating as given; never round it, infer it, or default it to five.
+
+```ts
+{
+  id: "google-2024-03-a-smith",   // unique; the build fails on a duplicate
+  reviewerName: "A. Smith",
+  reviewText: "…exactly as published…",
+  rating: 5,
+  source: "Google",
+  reviewDate: "2024-03-14",       // omit if the listing shows only "3 months ago"
+  displayOrder: 1,
+  featured: true,
+}
+```
+
+The marquee picks them up with no code change, and the placeholder panels disappear as soon
+as the first real review is added.
 
 ## 7. Advisers / leadership 🟠
 

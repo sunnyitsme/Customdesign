@@ -9,8 +9,8 @@ import { expect, test } from "@playwright/test";
  *
  * These tests measure real scroll positions over real time rather than
  * asserting on classes, because the properties that matter — that it moves,
- * that one moves slower than the other, that it stops dead on hover, that the
- * loop never jumps — are only observable in motion.
+ * that both move at one speed, that it stops dead on hover, that the loop never
+ * jumps — are only observable in motion.
  */
 
 const LENDERS = '[role="group"][aria-label="Lenders and providers we work with"]';
@@ -40,28 +40,37 @@ async function travel(
 }
 
 test.describe("autoplay", () => {
-  test("both marquees scroll on their own, lenders faster than reviews", async ({
+  test("both marquees scroll on their own, at one shared speed", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/", { waitUntil: "networkidle" });
 
+    const WINDOW_MS = 2000;
     await reveal(page, LENDERS);
-    const lenderTravel = await travel(page, LENDERS, 1500);
+    const lenderTravel = await travel(page, LENDERS, WINDOW_MS);
 
     await reveal(page, REVIEWS);
-    const reviewTravel = await travel(page, REVIEWS, 1500);
+    const reviewTravel = await travel(page, REVIEWS, WINDOW_MS);
 
     expect(lenderTravel, "lender marquee did not move").not.toBeNull();
     expect(reviewTravel, "review marquee did not move").not.toBeNull();
-    expect(lenderTravel!).toBeGreaterThan(20);
-    expect(reviewTravel!).toBeGreaterThan(4);
 
-    // Reviews must be materially slower so the text stays readable.
+    const lenderSpeed = lenderTravel! / (WINDOW_MS / 1000);
+    const reviewSpeed = reviewTravel! / (WINDOW_MS / 1000);
     console.log(
-      `lenders ${lenderTravel}px / 1.5s, reviews ${reviewTravel}px / 1.5s`,
+      `lenders ${lenderSpeed.toFixed(1)}px/s, reviews ${reviewSpeed.toFixed(1)}px/s`,
     );
-    expect(reviewTravel!).toBeLessThan(lenderTravel! / 2);
+
+    // Both read MARQUEE_SPEED from components/ui/Marquee.tsx. Two different
+    // speeds on one page read as a bug rather than as a distinction, so this
+    // asserts they match — it is the point of sharing the constant.
+    // The tolerance absorbs rAF jitter, not a second configured speed.
+    for (const speed of [lenderSpeed, reviewSpeed]) {
+      expect(speed).toBeGreaterThan(35);
+      expect(speed).toBeLessThan(55);
+    }
+    expect(Math.abs(lenderSpeed - reviewSpeed)).toBeLessThan(5);
   });
 });
 

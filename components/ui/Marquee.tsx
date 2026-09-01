@@ -27,9 +27,19 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  * The loop does not run when the marquee is off-screen, when a pointer is over
  * it, when focus is inside it, or when the viewer prefers reduced motion.
  */
+/**
+ * The one scroll speed, in pixels per second, shared by every marquee.
+ *
+ * Both strips must move identically — two different speeds on one page read as
+ * a bug rather than as a distinction. Reviews previously ran at 14px/s to keep
+ * a quotation readable in motion; that is now deliberately unified with the
+ * logo strip. Change it here and both follow.
+ */
+export const MARQUEE_SPEED = 45;
+
 export function Marquee({
   items,
-  /** Pixels per second. Restrained: ~45 for logos, ~14 for reviews. */
+  /** Pixels per second. Pass MARQUEE_SPEED unless there is a reason not to. */
   speed,
   ariaLabel,
   /** Applied to every item wrapper. Must carry the trailing spacing. */

@@ -3,12 +3,9 @@
 import Image from "next/image";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Marquee } from "@/components/ui/Marquee";
+import { MARQUEE_SPEED, Marquee } from "@/components/ui/Marquee";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { providersHeading, type Provider } from "@/content/providers";
-
-/** Faster than the reviews marquee, but still unhurried. */
-const SPEED_PX_PER_SECOND = 45;
 
 /** Placeholder slots when nothing may be displayed — production, today. */
 const PLACEHOLDER_SLOTS = 10;
@@ -119,7 +116,7 @@ export function LogoMarquee({
         <div className="[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <Marquee
             items={plates}
-            speed={SPEED_PX_PER_SECOND}
+            speed={MARQUEE_SPEED}
             ariaLabel="Lenders and providers we work with"
             itemClassName="flex shrink-0 items-center pr-12 lg:pr-20"
           />

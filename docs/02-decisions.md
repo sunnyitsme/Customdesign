@@ -428,3 +428,65 @@ The set mixes lenders, protection providers and platform partners. Everything is
 a relationship we cannot evidence. `ProviderCategory` carries the other members
 so the split becomes a data edit rather than a refactor.
 
+## D-017 — Reviews are manual; one shared marquee speed ✅
+
+### No Google integration
+
+The Business Profile API, the Places API, OAuth and live review syncing are all
+explicitly out for the initial site. Reviews are copied by hand into
+`content/reviews.ts`, whose field names are the intended Payload Reviews
+collection fields — so when the CMS lands, this file becomes a seed and
+`ReviewsMarquee` keeps its props unchanged.
+
+### The dataset is empty, and stays empty
+
+**Zero genuine reviews are available.** The reference pack records that
+`/testimonials` holds four pages of named testimonials, but contains none of the
+text, no reviewer names, no ratings, and nothing about a Google listing at all.
+Nothing has been supplied since.
+
+So `reviews` is `[]` rather than populated with plausible-looking entries.
+Writing a review a client did not write is fabricating a named person's words
+about a regulated firm. The strip renders labelled placeholder panels at the
+identical size until real reviews are pasted in.
+
+The type is deliberately strict — `reviewerName`, `reviewText` and `rating` are
+non-nullable, and `source` is the literal `"Google"`. An entry either is a real
+review or it does not compile.
+
+A module-level guard throws on duplicate ids. Reviews are copied by hand, which
+makes a repeated id likely, and it would otherwise surface as React silently
+dropping a panel. Verified: the build fails with
+`duplicate review id(s): …`.
+
+### The aggregate is data, not a published claim
+
+`googleReviewSummary` carries the reported 5.0 from 41 reviews with
+`verified: false`, and the component renders it only when that flips to true.
+An aggregate rating is a claim about the firm; an unchecked or stale one is
+exactly what a regulator reads as a financial promotion. Publishing it needs a
+person to check the live listing and record the date and profile URL. Tracked as
+`reviews.summary`.
+
+### One speed
+
+`MARQUEE_SPEED = 45` now lives in `components/ui/Marquee.tsx` and both strips
+import it. Reviews previously ran at 14px/s — a third of the logo strip — so a
+quotation stayed readable while it moved. Two different speeds on one page read
+as a bug rather than a distinction, so they are unified at the firm's request.
+Measured after the change: logos 45.1px/s, reviews 45.2px/s.
+
+Everything else about the engine is untouched: seamless wrap, immediate pause on
+hover, pause on keyboard focus, resume on leave, native touch scrolling, and no
+autoplay under `prefers-reduced-motion`.
+
+### Design
+
+Stars are drawn from the design system in the page's own accent, with the unused
+stars shown muted so a four-star review reads as four *out of five* rather than
+as a shorter row; the glyph run is `aria-hidden` behind one plain sentence.
+Attribution is the words "Google Review" — not a reproduced Google badge, which
+would need their permission and would pull the panel away from the Guide design.
+Review text carries `whitespace-pre-line` so a reviewer's own line breaks
+survive.
+

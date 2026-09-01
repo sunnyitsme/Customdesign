@@ -108,6 +108,13 @@ export const pendingContent: readonly PendingItem[] = [
     status: "placeholder",
   },
   {
+    id: "reviews.summary",
+    what: "Verification of the aggregate Google figures. content/reviews.ts carries the reported 5.0 from 41 reviews, but `verified: false` so nothing is published. A person must check the live listing, set the real values, record the date and the profile URL, and set verified. An aggregate rating is a claim about the firm.",
+    from: "Firm",
+    blocks: "review",
+    status: "placeholder",
+  },
+  {
     id: "cases.approved",
     what: "Case studies with scenario, action, outcome and compliance sign-off, plus confirmation Guide may publish past outcomes at all. No case content exists on the current site.",
     from: "Firm / compliance",
@@ -116,7 +123,7 @@ export const pendingContent: readonly PendingItem[] = [
   },
   {
     id: "reviews.approved",
-    what: "Testimonial text from /testimonials, permission to keep reviewer names, and confirmation of any Google or Trustpilot profiles.",
+    what: "Genuine Google review text, pasted verbatim into content/reviews.ts. ZERO are currently available: the migration pack records four pages of testimonials at /testimonials but not their wording, and none has been supplied since. Also required: permission to reproduce reviewer names, and compliance sign-off. Reviews are manually managed — no Google API is wired up.",
     from: "Firm / compliance — testimonials are a financial promotion consideration",
     blocks: "launch",
     status: "placeholder",
