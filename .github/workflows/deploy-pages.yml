@@ -51,8 +51,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # enablement: true turns Pages on for the repository and sets its source
+      # to "GitHub Actions" on the first run, using the pages: write grant
+      # above. Without it the run fails at this step with "Get Pages site
+      # failed" until someone enables Pages by hand in Settings > Pages.
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       # Builds with output: export, basePath /Custom-design, and the
       # preview-safe fallbacks. Writes .nojekyll, without which Pages runs the
