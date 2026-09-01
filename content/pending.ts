@@ -95,8 +95,8 @@ export const pendingContent: readonly PendingItem[] = [
   },
   {
     id: "providers.list",
-    what: "Approved lender and provider list, logo files, and written permission (or confirmed intermediary brand-usage rights) to display each mark, recorded in docs/media-licences/. Plus approved relationship wording. Marks stay hidden until permissionConfirmed is set in content/providers.ts.",
-    from: "Firm — the pack records a logo section but not its contents",
+    what: "37 marks have been supplied and are wired in for DEVELOPMENT PREVIEW ONLY. Still required: confirmation the list is correct and current, and written permission (or confirmed intermediary brand-usage rights) to display each mark, recorded in docs/media-licences/. Plus approved relationship wording, and the split into Lenders / Providers / Professional Partners. Nothing publishes until permissionConfirmed is set per mark in content/providers.ts.",
+    from: "Firm / compliance — files received, permission not",
     blocks: "launch",
     status: "placeholder",
   },

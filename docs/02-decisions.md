@@ -365,3 +365,66 @@ The logo is black and orange `#E74423`; the approved site palette is navy, royal
 blue and gold. **They share no colour.** Neither was changed to suit the other —
 that is a brand decision for the firm, tracked as `brand.paletteAlignment`.
 
+## D-016 — Provider marks: real artwork in review, placeholders in production ✅
+
+The firm supplied 37 lender, provider and partner marks. They are wired into the
+homepage marquee for **development review only**. Nothing about the production
+permission gate was loosened.
+
+### The gate has to be evaluated on the server
+
+`LogoMarquee` is a client component. Next only inlines `NEXT_PUBLIC_*` into the
+client bundle, so `process.env.VERCEL_ENV` is `undefined` in the browser — a
+permission check evaluated inside the component would read "not production" on
+every deployment and publish unpermissioned trade marks.
+
+So the filtering moved to `app/page.tsx`, which is a server component, and the
+marquee receives an already-filtered `marks` prop. Verified by building with
+`VERCEL_ENV=production`: no logo path and no provider name appears in the
+generated HTML or in any client chunk — the strip renders neutral placeholder
+slots instead.
+
+*(The same trap applies to `PendingContent`, whose production check also runs
+client-side when rendered inside a client component. It fails safe — it shows a
+review marker that production would hide — so it is left alone, but it is the
+same root cause.)*
+
+### Preview is explicit and narrow
+
+`devLogoPreview` is false when `VERCEL_ENV === "production"`, false under
+`GUIDE_STRICT_CONTENT=1` so the launch-readiness build shows what production
+would, and can be forced off with `GUIDE_DEV_LOGO_PREVIEW=0`. `isLogoPermitted`
+is kept as a separate, unchanged function so the production rule is readable on
+its own. The strip labels itself `DEVELOPMENT PREVIEW` while previewing.
+
+### Normalising marks that vary 10x in aspect
+
+The supplied files each sit on a common ~385x311 canvas with the artwork
+floating in transparent padding — 16% to 83% of canvas height depending on the
+mark. Fitted whole into the 176x48 slot, a wordmark renders about 10px tall.
+
+`scripts/prepare-logos.mjs` trims each file to its own artwork: empty
+transparent margin removed, nothing else touched. Trimmed aspects run 0.68:1 to
+7.14:1, and each mark then fills one identical slot with `object-fit: contain` —
+so heights normalise, ratios are preserved, and CSS cannot distort anything. The
+slot matches the old placeholder's dimensions exactly, so the band height is
+unchanged whether marks show or not.
+
+Originals are never modified, moved or renamed; the derivatives live alongside
+them in `web/`, the same original-plus-web-master pattern as the brand logo.
+
+`fill` rather than a height utility, for the reason recorded in D-015: the
+unlayered `img { height: auto }` in globals.css would silently defeat `h-12`.
+
+Marks load `eager` rather than lazy — the strip scrolls continuously, so lazy
+marks pop in as they cross the viewport edge. All 37 optimised marks total about
+200KB, which is cheap enough to avoid that; `priority` would be wrong, since it
+would preload them ahead of the hero.
+
+### Not classified
+
+The set mixes lenders, protection providers and platform partners. Everything is
+`"unclassified"` — grouping them is the firm's call and a wrong grouping asserts
+a relationship we cannot evidence. `ProviderCategory` carries the other members
+so the split becomes a data edit rather than a refactor.
+

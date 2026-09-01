@@ -9,6 +9,10 @@ import { Insights } from "@/components/home/Insights";
 import { LogoMarquee } from "@/components/home/LogoMarquee";
 import { ReviewsMarquee } from "@/components/home/ReviewsMarquee";
 import { ServiceDivisions } from "@/components/home/ServiceDivisions";
+import {
+  displayableProviders,
+  showingUnpermissionedPreview,
+} from "@/content/providers";
 import { heroMediaExists } from "@/lib/media";
 
 /**
@@ -42,7 +46,12 @@ export default function HomePage() {
       <ServiceDivisions />
       <AboutGuide />
       <CredibilityStats />
-      <LogoMarquee />
+      {/* Permission is resolved here, on the server, where VERCEL_ENV is real.
+          See LogoMarquee for why it cannot be resolved inside the component. */}
+      <LogoMarquee
+        marks={displayableProviders()}
+        preview={showingUnpermissionedPreview()}
+      />
       <Experts />
       <CaseStudies />
       <ReviewsMarquee />
