@@ -192,6 +192,94 @@ typescript-eslint ships TS 7 support.
 ## D-012 — Hero media resolved server-side ✅
 
 `lib/media.ts` checks the filesystem for the three hero assets at render time.
-Dropping `guide-london.webm` / `.mp4` / `-poster.webp` into `public/media/hero/`
-activates the video path with no component change — the placeholder is a state,
-not a separate tree.
+Dropping `guide-london.webm` / `.mp4` / `-poster.webp` into
+`public/media/home/hero/` activates the video path with no component change —
+the placeholder is a state, not a separate tree.
+
+Generalised in D-014: the same check now serves every hero on the site.
+
+## D-013 — Blue palette, held in two token layers ✅
+
+The provisional verdigris palette is replaced by the firm's approved blue
+system. The token *names* did not change, so no component needed editing for the
+colour itself — which was the point of never writing a literal.
+
+The block is now two layers:
+
+- **`--gfs-*`** — the palette. Every hex in the project appears here once.
+- **`--color-*`** — what a colour is for. Components only ever name these.
+
+Layer 1 sits outside `@theme` deliberately, so Tailwind generates no `bg-navy`
+or `text-gold` utility. There is no way to reach past the semantic layer, which
+is what stops the discipline eroding once other people are in the codebase.
+
+`components/ui/DrawingPlate.tsx` was the only file holding literals; its
+gradients are now composed from layer 1 in `globals.css`, so the placeholders
+re-tone with the palette instead of needing their own edit.
+
+### Two measured results constrain the system
+
+| Pair | Ratio | Consequence |
+|---|---|---|
+| Gold `#C8A96A` on the light ground | **2.11** | Gold is never text or an icon on a light surface |
+| Gold on navy | 7.74 (AAA) | Gold is legible on dark grounds |
+| Steel `#2D5B8C` on navy | **2.47** | Steel is a light-surface colour; Sky carries the accent on dark |
+
+So gold has exactly two uses: the section label on dark grounds
+(`Eyebrow tone="dark"`), and one hairline — the datum rule the homepage hero
+rests on. It is not a button fill, a heading colour, a background, or a hover
+state anywhere. That holds it well inside the 2–5% ration.
+
+### Buttons
+
+The filled light button moves from charcoal to Royal `#1E3A8A` with charcoal as
+the hover weight (9.74 and 16.78 against warm white — both AAA). `--color-primary`
+and `--color-on-primary` exist so the action colour can move independently of
+`--color-accent`, which stays the editorial/link colour.
+
+A new `--color-line-inverse-interactive` (`#6B87A6`, 4.67 on navy) separates
+control boundaries on dark grounds from decorative hairlines, which stay on
+`--color-line-inverse`. Previously both used the faint value, leaving outlined
+buttons and link underlines at roughly 1.6:1 on navy. Structural dividers were
+deliberately left alone — raising those would make the dark sections loud.
+
+## D-014 — Media addressed by route, not by hand ✅
+
+`content/media.ts` is the single registry. A page's photograph is **derived**
+from its route rather than listed:
+
+```
+/mortgages              ->  /media/mortgages/hero.jpg
+/mortgages/buy-to-let   ->  /media/mortgages/buy-to-let.jpg
+```
+
+Three consequences worth stating:
+
+1. **A slug rename cannot orphan an image path**, because there is no path list
+   to fall out of date. This is the same reasoning as deriving navigation from
+   content (D-002).
+2. **Installing photography is a file copy.** `components/ui/HeroMedia.tsx`
+   checks existence at render time and falls back to a placeholder plate at the
+   identical crop, so adding a file changes pixels and never layout.
+3. **The 38 service pages are not in the registry.** They already carry a
+   per-page brief in their own content entry; `serviceHeroImage()` derives the
+   rest. Listing them again would be a second place for one fact to go stale.
+
+`requireHeroImage()` throws during static generation if a hub has no registered
+hero. A missing hero is a content omission and the build is the right place to
+find out — the same posture as the pending-content gate.
+
+### Payload
+
+`src`, `alt` and `focal` are deliberately the three fields a Payload upload
+document carries. When the CMS lands, this registry becomes a seed and the
+components keep their prop shape rather than being rewritten.
+
+### Alt text
+
+Hero photographs are `alt=""` by default, and that is the correct value rather
+than an omission: they are atmospheric images sitting behind an H1 that already
+states the subject, so a description would add noise for a screen reader user.
+It is also the only honest value while the photographs do not exist — we cannot
+describe a picture nobody has taken. An entry sets a real alt only where the
+image carries meaning the page text does not.

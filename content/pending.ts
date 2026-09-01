@@ -53,7 +53,7 @@ export const pendingContent: readonly PendingItem[] = [
   },
   {
     id: "photography",
-    what: "Architectural, London, interior and client-meeting photography, owned or licensed.",
+    what: "Architectural, London, interior and client-meeting photography, owned or licensed, plus a licence record in docs/media-licences/ for each file. Every hero slot exists and is waiting for a correctly named file — see public/media/README.md.",
     from: "Firm — see docs/01-content-and-assets-required.md §12",
     blocks: "review",
     status: "placeholder",
@@ -74,7 +74,7 @@ export const pendingContent: readonly PendingItem[] = [
   },
   {
     id: "providers.list",
-    what: "Approved lender and provider list, logo files, and written permission to display each mark. Plus approved relationship wording.",
+    what: "Approved lender and provider list, logo files, and written permission (or confirmed intermediary brand-usage rights) to display each mark, recorded in docs/media-licences/. Plus approved relationship wording. Marks stay hidden until permissionConfirmed is set in content/providers.ts.",
     from: "Firm — the pack records a logo section but not its contents",
     blocks: "launch",
     status: "placeholder",

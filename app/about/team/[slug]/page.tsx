@@ -92,7 +92,7 @@ export default async function TeamMemberPage({
                 <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center rounded-sm bg-ink px-7 py-4 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:bg-accent"
+                    className="inline-flex items-center justify-center rounded-sm bg-primary px-7 py-4 text-body-sm font-medium text-on-primary transition-colors duration-base hover:bg-ink"
                   >
                     Speak to an adviser
                   </Link>

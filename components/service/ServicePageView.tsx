@@ -2,9 +2,10 @@ import Link from "next/link";
 import { Accordion } from "@/components/ui/Accordion";
 import { Breadcrumbs, type Crumb } from "@/components/ui/Breadcrumbs";
 import { Container, DatumGrid } from "@/components/ui/Container";
-import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { HeroMedia } from "@/components/ui/HeroMedia";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { serviceHeroImage } from "@/content/media";
 import { pageByHref, type ServicePage } from "@/content/service-pages";
 import { site } from "@/content/site";
 
@@ -93,9 +94,11 @@ function ServiceHero({
 
             {page.variant !== "educational" && (
               <div className="relative aspect-4/3 w-full lg:aspect-4/5">
-                <DrawingPlate
-                  label={page.imageAlt}
+                <HeroMedia
+                  image={serviceHeroImage(page)}
                   tone={dark ? "dark" : "light"}
+                  priority
+                  sizes="(min-width: 1024px) 38vw, 100vw"
                 />
               </div>
             )}
@@ -254,7 +257,7 @@ export function ServicePageView({
                     </p>
                     <Link
                       href="/contact"
-                      className="mt-6 inline-flex items-center justify-center rounded-sm bg-ink px-6 py-3.5 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:bg-accent"
+                      className="mt-6 inline-flex items-center justify-center rounded-sm bg-primary px-6 py-3.5 text-body-sm font-medium text-on-primary transition-colors duration-base hover:bg-ink"
                     >
                       {page.ctaLabel ?? "Speak to an adviser"}
                     </Link>
@@ -377,7 +380,7 @@ export function ServicePageView({
                 </Link>
                 <a
                   href={site.phoneHref}
-                  className="text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse underline-offset-[6px] transition-colors duration-base hover:decoration-accent-bright"
+                  className="text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse-interactive underline-offset-[6px] transition-colors duration-base hover:decoration-accent-bright"
                 >
                   {site.phone}
                 </a>

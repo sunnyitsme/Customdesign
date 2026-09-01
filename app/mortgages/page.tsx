@@ -5,6 +5,7 @@ import { ServiceIndex } from "@/components/hub/ServiceIndex";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { mortgageGuides, mortgagePages } from "@/content/service-pages";
 import { processSteps } from "@/content/process";
 
@@ -31,7 +32,7 @@ export default function MortgagesPage() {
         title="Advice for the property in front of you."
         standfirst="Purchases, remortgaging, buy-to-let, and lending where the income or the property does not fit a standard template."
         ctaLabel="Speak to a mortgage adviser"
-        imageAlt="Image required — residential property, warm domestic register"
+        image={requireHeroImage("/mortgages")}
       />
 
       <ServiceIndex

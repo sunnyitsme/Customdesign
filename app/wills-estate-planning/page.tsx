@@ -4,6 +4,7 @@ import { ServiceIndex } from "@/components/hub/ServiceIndex";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { plannedWillsRoutes, willsPages } from "@/content/service-pages";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function WillsPage() {
         title="Setting out what should happen, while it is straightforward to do."
         standfirst="Wills, mirror wills, trust wills and reviews. Written around your circumstances, and revisited when those change."
         ctaLabel="Speak to our estate planning team"
-        imageAlt="Image required — considered family or domestic still life"
+        image={requireHeroImage("/wills-estate-planning")}
       />
 
       <ServiceIndex

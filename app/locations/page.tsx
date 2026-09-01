@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageOpening } from "@/components/layout/SimplePage";
 import { Container } from "@/components/ui/Container";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { locations } from "@/content/locations";
 
 export const metadata: Metadata = { title: "Locations" };
@@ -16,6 +17,7 @@ export default function LocationsPage() {
         title="Where Guide works from."
         standfirst="Office details are shown as recorded in the firm's own material. The sources currently disagree on how many offices there are, so that conflict is shown rather than resolved."
         crumbs={[{ label: "Home", href: "/" }, { label: "Locations" }]}
+        image={requireHeroImage("/locations")}
       />
       <section
         aria-labelledby="locations-list-heading"

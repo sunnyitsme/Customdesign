@@ -72,6 +72,20 @@ under `GUIDE_STRICT_CONTENT=1`.
 - Turn on **Reduce Motion** in your OS and reload: both marquees stop and stay
   manually scrollable, and the hero video is never fetched.
 
+## Screenshots
+
+`scripts/capture.mjs` takes the standard review set — homepage at desktop and
+mobile, the four hubs, a mortgage child page, a property-finance child page,
+contact, both header states, and the footer.
+
+```bash
+npm run preview                 # in one terminal
+node scripts/capture.mjs docs/screenshots
+```
+
+It needs a server already running; it does not start one. `CAPTURE_BASE`
+overrides the URL if you are not on port 3000.
+
 ## Known, expected
 
 - `/favicon.ico` returns 404 — no favicon exists yet. It is part of the

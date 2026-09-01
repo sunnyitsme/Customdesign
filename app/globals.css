@@ -3,50 +3,109 @@
 /* ==========================================================================
    Guide Financial Services — design tokens
    --------------------------------------------------------------------------
-   PROVISIONAL IDENTITY. See docs/02-decisions.md D-003.
-   Guide's real brand assets are unavailable and guidefs.co.uk is unreachable
-   from this environment, so no brand colour could be extracted. Every colour
-   and typeface below is a considered placeholder. Replacing the real brand
-   system means editing this block only — no component references a literal.
+   Two layers, deliberately:
 
-   Direction: "Elevation" — cool mineral neutrals and a verdigris accent drawn
-   from London's weathered-copper roofscape and architectural drawing
-   conventions. Deliberately not cream/serif/brass, not navy-and-gold, not
-   fintech neon.
+     1. PALETTE  (--gfs-*)  the approved Guide blue system. Every hex value in
+        the project appears here exactly once. Nothing outside this block may
+        contain a colour literal.
+     2. SEMANTIC (--color-*) what a colour is FOR. Components only ever name
+        these. Re-skinning the site means repointing layer 2 at layer 1.
+
+   Layer 1 is plain CSS rather than @theme so it generates no utilities: there
+   is no `bg-navy` or `text-gold` to reach for, which keeps the semantic layer
+   from being bypassed.
+
+   Contrast ratios in the comments are measured, not estimated. Two results
+   constrain the system and are load-bearing:
+
+     GOLD on light ground  = 2.11  — gold is NEVER text or an icon on a light
+                                     surface. Dark grounds (7.74 on navy,
+                                     6.46 on deep) and hairlines only.
+     STEEL on navy         = 2.47  — steel is a light-surface colour. On dark
+                                     grounds SKY carries the accent instead.
+
+   Brand identity remains provisional pending the firm's own assets — see
+   docs/02-decisions.md D-003 and content/pending.ts brand.identity.
    ========================================================================== */
 
+/* --- Layer 1: palette ----------------------------------------------------- */
+:root {
+  /* Grounds */
+  --gfs-warm-white: #f6f8fb; /* page ground */
+  --gfs-mist: #e6f0fa; /* raised light surface */
+  --gfs-navy: #0d1b2a; /* dark section ground */
+  --gfs-navy-raised: #132a45; /* raised dark surface */
+
+  /* Ink */
+  --gfs-charcoal: #0f172a;
+  --gfs-slate: #475569;
+  --gfs-slate-light: #5a6b80;
+  --gfs-haze: #a9bbd0; /* secondary ink on dark grounds */
+
+  /* Structure */
+  /* Hairlines are tuned against BOTH light grounds, not just the page ground.
+     Mist is the darker of the two, so a divider picked only against warm white
+     disappears inside a tinted band — which is where half of them sit. */
+  --gfs-line-light: #d3dce8; /* 1.30 on warm white, 1.20 on mist */
+  --gfs-line-light-strong: #bcc9d9; /* 1.58 on warm white, 1.46 on mist */
+  --gfs-line-mid: #5e6e85; /* control borders on light */
+  --gfs-line-dark: #24405f; /* hairlines on dark */
+  --gfs-line-dark-strong: #6b87a6; /* control borders on dark */
+
+  /* Blues */
+  --gfs-royal: #1e3a8a; /* primary action, links */
+  --gfs-steel: #2d5b8c; /* light-surface hover / secondary */
+  --gfs-sky: #5dade2; /* the accent on dark grounds */
+
+  /* Gold. Ration: roughly 2-5% of any view. Fine rules, a selected label on a
+     dark ground, nothing more. Never a button fill, never body text, never a
+     background, never applied to every heading. */
+  --gfs-gold: #c8a96a;
+}
+
 @theme {
+  /* --- Layer 2: semantic ------------------------------------------------ */
   /* Delete Tailwind's stock palette so only Guide tokens exist.
      An arbitrary colour in a component is then a visible mistake in review. */
   --color-*: initial;
 
-  /* --- Surfaces --------------------------------------------------------- */
-  --color-ground: #ebece9; /* page ground — cool limestone */
-  --color-surface: #f7f8f6; /* raised surface */
-  --color-deep: #1b2422; /* dark section ground — slate-green black */
-  --color-deep-raised: #232e2b;
+  /* Surfaces */
+  --color-ground: var(--gfs-warm-white);
+  --color-surface: var(--gfs-mist);
+  --color-deep: var(--gfs-navy);
+  --color-deep-raised: var(--gfs-navy-raised);
 
-  /* --- Text ------------------------------------------------------------- */
-  --color-ink: #15191a; /* 14.93:1 on ground  AAA */
-  --color-ink-secondary: #4e5654; /*  6.36:1 on ground  AA  */
-  --color-ink-tertiary: #616966; /*  4.76:1 on ground  AA  */
-  --color-ink-inverse: #edefec; /* 13.74:1 on deep    AAA */
-  --color-ink-inverse-secondary: #a2aba7; /*  6.75:1 on deep    AA  */
+  /* Text */
+  --color-ink: var(--gfs-charcoal); /* 16.78 on ground  AAA */
+  --color-ink-secondary: var(--gfs-slate); /*  7.12 on ground  AAA */
+  --color-ink-tertiary: var(--gfs-slate-light); /*  5.13 on ground  AA  */
+  --color-ink-inverse: var(--gfs-warm-white); /* 16.35 on deep    AAA */
+  --color-ink-inverse-secondary: var(--gfs-haze); /*  8.87 on deep    AAA */
 
-  /* --- Lines ------------------------------------------------------------ */
-  --color-line: #d4d8d3; /* decorative hairline / datum */
-  --color-line-strong: #b4bab5;
-  --color-line-interactive: #767e7a; /* 3.52:1 — control borders meet 3:1 */
-  --color-line-inverse: #36423f;
+  /* Lines. -interactive variants are control boundaries and clear 3:1. */
+  --color-line: var(--gfs-line-light);
+  --color-line-strong: var(--gfs-line-light-strong);
+  --color-line-interactive: var(--gfs-line-mid); /* 4.88 on ground */
+  --color-line-inverse: var(--gfs-line-dark); /* decorative hairline */
+  --color-line-inverse-interactive: var(--gfs-line-dark-strong); /* 4.67 on deep */
 
-  /* --- Accent ----------------------------------------------------------- */
-  --color-accent: #2f5f52; /*  6.15:1 on ground  AA  */
-  --color-accent-hover: #24493f;
-  --color-accent-bright: #8fbfaf; /*  7.74:1 on deep    AAA */
+  /* Action. `primary` is the alias components reach for when the meaning is
+     "the main action"; `accent` remains the editorial/link colour. Both point
+     at royal today — they are separate so one can move without the other. */
+  --color-accent: var(--gfs-royal); /*  9.74 on ground  AAA */
+  --color-accent-hover: var(--gfs-steel); /*  6.61 on ground  AA  */
+  --color-accent-bright: var(--gfs-sky); /*  7.07 on deep    AAA, 5.91 on deep-raised */
+  --color-primary: var(--gfs-royal);
+  --color-primary-hover: var(--gfs-steel);
+  --color-on-primary: var(--gfs-warm-white); /*  9.74 on royal   AAA */
 
-  /* --- Focus ------------------------------------------------------------ */
-  --color-focus: #1f4a3e; /*  8.40:1 on ground */
-  --color-focus-inverse: #7fb3a2; /*  6.71:1 on deep   */
+  /* Premium. Dark grounds and hairlines only — see the note in layer 1.
+     Rules take an opacity modifier (border-premium/40); text never does. */
+  --color-premium: var(--gfs-gold); /*  7.74 on navy    AAA / 2.11 on ground FAIL */
+
+  /* Focus */
+  --color-focus: var(--gfs-royal); /*  9.74 on ground */
+  --color-focus-inverse: var(--gfs-sky); /*  7.07 on deep   */
 
   /* --- Typography ------------------------------------------------------- */
   /* Display + UI: Archivo — architectural grotesque, variable weight/width.
@@ -128,6 +187,23 @@
    Not Tailwind theme values — these drive the container and the datum rail,
    which are structural rather than utility-composed. */
 :root {
+  /* Photography placeholders. Composed entirely from layer 1, so the plates
+     re-tone with the palette and components carry no colour literal. */
+  --plate-dark: linear-gradient(
+    150deg,
+    var(--gfs-navy-raised) 0%,
+    var(--gfs-navy) 55%,
+    var(--gfs-navy-raised) 100%
+  );
+  --plate-light: linear-gradient(
+    150deg,
+    var(--gfs-mist) 0%,
+    var(--gfs-warm-white) 55%,
+    var(--gfs-mist) 100%
+  );
+  --plate-datum-dark: color-mix(in srgb, var(--gfs-sky) 18%, transparent);
+  --plate-datum-light: color-mix(in srgb, var(--gfs-royal) 14%, transparent);
+
   --container-max: 90rem; /* 1440 */
   --measure-max: 42rem; /* prose measure ~68ch */
   --gutter: clamp(1.25rem, 5vw, 5.5rem);

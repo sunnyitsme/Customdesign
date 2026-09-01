@@ -50,7 +50,7 @@ export default function Page() {
               </PendingContent>
               <Link
                 href="/contact"
-                className="mt-10 inline-flex items-center justify-center rounded-sm bg-ink px-7 py-4 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:bg-accent"
+                className="mt-10 inline-flex items-center justify-center rounded-sm bg-primary px-7 py-4 text-body-sm font-medium text-on-primary transition-colors duration-base hover:bg-ink"
               >
                 Ask an adviser instead
               </Link>

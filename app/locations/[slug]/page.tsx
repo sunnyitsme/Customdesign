@@ -62,7 +62,7 @@ export default async function LocationPage({
         </p>
         <a
           href={site.phoneHref}
-          className="mt-8 inline-block text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse underline-offset-[6px] hover:decoration-accent-bright"
+          className="mt-8 inline-block text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse-interactive underline-offset-[6px] hover:decoration-accent-bright"
         >
           {site.phone}
         </a>

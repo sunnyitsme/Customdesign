@@ -5,6 +5,7 @@ import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { insights } from "@/content/insights";
 
 export const metadata: Metadata = { title: "Insights" };
@@ -45,6 +46,7 @@ export default function InsightsPage() {
         title="Knowledge, published."
         standfirst="Commentary on lending conditions, property finance and protection — written by the people giving the advice."
         crumbs={[{ label: "Home", href: "/" }, { label: "Insights" }]}
+        image={requireHeroImage("/insights")}
       />
 
       <section

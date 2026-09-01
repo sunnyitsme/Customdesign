@@ -4,6 +4,7 @@ import { PageOpening } from "@/components/layout/SimplePage";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { locations } from "@/content/locations";
 import { site } from "@/content/site";
 
@@ -25,10 +26,11 @@ export default function ContactPage() {
         title="Start a conversation."
         standfirst="Tell us what you are trying to do and we will point you at the right adviser."
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+        image={requireHeroImage("/contact")}
       >
         <a
           href={site.phoneHref}
-          className="mt-9 inline-block text-display-2 font-medium tabular text-ink-inverse underline decoration-line-inverse underline-offset-[8px] transition-colors duration-base hover:decoration-accent-bright"
+          className="mt-9 inline-block text-display-2 font-medium tabular text-ink-inverse underline decoration-line-inverse-interactive underline-offset-[8px] transition-colors duration-base hover:decoration-accent-bright"
         >
           {site.phone}
         </a>

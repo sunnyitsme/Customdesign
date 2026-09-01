@@ -4,6 +4,7 @@ import { HubHero } from "@/components/hub/HubHero";
 import { ServiceIndex } from "@/components/hub/ServiceIndex";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { requireHeroImage } from "@/content/media";
 import { protectionPages } from "@/content/service-pages";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function ProtectionPage() {
         title="Cover that holds when circumstances change."
         standfirst="Life assurance, critical illness, income protection and medical cover — arranged around what a household or a business would actually need."
         ctaLabel="Talk about protection"
-        imageAlt="Image required — calm domestic or family context, never distressing"
+        image={requireHeroImage("/protection")}
       />
 
       <ServiceIndex

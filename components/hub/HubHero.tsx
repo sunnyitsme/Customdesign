@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Container, DatumGrid } from "@/components/ui/Container";
-import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { HeroMedia } from "@/components/ui/HeroMedia";
+import type { HeroImage } from "@/content/media";
 import { site } from "@/content/site";
 import type { ReactNode } from "react";
 
@@ -20,7 +21,7 @@ export function HubHero({
   ctaLabel,
   tone = "light",
   media = "portrait",
-  imageAlt,
+  image,
   aside,
 }: {
   eyebrow: string;
@@ -30,7 +31,8 @@ export function HubHero({
   ctaLabel: string;
   tone?: "light" | "dark";
   media?: "portrait" | "wide" | "none";
-  imageAlt: string;
+  /** From content/media.ts. Renders a placeholder plate until the file exists. */
+  image: HeroImage;
   aside?: ReactNode;
 }) {
   const dark = tone === "dark";
@@ -67,7 +69,7 @@ export function HubHero({
                   className={`inline-flex items-center justify-center rounded-sm px-7 py-4 text-body-sm font-medium transition-colors duration-base ${
                     dark
                       ? "bg-ink-inverse text-ink hover:bg-accent-bright"
-                      : "bg-ink text-ink-inverse hover:bg-accent"
+                      : "bg-primary text-on-primary hover:bg-ink"
                   }`}
                 >
                   {ctaLabel}
@@ -76,7 +78,7 @@ export function HubHero({
                   href={site.phoneHref}
                   className={`text-body-lg font-medium tabular underline underline-offset-[6px] transition-colors duration-base ${
                     dark
-                      ? "text-ink-inverse decoration-line-inverse hover:decoration-accent-bright"
+                      ? "text-ink-inverse decoration-line-inverse-interactive hover:decoration-accent-bright"
                       : "text-ink decoration-line-interactive hover:decoration-accent"
                   }`}
                 >
@@ -88,7 +90,12 @@ export function HubHero({
 
             {media === "portrait" && (
               <div className="relative aspect-4/3 w-full lg:aspect-4/5">
-                <DrawingPlate label={imageAlt} tone={dark ? "dark" : "light"} />
+                <HeroMedia
+                  image={image}
+                  tone={dark ? "dark" : "light"}
+                  priority
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                />
               </div>
             )}
           </div>
@@ -96,7 +103,12 @@ export function HubHero({
 
         {media === "wide" && (
           <div className="relative mt-14 aspect-21/9 w-full">
-            <DrawingPlate label={imageAlt} tone={dark ? "dark" : "light"} />
+            <HeroMedia
+              image={image}
+              tone={dark ? "dark" : "light"}
+              priority
+              sizes="100vw"
+            />
           </div>
         )}
       </Container>

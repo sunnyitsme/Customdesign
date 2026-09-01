@@ -4,7 +4,11 @@ import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Marquee } from "@/components/ui/Marquee";
 import { PendingContent } from "@/components/ui/PendingContent";
-import { providers, providersHeading } from "@/content/providers";
+import {
+  canDisplayLogo,
+  providers,
+  providersHeading,
+} from "@/content/providers";
 
 /** Faster than the reviews marquee, but still unhurried. */
 const SPEED_PX_PER_SECOND = 45;
@@ -21,15 +25,20 @@ const SPEED_PX_PER_SECOND = 45;
  * section exists on the current homepage but not which marks it contains, and
  * displaying a third-party mark needs written permission. The heading avoids
  * "partners" for the same reason.
+ *
+ * A mark renders only if content/providers.ts says it may — see canDisplayLogo.
+ * Dropping a logo file into public/media/providers/ is deliberately not enough.
  */
 export function LogoMarquee() {
   const plates = providers.map((provider) =>
-    provider.logo && provider.name ? (
+    // canDisplayLogo is the whole gate: file present, name approved, permission
+    // confirmed and a licence record on file. Anything less renders the slot.
+    canDisplayLogo(provider) ? (
       // eslint-disable-next-line @next/next/no-img-element -- marks are fixed-height, sized by CSS
       <img
         key={provider.id}
-        src={provider.logo}
-        alt={provider.name}
+        src={provider.logo ?? ""}
+        alt={provider.name ?? ""}
         className="h-10 w-auto max-w-[10rem] object-contain lg:h-12"
       />
     ) : (

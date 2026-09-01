@@ -5,6 +5,7 @@ import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { divisions } from "@/content/services";
 import { locations } from "@/content/locations";
 import { team } from "@/content/team";
@@ -32,7 +33,7 @@ export default function AboutPage() {
         title="Four disciplines, advised as one."
         standfirst="Guide advises on residential mortgages, specialist property finance, protection, and wills and estate planning — areas that are rarely separate in practice."
         ctaLabel="Speak to an adviser"
-        imageAlt="Image required — office or architectural context, people-led"
+        image={requireHeroImage("/about")}
       />
 
       <section

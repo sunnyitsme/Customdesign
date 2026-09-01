@@ -113,9 +113,23 @@ test('B — desktop navigation, scrolled solid state', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, 700));
   await page.waitForTimeout(900); // let the 420ms colour transition finish
   const after = await page.locator('header').evaluate((el) => getComputedStyle(el).backgroundColor);
-  console.log(`\n[B] header transition: ${before} -> ${after}`);
-  expect(before).not.toBe(after);
-  expect(after).toBe('rgb(235, 236, 233)');
+
+  // Resolve --color-ground rather than hardcoding a hex. A literal here turns
+  // every palette change into a test failure that says nothing about behaviour;
+  // what this test is actually asserting is that the header goes from
+  // transparent to the page ground.
+  const ground = await page.evaluate(() => {
+    const probe = document.createElement('div');
+    probe.style.backgroundColor = 'var(--color-ground)';
+    document.body.appendChild(probe);
+    const value = getComputedStyle(probe).backgroundColor;
+    probe.remove();
+    return value;
+  });
+
+  console.log(`\n[B] header transition: ${before} -> ${after} (ground ${ground})`);
+  expect(before).toBe('rgba(0, 0, 0, 0)');
+  expect(after).toBe(ground);
 
   await page.screenshot({ path: 'shots/review/B-nav-scrolled-solid-1440.png' });
 });

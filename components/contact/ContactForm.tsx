@@ -200,7 +200,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting || status.kind === "sending"}
-        className="mt-8 inline-flex items-center justify-center rounded-sm bg-ink px-7 py-4 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:bg-accent disabled:opacity-60"
+        className="mt-8 inline-flex items-center justify-center rounded-sm bg-primary px-7 py-4 text-body-sm font-medium text-on-primary transition-colors duration-base hover:bg-ink disabled:opacity-60"
       >
         {status.kind === "sending" ? "Checking…" : "Send enquiry"}
       </button>

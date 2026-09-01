@@ -102,7 +102,7 @@ export function CaseStudies() {
 
         <Link
           href="/property-finance"
-          className="mt-12 inline-block border-b border-line-inverse pb-1 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:border-accent-bright hover:text-accent-bright"
+          className="mt-12 inline-block border-b border-line-inverse-interactive pb-1 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:border-accent-bright hover:text-accent-bright"
         >
           Explore property finance
         </Link>

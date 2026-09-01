@@ -6,6 +6,7 @@ import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { cases } from "@/content/cases";
 import { propertyFinancePages } from "@/content/service-pages";
 
@@ -33,7 +34,7 @@ export default function PropertyFinancePage() {
         ctaLabel="Discuss property finance"
         tone="dark"
         media="wide"
-        imageAlt="Image required — development site or commercial architecture, wide crop"
+        image={requireHeroImage("/property-finance")}
       />
 
       <ServiceIndex
@@ -136,7 +137,7 @@ export default function PropertyFinancePage() {
           </PendingContent>
           <Link
             href="/insights/case-studies"
-            className="mt-12 inline-block border-b border-line-inverse pb-1 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:border-accent-bright hover:text-accent-bright"
+            className="mt-12 inline-block border-b border-line-inverse-interactive pb-1 text-body-sm font-medium text-ink-inverse transition-colors duration-base hover:border-accent-bright hover:text-accent-bright"
           >
             All case studies
           </Link>

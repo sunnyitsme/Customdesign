@@ -94,9 +94,9 @@ export const hero = {
   media: {
     // Assets do not exist yet. The component renders a structural placeholder
     // and swaps to video the moment these files are added — no redesign needed.
-    webm: "/media/hero/guide-london.webm",
-    mp4: "/media/hero/guide-london.mp4",
-    poster: "/media/hero/guide-london-poster.webp",
+    webm: "/media/home/hero/guide-london.webm",
+    mp4: "/media/home/hero/guide-london.mp4",
+    poster: "/media/home/hero/guide-london-poster.webp",
     alt: "London financial district",
   },
 } as const;

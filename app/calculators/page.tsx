@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageOpening } from "@/components/layout/SimplePage";
 import { Container } from "@/components/ui/Container";
+import { requireHeroImage } from "@/content/media";
 
 export const metadata: Metadata = { title: "Calculators" };
 
@@ -55,6 +56,7 @@ export default function CalculatorsPage() {
         title="Work through the numbers."
         standfirst="Illustrations to help you think, not lending decisions. What a lender will actually offer depends on its own criteria."
         crumbs={[{ label: "Home", href: "/" }, { label: "Calculators" }]}
+        image={requireHeroImage("/calculators")}
       />
       <section
         aria-labelledby="calculators-list-heading"

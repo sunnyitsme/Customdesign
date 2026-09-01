@@ -14,9 +14,9 @@ import { HeroVideo } from "./HeroVideo";
  * it run to six and the type, not the footage, became the hero.
  *
  * `hasMedia` is resolved on the server from the filesystem, so the moment the
- * three asset files land in public/media/hero/ the video path activates with no
- * change to this component. Until then a drawing plate holds the slot — an
- * empty frame, not fabricated footage.
+ * three asset files land in public/media/home/hero/ the video path activates
+ * with no change to this component. Until then a drawing plate holds the slot —
+ * an empty frame, not fabricated footage.
  */
 export function Hero({ hasMedia }: { hasMedia: boolean }) {
   return (
@@ -33,7 +33,7 @@ export function Hero({ hasMedia }: { hasMedia: boolean }) {
         />
       ) : (
         <DrawingPlate
-          label="Hero media placeholder — guide-london.webm / .mp4 / -poster.webp required"
+          label="Hero media placeholder — media/home/hero/guide-london.webm / .mp4 / -poster.webp required"
           tone="dark"
         />
       )}
@@ -63,8 +63,13 @@ export function Hero({ hasMedia }: { hasMedia: boolean }) {
         </DatumGrid>
 
         {/* The datum: a hairline the hero rests on, carrying the actions on the
-            left and the supporting line on the right. */}
-        <div className="mt-[var(--section-sm)] border-t border-line-inverse pt-7">
+            left and the supporting line on the right.
+
+            This rule is the only structural gold on the site — one hairline, on
+            the one page that opens on full-bleed footage. It reads as a struck
+            line rather than as decoration, which is the whole intent behind
+            rationing the colour. */}
+        <div className="mt-[var(--section-sm)] border-t border-premium/40 pt-7">
           <DatumGrid>
             <div />
             <div className="flex flex-col gap-7 md:flex-row md:items-start md:justify-between md:gap-12">

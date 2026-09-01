@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/check-pending.ts && next build",
+    "build": "node scripts/check-pending.ts && node scripts/check-contrast.ts && next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "check:content": "node scripts/check-pending.ts",
+    "check:contrast": "node scripts/check-contrast.ts",
     "test:e2e": "playwright test",
     "preview": "next dev -H 0.0.0.0 -p 3000",
     "preview:prod": "next build && next start -H 0.0.0.0 -p 3000",

@@ -39,6 +39,9 @@ access**, so analytics continuity and SEO history survive the migration.
   (stock licence reference, or shot for Guide).
 - Ideally 8–12 seconds, silent, loopable, no on-screen text or recognisable branding.
 - A poster still from the same footage — this becomes the LCP image.
+- All three files go in `public/media/home/hero/` as `guide-london.webm`,
+  `guide-london.mp4` and `guide-london-poster.webp`. Licence record:
+  `docs/media-licences/home-hero-london.md`.
 - Confirmation of the approved **headline** and **one supporting line**. We will not write
   positioning copy for a regulated firm without sign-off.
 - Approved labels for the primary and secondary CTAs.
@@ -60,9 +63,13 @@ promotions and need compliance sign-off.
 ## 4. Lender & provider logos 🔴
 
 - The approved list of lenders and providers.
-- Logo files (SVG preferred).
-- **Written permission to display each mark**, since displaying a third-party logo without it
-  is a trademark exposure.
+- Logo files (SVG preferred), placed in `public/media/providers/`.
+- **Written permission to display each mark**, or confirmed intermediary brand-usage
+  rights covering this website, since displaying a third-party logo without either
+  is a trademark exposure. Record the evidence in `docs/media-licences/`.
+- Note the file being present is deliberately **not** enough to display it: each
+  provider carries a `permissionConfirmed` flag in `content/providers.ts` that
+  has to be set, and the mark stays hidden in every environment until it is.
 - The approved wording for the relationship. We are using *"Lenders & Providers We Work With"*
   and will not use "partners" unless Guide confirms these are contractual partnerships.
 
@@ -151,6 +158,43 @@ These are flagged in the migration pack and must be settled before either versio
 The premium direction depends on photography more than on any code we write. Required:
 architectural / London / interior / client-meeting imagery, **owned or licensed**, high
 resolution. Generic stock will visibly undercut the intended quality level.
+
+### How to supply it
+
+Every hero slot on the site already exists and is waiting for a file at a known
+path. Nothing needs to be sent to a developer and no code has to change:
+
+1. Read `public/media/README.md` — it lists the folder for each page.
+2. Drop in **one high-resolution JPEG** per page, named for the route.
+   `/mortgages/buy-to-let` wants `public/media/mortgages/buy-to-let.jpg`.
+   A hub page wants `hero.jpg` inside its own folder.
+3. Add the licence record in `docs/media-licences/` **first** — see below.
+
+Do not pre-crop or pre-resize: `next/image` derives every responsive size and
+serves AVIF/WebP. Supplying a pre-cropped image only reduces what it can do.
+
+Until a file arrives the page renders a labelled placeholder at the exact crop
+the photograph will occupy, so adding one causes no layout shift.
+
+`content/media.ts` carries a one-line brief for each page describing the register
+we are after. Those briefs are a starting point for the shoot, not a
+specification — they can change.
+
+### Licensing 🔴
+
+**"Free download" does not mean copyright-free.** Several large stock libraries
+publish free previews whose terms exclude commercial use, exclude financial
+services, or require attribution this site does not carry.
+
+Every asset needs a record in `docs/media-licences/` before it is published —
+source, licence type, reference, holder, permitted use, attribution, releases,
+and who at the firm cleared it. `docs/media-licences/TEMPLATE.md` is the form.
+
+Two specifics that catch people out:
+
+- **Commissioning a shoot does not transfer copyright.** Under UK law the
+  photographer retains it unless the contract assigns or licences it explicitly.
+- **Every recognisable face needs a model release**, including adviser portraits.
 
 ## 13. Forms and routing 🟡
 

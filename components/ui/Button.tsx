@@ -10,18 +10,18 @@ type Tone = "light" | "dark";
  */
 const styles: Record<Variant, Record<Tone, string>> = {
   primary: {
-    light: "bg-ink text-ink-inverse hover:bg-accent",
+    light: "bg-primary text-on-primary hover:bg-ink",
     dark: "bg-ink-inverse text-ink hover:bg-accent-bright",
   },
   secondary: {
     light:
       "border border-line-interactive text-ink hover:border-ink hover:bg-surface",
-    dark: "border border-line-inverse text-ink-inverse hover:border-ink-inverse",
+    dark: "border border-line-inverse-interactive text-ink-inverse hover:border-ink-inverse",
   },
   tertiary: {
     light:
       "text-ink underline decoration-line-interactive underline-offset-[6px] hover:decoration-accent",
-    dark: "text-ink-inverse underline decoration-line-inverse underline-offset-[6px] hover:decoration-accent-bright",
+    dark: "text-ink-inverse underline decoration-line-inverse-interactive underline-offset-[6px] hover:decoration-accent-bright",
   },
 };
 

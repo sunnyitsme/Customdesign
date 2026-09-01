@@ -53,7 +53,7 @@ export default function NotFound() {
               </Link>
               <a
                 href={site.phoneHref}
-                className="text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse underline-offset-[6px] transition-colors duration-base hover:decoration-accent-bright"
+                className="text-body-lg font-medium tabular text-ink-inverse underline decoration-line-inverse-interactive underline-offset-[6px] transition-colors duration-base hover:decoration-accent-bright"
               >
                 {site.phone}
               </a>

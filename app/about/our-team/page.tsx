@@ -4,6 +4,7 @@ import { PageOpening } from "@/components/layout/SimplePage";
 import { Container } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { team } from "@/content/team";
 
 export const metadata: Metadata = { title: "Our team" };
@@ -21,6 +22,7 @@ export default function OurTeamPage() {
           { label: "About", href: "/about" },
           { label: "Our team" },
         ]}
+        image={requireHeroImage("/about/our-team")}
       />
       <section
         aria-labelledby="team-list-heading"

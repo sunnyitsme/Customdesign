@@ -206,7 +206,7 @@ export function SiteHeader() {
             href={primaryCta.href}
             className={`hidden shrink-0 rounded-sm px-4 py-2.5 text-[0.84rem] font-medium whitespace-nowrap transition-colors duration-base cta:inline-flex ${
               solid
-                ? "bg-ink text-ink-inverse hover:bg-accent"
+                ? "bg-primary text-on-primary hover:bg-ink"
                 : "bg-ink-inverse text-ink hover:bg-accent-bright"
             }`}
           >

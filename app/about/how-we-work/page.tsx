@@ -3,6 +3,7 @@ import { PageOpening } from "@/components/layout/SimplePage";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { requireHeroImage } from "@/content/media";
 import { processSteps } from "@/content/process";
 
 export const metadata: Metadata = { title: "How we work" };
@@ -20,6 +21,7 @@ export default function Page() {
           { label: "About", href: "/about" },
           { label: "How we work" },
         ]}
+        image={requireHeroImage("/about/how-we-work")}
       />
       <section
         aria-labelledby="page-body-heading"
