@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Container, DatumGrid } from "@/components/ui/Container";
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MARQUEE_SPEED, Marquee } from "@/components/ui/Marquee";
 import { PendingContent } from "@/components/ui/PendingContent";
@@ -94,13 +95,17 @@ export function LogoMarquee({
     >
       <Container>
         <DatumGrid>
-          <Eyebrow>Panel</Eyebrow>
-          <h2
-            id="providers-heading"
-            className="max-w-[24ch] text-heading-2 font-medium text-balance"
-          >
-            {providersHeading}
-          </h2>
+          <Reveal>
+            <Eyebrow>Panel</Eyebrow>
+          </Reveal>
+          <Reveal index={1} stagger={110}>
+            <h2
+              id="providers-heading"
+              className="max-w-[24ch] text-heading-2 font-medium text-balance"
+            >
+              {providersHeading}
+            </h2>
+          </Reveal>
         </DatumGrid>
       </Container>
 
@@ -112,16 +117,23 @@ export function LogoMarquee({
         }
         className="mt-12"
       >
-        {/* Full-bleed, with the edges faded so marks enter and leave rather
-            than being cut off at the container. */}
-        <div className="[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        {/* The strip fades in as one object. Individual marks are deliberately
+            not animated, and the marquee engine is untouched: opacity on an
+            ancestor changes nothing about its scrolling, hover pause or
+            reduced-motion behaviour. Fade only — a transform here would move
+            the scroll container. */}
+        <Reveal
+          effect="fade"
+          delay={160}
+          className="[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+        >
           <Marquee
             items={plates}
             speed={MARQUEE_SPEED}
             ariaLabel="Lenders and providers we work with"
             itemClassName="flex shrink-0 items-center pr-12 lg:pr-20"
           />
-        </div>
+        </Reveal>
       </PendingContent>
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { Container, DatumGrid } from "@/components/ui/Container";
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MARQUEE_SPEED, Marquee } from "@/components/ui/Marquee";
 import { PendingContent } from "@/components/ui/PendingContent";
@@ -133,15 +134,21 @@ export function ReviewsMarquee() {
     >
       <Container>
         <DatumGrid>
-          <Eyebrow>Reviews</Eyebrow>
+          <Reveal>
+            <Eyebrow>Reviews</Eyebrow>
+          </Reveal>
           <div className="grid gap-x-16 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-            <h2
-              id="reviews-heading"
-              className="max-w-[19ch] text-display-2 font-medium text-balance"
-            >
-              What clients say.
-            </h2>
-            <div className="lg:pt-2">
+            <Reveal index={1} stagger={110}>
+              <h2
+                id="reviews-heading"
+                className="max-w-[19ch] text-display-2 font-medium text-balance"
+              >
+                What clients say.
+              </h2>
+            </Reveal>
+            {/* Heading and intro only. The panels keep moving on their own —
+                the marquee engine is not touched by any of this. */}
+            <Reveal index={2} stagger={110} className="lg:pt-2">
               <p className="max-w-[42ch] text-body-lg text-ink-secondary">
                 Published with the reviewer&rsquo;s permission and reviewed by
                 compliance before it appears here.
@@ -158,7 +165,7 @@ export function ReviewsMarquee() {
                   </span>
                 </p>
               )}
-            </div>
+            </Reveal>
           </div>
         </DatumGrid>
       </Container>

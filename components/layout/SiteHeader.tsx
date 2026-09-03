@@ -86,9 +86,18 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-slow ${
+      /* The surface transition, refined: background, border and text colour
+         cross-fade together over --duration-slow, and the solid state sits on
+         a 92% ground with a backdrop blur so content passing under it reads as
+         depth rather than as a hard edge.
+
+         92%, not less, is deliberate: over the darkest possible content the
+         header's ink still measures 14.01:1, comfortably AAA. Nothing about the
+         breakpoints, the disclosure steps or the layout is touched — this is
+         the same two states the header always had. */
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,color,backdrop-filter] duration-slow ease-standard ${
         solid
-          ? "border-b border-line bg-ground text-ink"
+          ? "border-b border-line bg-ground/92 text-ink backdrop-blur-md"
           : "on-deep border-b border-transparent text-ink-inverse"
       }`}
       onBlur={(event) => {

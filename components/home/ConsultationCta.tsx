@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { divisions } from "@/content/services";
 import { site } from "@/content/site";
@@ -28,24 +29,39 @@ export function ConsultationCta() {
     >
       <Container>
         <DatumGrid>
-          <Eyebrow tone="dark">Speak to Guide</Eyebrow>
+          <Reveal>
+            <Eyebrow tone="dark">Speak to Guide</Eyebrow>
+          </Reveal>
 
           <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-center">
             <div>
-              <h2
-                id="cta-heading"
-                className="max-w-[16ch] text-display-1 font-medium text-balance"
-              >
-                Let&rsquo;s discuss what you&rsquo;re looking to achieve.
-              </h2>
+              <Reveal index={1} stagger={120}>
+                <h2
+                  id="cta-heading"
+                  className="max-w-[16ch] text-display-1 font-medium text-balance"
+                >
+                  Let&rsquo;s discuss what you&rsquo;re looking to achieve.
+                </h2>
+              </Reveal>
 
-              <p className="mt-9 max-w-[46ch] text-body-lg text-ink-inverse-secondary">
+              <Reveal
+                index={2}
+                stagger={120}
+                className="mt-9 max-w-[46ch]"
+              >
+                <p className="text-body-lg text-ink-inverse-secondary">
                 A conversation about the property, the timing, and the
                 circumstances behind them — across mortgages, property finance,
-                protection, and wills and estate planning.
-              </p>
+                  protection, and wills and estate planning.
+                </p>
+              </Reveal>
 
-              <div className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <Reveal
+                index={3}
+                stagger={120}
+                distance="0.75rem"
+                className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-4"
+              >
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center rounded-sm bg-ink-inverse px-7 py-4 text-body-sm font-medium text-ink transition-colors duration-base hover:bg-accent-bright"
@@ -58,11 +74,16 @@ export function ConsultationCta() {
                 >
                   {site.phone}
                 </a>
-              </div>
+              </Reveal>
             </div>
 
             {/* Counterweight — London or property architectural crop. */}
-            <div className="relative aspect-4/5 w-full lg:aspect-3/4">
+            {/* Image holds still apart from the same restrained drift used on
+                the About plate. The content is what arrives. */}
+            <div
+              data-parallax=""
+              className="relative aspect-4/5 w-full lg:aspect-3/4"
+            >
               <DrawingPlate
                 label="Image required — London or property architectural crop"
                 tone="dark"

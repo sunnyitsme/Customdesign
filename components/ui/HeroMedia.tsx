@@ -43,7 +43,13 @@ export function HeroMedia({
   }
 
   return (
-    <div className={`absolute inset-0 overflow-hidden ${className}`}>
+    // data-reveal="media" makes this the clipping frame: it holds still while
+    // the picture settles from 1.04 to 1. The frame never moves, so the crop
+    // the caller reserved is exactly the crop that is filled.
+    <div
+      data-reveal="media"
+      className={`absolute inset-0 overflow-hidden ${className}`}
+    >
       <Image
         src={assetPath(image.src)}
         alt={image.alt}

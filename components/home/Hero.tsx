@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
@@ -52,19 +53,25 @@ export function Hero({
       <Container className="relative z-10 pb-[var(--section-sm)]">
         {/* The empty datum rail is doing work here: it holds the left margin
             that keeps the hero aligned with every section below it. */}
+        {/* Entrance sequence, roughly 1.3s end to end: headline, then the
+            datum rule with the actions, then the supporting line. The video
+            itself is deliberately untouched — it holds still and the content
+            arrives over it. */}
         <DatumGrid>
           <div />
-          <PendingContent
-            tone="dark"
-            label="hero.copy — approved headline required"
-          >
-            <h1
-              id="hero-heading"
-              className="max-w-[17ch] text-display-1 font-medium text-balance"
+          <Reveal>
+            <PendingContent
+              tone="dark"
+              label="hero.copy — approved headline required"
             >
-              Mortgage and property finance advice.
-            </h1>
-          </PendingContent>
+              <h1
+                id="hero-heading"
+                className="max-w-[17ch] text-display-1 font-medium text-balance"
+              >
+                Mortgage and property finance advice.
+              </h1>
+            </PendingContent>
+          </Reveal>
         </DatumGrid>
 
         {/* The datum: a hairline the hero rests on, carrying the actions on the
@@ -74,11 +81,20 @@ export function Hero({
             the one page that opens on full-bleed footage. It reads as a struck
             line rather than as decoration, which is the whole intent behind
             rationing the colour. */}
-        <div className="mt-[var(--section-sm)] border-t border-premium/40 pt-7">
+        <Reveal
+          effect="fade"
+          delay={280}
+          duration={900}
+          className="mt-[var(--section-sm)] border-t border-premium/40 pt-7"
+        >
           <DatumGrid>
             <div />
             <div className="flex flex-col gap-7 md:flex-row md:items-start md:justify-between md:gap-12">
-              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+              <Reveal
+                delay={460}
+                distance="0.75rem"
+                className="flex flex-wrap items-center gap-x-8 gap-y-4"
+              >
                 <Button href={hero.primaryCta.href} tone="dark">
                   {hero.primaryCta.label}
                 </Button>
@@ -89,7 +105,7 @@ export function Hero({
                 >
                   {hero.secondaryCta.label}
                 </Button>
-              </div>
+              </Reveal>
 
               <PendingContent
                 tone="dark"
@@ -103,7 +119,7 @@ export function Hero({
               </PendingContent>
             </div>
           </DatumGrid>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

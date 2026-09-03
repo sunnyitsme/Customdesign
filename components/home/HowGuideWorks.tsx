@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -35,14 +36,25 @@ export function HowGuideWorks() {
           className="mt-14"
         >
           <ol className="relative m-0 grid list-none grid-cols-1 gap-y-10 p-0 md:grid-cols-2 xl:grid-cols-4 xl:gap-x-10">
-            {/* The path. Horizontal at xl, vertical below it. */}
+            {/* The path draws first, then the steps arrive along it, 01 to 04.
+                The whole sequence is under a second — the journey should read
+                as it forms, not hold the reader up. */}
             <span
               aria-hidden="true"
+              data-reveal="line"
               className="absolute top-0 bottom-0 left-[7px] w-px bg-line xl:top-[7px] xl:right-0 xl:bottom-auto xl:left-0 xl:h-px xl:w-auto"
             />
 
-            {processSteps.map((step) => (
-              <li key={step.index} className="relative pl-10 xl:pt-10 xl:pl-0">
+            {processSteps.map((step, stepIndex) => (
+              <Reveal
+                as="li"
+                key={step.index}
+                index={stepIndex}
+                stagger={110}
+                delay={220}
+                distance="1rem"
+                className="relative pl-10 xl:pt-10 xl:pl-0"
+              >
                 {/* The mark that sits on the path. */}
                 <span
                   aria-hidden="true"
@@ -57,7 +69,7 @@ export function HowGuideWorks() {
                 <p className="mt-3 max-w-[34ch] text-body text-ink-secondary">
                   {step.description}
                 </p>
-              </li>
+              </Reveal>
             ))}
           </ol>
         </PendingContent>

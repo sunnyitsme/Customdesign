@@ -164,6 +164,10 @@
   --duration-slow: 420ms;
   --duration-cinematic: 720ms;
 
+  /* Scroll reveal. Slow and short: the movement should read as settling into
+     place, not as travel. 28px is about the most that still feels incidental. */
+  --duration-reveal: 780ms;
+
   /* --- Breakpoints ------------------------------------------------------ */
   --breakpoint-*: initial;
   --breakpoint-sm: 30rem; /* 480 */
@@ -238,6 +242,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Anchor jumps ease rather than snap — but only for viewers who allow motion.
+   The reduced-motion block above resets scroll-behavior regardless. No smooth
+   scroll library: native scrolling stays exactly as the browser implements it. */
+html[data-motion='on'] {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background-color: var(--color-ground);
@@ -306,6 +317,81 @@ video {
   font-variant-numeric: tabular-nums;
 }
 
+/* --- Scroll reveal --------------------------------------------------------
+   The hidden state exists ONLY under [data-motion="on"], which the pre-paint
+   script in app/layout.tsx sets only when the viewer allows motion. No script,
+   no JS, reduced motion, or a crawler => none of these rules match and every
+   element is simply visible. Content is never behind JavaScript.
+
+   See components/motion/Reveal.tsx and docs/02-decisions.md D-010 and D-019. */
+[data-motion='on'] [data-reveal] {
+  transition:
+    opacity var(--reveal-duration, var(--duration-reveal)) var(--ease-out-quart)
+      var(--reveal-delay, 0ms),
+    transform var(--reveal-duration, var(--duration-reveal)) var(--ease-out-quart)
+      var(--reveal-delay, 0ms);
+}
+
+[data-motion='on'] [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+}
+
+[data-motion='on'] [data-reveal='up']:not([data-revealed]) {
+  /* translate3d, not translateY: keeps the element on its own layer for the
+     duration of the transition without a permanent will-change. */
+  transform: translate3d(0, var(--reveal-distance, 1.75rem), 0);
+}
+
+/* Editorial image reveal: the frame holds still and clips, the picture settles
+   from 1.04 to 1. Never starts small, never zooms. */
+[data-reveal='media'] {
+  overflow: hidden;
+}
+[data-motion='on'] [data-reveal='media'] > * {
+  transition: transform 1100ms var(--ease-out-quart) var(--reveal-delay, 0ms);
+}
+[data-motion='on'] [data-reveal='media']:not([data-revealed]) > * {
+  transform: scale(1.04);
+}
+
+/* The process connector. Draws along its own axis — vertically in the stacked
+   layout, horizontally once the steps go in a row at xl (90rem). Slow, so it
+   reads as a path being traced rather than a bar appearing. */
+[data-reveal='line'] {
+  transform-origin: top;
+}
+[data-motion='on'] [data-reveal='line'] {
+  transition: transform 1100ms var(--ease-out-quart) var(--reveal-delay, 0ms);
+}
+[data-motion='on'] [data-reveal='line']:not([data-revealed]) {
+  opacity: 1;
+  transform: scaleY(0);
+}
+@media (min-width: 90rem) {
+  [data-reveal='line'] {
+    transform-origin: left;
+  }
+  [data-motion='on'] [data-reveal='line']:not([data-revealed]) {
+    transform: scaleX(0);
+  }
+}
+
+/* Parallax. --parallax-y is written by the one rAF loop in MotionRuntime, on
+   desktop only; it is never set otherwise, so this resolves to 0. */
+[data-parallax] {
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
+}
+
+/* Mobile is deliberately quieter: less travel, and no parallax at all (the
+   runtime does not even collect the elements below 1024px). */
+@media (max-width: 47.99rem) {
+  :root {
+    --reveal-distance: 1.125rem;
+    --duration-reveal: 680ms;
+  }
+}
+
 /* --- Motion --------------------------------------------------------------
    Every animation in the project is transform/opacity only and sits behind
    this switch. Nothing animates blur, filter, shadow or layout. */
@@ -317,5 +403,18 @@ video {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Belt and braces. The pre-paint script already declines to set
+     data-motion="on" under reduce, so nothing should be hidden — but if that
+     attribute ever arrives by another route, content still shows. */
+  [data-reveal],
+  [data-reveal='media'] > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-parallax] {
+    transform: none !important;
+    will-change: auto;
   }
 }

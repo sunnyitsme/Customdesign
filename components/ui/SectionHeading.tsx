@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Reveal } from "@/components/motion/Reveal";
 import { DatumGrid } from "./Container";
 import { Eyebrow } from "./Eyebrow";
 
@@ -6,6 +7,10 @@ import { Eyebrow } from "./Eyebrow";
  * The page's one section-header pattern: a label in the datum rail and a
  * display heading in the content column. Used by every section below the hero
  * so their openings align on the same left margin.
+ *
+ * It also carries the shared heading sequence — label, heading, supporting
+ * column, 110ms apart — so every section that uses it opens the same way
+ * without repeating the motion at each call site.
  */
 export function SectionHeading({
   eyebrow,
@@ -23,7 +28,9 @@ export function SectionHeading({
 }) {
   return (
     <DatumGrid>
-      <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
+      <Reveal>
+        <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
+      </Reveal>
       <div
         className={
           aside
@@ -31,13 +38,19 @@ export function SectionHeading({
             : undefined
         }
       >
-        <h2
-          {...(id ? { id } : {})}
-          className="max-w-[19ch] text-display-2 font-medium text-balance"
-        >
-          {children}
-        </h2>
-        {aside ? <div className="lg:pt-2">{aside}</div> : null}
+        <Reveal index={1} stagger={110}>
+          <h2
+            {...(id ? { id } : {})}
+            className="max-w-[19ch] text-display-2 font-medium text-balance"
+          >
+            {children}
+          </h2>
+        </Reveal>
+        {aside ? (
+          <Reveal index={2} stagger={110} className="lg:pt-2">
+            {aside}
+          </Reveal>
+        ) : null}
       </div>
     </DatumGrid>
   );

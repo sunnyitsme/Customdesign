@@ -114,22 +114,26 @@ test('B — desktop navigation, scrolled solid state', async ({ page }) => {
   await page.waitForTimeout(900); // let the 420ms colour transition finish
   const after = await page.locator('header').evaluate((el) => getComputedStyle(el).backgroundColor);
 
-  // Resolve --color-ground rather than hardcoding a hex. A literal here turns
-  // every palette change into a test failure that says nothing about behaviour;
-  // what this test is actually asserting is that the header goes from
-  // transparent to the page ground.
-  const ground = await page.evaluate(() => {
+  // The solid header now sits on a 92%-opaque ground with a backdrop blur (a
+  // deliberate premium refinement, D-019). Rather than parse a colour string —
+  // Tailwind v4 emits oklab(), so channel-splitting is brittle — paint a probe
+  // with the header's own solid-state utilities and let the browser compute the
+  // exact same value. This stays correct across palette and colour-space
+  // changes; what it asserts is behavioural: the header goes from fully
+  // transparent to the ground surface, held just short of opaque.
+  const expected = await page.evaluate(() => {
     const probe = document.createElement('div');
-    probe.style.backgroundColor = 'var(--color-ground)';
+    probe.className = 'bg-ground/92';
     document.body.appendChild(probe);
     const value = getComputedStyle(probe).backgroundColor;
     probe.remove();
     return value;
   });
 
-  console.log(`\n[B] header transition: ${before} -> ${after} (ground ${ground})`);
+  console.log(`\n[B] header transition: ${before} -> ${after} (expected ${expected})`);
   expect(before).toBe('rgba(0, 0, 0, 0)');
-  expect(after).toBe(ground);
+  expect(after).not.toBe(before);
+  expect(after).toBe(expected);
 
   await page.screenshot({ path: 'shots/review/B-nav-scrolled-solid-1440.png' });
 });

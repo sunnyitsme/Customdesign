@@ -1,4 +1,5 @@
 import { Container, DatumGrid } from "@/components/ui/Container";
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { PendingValue } from "@/components/ui/PendingValue";
@@ -24,13 +25,17 @@ export function CredibilityStats() {
     >
       <Container>
         <DatumGrid>
-          <Eyebrow tone="dark">Proof</Eyebrow>
-          <h2
-            id="stats-heading"
-            className="max-w-[24ch] text-heading-1 font-medium text-balance"
-          >
-            The figures behind the advice.
-          </h2>
+          <Reveal>
+            <Eyebrow tone="dark">Proof</Eyebrow>
+          </Reveal>
+          <Reveal index={1} stagger={110}>
+            <h2
+              id="stats-heading"
+              className="max-w-[24ch] text-heading-1 font-medium text-balance"
+            >
+              The figures behind the advice.
+            </h2>
+          </Reveal>
         </DatumGrid>
 
         <PendingContent
@@ -38,9 +43,12 @@ export function CredibilityStats() {
           label="stats.figures — every figure needs a value, source, as-at date and approver"
         >
           <dl className="mt-12 m-0 grid grid-cols-1 border-t border-line-inverse sm:grid-cols-2 lg:grid-cols-5">
-            {stats.map((stat) => (
-              <div
+            {stats.map((stat, statIndex) => (
+              <Reveal
                 key={stat.id}
+                index={statIndex}
+                stagger={70}
+                distance="0.75rem"
                 className="border-b border-line-inverse px-0 py-8 sm:px-6 sm:first:pl-0 lg:border-b-0 lg:border-l lg:first:border-l-0 lg:py-10"
               >
                 <dt className="text-body-sm font-medium text-ink-inverse">
@@ -58,7 +66,7 @@ export function CredibilityStats() {
                     />
                   )}
                 </dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
         </PendingContent>

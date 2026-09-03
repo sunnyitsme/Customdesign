@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Reveal } from "@/components/motion/Reveal";
 import { Breadcrumbs, type Crumb } from "@/components/ui/Breadcrumbs";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -41,9 +42,15 @@ export function PageOpening({
       className="on-deep bg-deep pt-[calc(var(--header-height)+var(--section-sm))] pb-[var(--section-md)] text-ink-inverse"
     >
       <Container>
-        <Breadcrumbs items={crumbs} />
+        {/* trail -> eyebrow -> headline -> standfirst, the same 110ms beat the
+            hub heroes use, so every internal page opens identically. */}
+        <Reveal>
+          <Breadcrumbs items={crumbs} />
+        </Reveal>
         <DatumGrid className="mt-10">
-          <Eyebrow tone="dark">{eyebrow}</Eyebrow>
+          <Reveal index={1} stagger={110}>
+            <Eyebrow tone="dark">{eyebrow}</Eyebrow>
+          </Reveal>
           <div
             className={
               image
@@ -52,16 +59,20 @@ export function PageOpening({
             }
           >
             <div>
-              <h1
-                id={headingId}
-                className="max-w-[20ch] text-display-1 font-medium text-balance"
-              >
-                {title}
-              </h1>
+              <Reveal index={2} stagger={110}>
+                <h1
+                  id={headingId}
+                  className="max-w-[20ch] text-display-1 font-medium text-balance"
+                >
+                  {title}
+                </h1>
+              </Reveal>
               {standfirst && (
-                <p className="mt-8 max-w-[58ch] text-body-lg text-ink-inverse-secondary">
-                  {standfirst}
-                </p>
+                <Reveal index={3} stagger={110}>
+                  <p className="mt-8 max-w-[58ch] text-body-lg text-ink-inverse-secondary">
+                    {standfirst}
+                  </p>
+                </Reveal>
               )}
               {children}
             </div>

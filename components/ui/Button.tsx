@@ -7,6 +7,11 @@ type Tone = "light" | "dark";
 /**
  * Three button variants, no more. Squared (radius caps at 2px), so the
  * rounded-pill look is unavailable by construction.
+ *
+ * Filled buttons lift 1px on hover. One pixel is not a mistake: at this scale
+ * it reads as the surface responding rather than as the button jumping, which
+ * is the difference between considered and cheap. Transform only, so it costs
+ * no layout, and it sits behind the global reduced-motion switch.
  */
 const styles: Record<Variant, Record<Tone, string>> = {
   primary: {
@@ -41,7 +46,7 @@ export function Button({
   const base =
     variant === "tertiary"
       ? "inline-flex items-center text-body-sm font-medium transition-colors duration-base"
-      : "inline-flex items-center justify-center rounded-sm px-6 py-3.5 text-body-sm font-medium transition-colors duration-base";
+      : "inline-flex items-center justify-center rounded-sm px-6 py-3.5 text-body-sm font-medium transition-[background-color,transform] duration-base ease-out-quart hover:-translate-y-px";
 
   return (
     <Link

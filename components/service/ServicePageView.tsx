@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Reveal } from "@/components/motion/Reveal";
 import { Accordion } from "@/components/ui/Accordion";
 import { Breadcrumbs, type Crumb } from "@/components/ui/Breadcrumbs";
 import { Container, DatumGrid } from "@/components/ui/Container";
@@ -48,24 +49,30 @@ function ServiceHero({
         </div>
 
         <DatumGrid className="mt-10">
-          <Eyebrow tone={dark ? "dark" : "light"}>
-            {page.variant === "educational" ? "Guide" : "Service"}
-          </Eyebrow>
+          <Reveal>
+            <Eyebrow tone={dark ? "dark" : "light"}>
+              {page.variant === "educational" ? "Guide" : "Service"}
+            </Eyebrow>
+          </Reveal>
           <div className="grid gap-x-14 gap-y-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start">
             <div>
-              <h1
-                id="service-heading"
-                className="max-w-[18ch] text-display-1 font-medium text-balance"
-              >
-                {page.title}
-              </h1>
-              <p
-                className={`mt-8 max-w-[54ch] text-body-lg ${
-                  dark ? "text-ink-inverse-secondary" : "text-ink-secondary"
-                }`}
-              >
-                {page.scope}
-              </p>
+              <Reveal index={1} stagger={110}>
+                <h1
+                  id="service-heading"
+                  className="max-w-[18ch] text-display-1 font-medium text-balance"
+                >
+                  {page.title}
+                </h1>
+              </Reveal>
+              <Reveal index={2} stagger={110} className="mt-8">
+                <p
+                  className={`max-w-[54ch] text-body-lg ${
+                    dark ? "text-ink-inverse-secondary" : "text-ink-secondary"
+                  }`}
+                >
+                  {page.scope}
+                </p>
+              </Reveal>
               {page.intro === null ? (
                 <PendingContent
                   tone={dark ? "dark" : "light"}

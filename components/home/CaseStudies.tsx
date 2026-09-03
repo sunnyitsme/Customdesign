@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { PendingValue } from "@/components/ui/PendingValue";
@@ -27,18 +28,28 @@ export function CaseStudies() {
     >
       <Container>
         <DatumGrid>
-          <Eyebrow tone="dark">Selected cases</Eyebrow>
+          <Reveal>
+            <Eyebrow tone="dark">Selected cases</Eyebrow>
+          </Reveal>
           <div className="grid gap-x-16 gap-y-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
-            <h2
-              id="cases-heading"
-              className="max-w-[19ch] text-display-2 font-medium text-balance"
+            <Reveal index={1} stagger={110}>
+              <h2
+                id="cases-heading"
+                className="max-w-[19ch] text-display-2 font-medium text-balance"
+              >
+                Selected client cases.
+              </h2>
+            </Reveal>
+            <Reveal
+              index={2}
+              stagger={110}
+              className="max-w-[42ch] lg:pt-2"
             >
-              Selected client cases.
-            </h2>
-            <p className="max-w-[42ch] text-body-lg text-ink-inverse-secondary lg:pt-2">
-              Cases are published only where the client has agreed and
-              compliance has approved the wording.
-            </p>
+              <p className="text-body-lg text-ink-inverse-secondary">
+                Cases are published only where the client has agreed and
+                compliance has approved the wording.
+              </p>
+            </Reveal>
           </div>
         </DatumGrid>
 
@@ -49,8 +60,12 @@ export function CaseStudies() {
         >
           <ol className="m-0 list-none border-t border-line-inverse p-0">
             {cases.map((entry, index) => (
-              <li
+              <Reveal
+                as="li"
                 key={entry.id}
+                index={index}
+                stagger={90}
+                distance="1rem"
                 className="border-b border-line-inverse py-8 lg:py-9"
               >
                 <div
@@ -95,7 +110,7 @@ export function CaseStudies() {
                     ) : null}
                   </div>
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ol>
         </PendingContent>

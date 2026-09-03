@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { divisions } from "@/content/services";
@@ -37,7 +38,9 @@ export function ServiceDivisions() {
     >
       <Container>
         <DatumGrid>
-          <Eyebrow>What we do</Eyebrow>
+          <Reveal>
+            <Eyebrow>What we do</Eyebrow>
+          </Reveal>
           <PendingContent label="divisions.heading — approved copy required">
             <h2
               id="divisions-heading"
@@ -52,7 +55,11 @@ export function ServiceDivisions() {
           {/* The index */}
           <ol className="m-0 list-none border-b border-line p-0">
             {divisions.map((division, index) => (
-              <li
+              <Reveal
+                as="li"
+                index={index}
+                stagger={80}
+                distance="1rem"
                 key={division.id}
                 className="border-t border-line first:border-t-0 lg:first:border-t"
               >
@@ -102,7 +109,7 @@ export function ServiceDivisions() {
                     </div>
                   </DatumGrid>
                 </Link>
-              </li>
+              </Reveal>
             ))}
           </ol>
 

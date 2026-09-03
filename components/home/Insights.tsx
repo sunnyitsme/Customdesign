@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { insights } from "@/content/insights";
 
@@ -44,7 +45,7 @@ export function Insights() {
         >
           <div className="grid gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
             {lead ? (
-              <article className="group">
+              <Reveal as="article" className="group">
                 <div className="relative aspect-3/2 w-full">
                   <DrawingPlate
                     label="Image required — editorial finance / property"
@@ -68,13 +69,18 @@ export function Insights() {
                     "Author and date [TBC]"
                   )}
                 </p>
-              </article>
+              </Reveal>
             ) : null}
 
             <div className="flex flex-col gap-8">
-              {rest.map((insight) => (
-                <article
+              {rest.map((insight, restIndex) => (
+                <Reveal
+                  as="article"
                   key={insight.id}
+                  index={restIndex}
+                  stagger={90}
+                  delay={140}
+                  distance="1rem"
                   className="border-t border-line pt-7 first:border-t-0 first:pt-0"
                 >
                   <div className="relative aspect-16/10 w-full">
@@ -92,7 +98,7 @@ export function Insights() {
                   <p className="mt-3 max-w-[40ch] font-prose text-body text-ink-secondary">
                     {insight.standfirst ?? "Standfirst required."}
                   </p>
-                </article>
+                </Reveal>
               ))}
             </div>
           </div>

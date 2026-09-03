@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
+import { Reveal } from "@/components/motion/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PendingContent } from "@/components/ui/PendingContent";
 import { about } from "@/content/about";
@@ -21,16 +22,24 @@ export function AboutGuide() {
     >
       <Container>
         <DatumGrid>
-          <Eyebrow>{about.eyebrow}</Eyebrow>
+          <Reveal>
+            <Eyebrow>{about.eyebrow}</Eyebrow>
+          </Reveal>
           <div className="grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center">
-            <div className="relative aspect-4/5 w-full lg:aspect-[4/4.4]">
+            {/* The one parallax on the homepage. The frame is fixed; only the
+                plate inside drifts, by 28px across a full viewport pass, and
+                only at 1024px and up. Restrained enough to read as depth. */}
+            <div
+              data-parallax=""
+              className="relative aspect-4/5 w-full lg:aspect-[4/4.4]"
+            >
               <DrawingPlate
                 label="Image required — premium architectural / private-client interior"
                 tone="light"
               />
             </div>
 
-            <div className="lg:pt-2">
+            <Reveal index={1} stagger={120} className="lg:pt-2">
               <PendingContent label="about.copy — approved headline required">
                 <h2
                   id="about-heading"
@@ -53,7 +62,7 @@ export function AboutGuide() {
               >
                 {about.cta.label}
               </Link>
-            </div>
+            </Reveal>
           </div>
         </DatumGrid>
       </Container>

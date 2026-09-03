@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Reveal } from "@/components/motion/Reveal";
 import { Container, DatumGrid } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { HeroMedia } from "@/components/ui/HeroMedia";
@@ -43,7 +44,11 @@ export function HubHero({
     >
       <Container>
         <DatumGrid>
-          <Eyebrow tone={dark ? "dark" : "light"}>{eyebrow}</Eyebrow>
+          {/* eyebrow -> headline -> standfirst -> actions, 110ms apart. Short
+              enough that a reader never waits for the page to assemble. */}
+          <Reveal>
+            <Eyebrow tone={dark ? "dark" : "light"}>{eyebrow}</Eyebrow>
+          </Reveal>
           <div
             className={
               media === "portrait"
@@ -52,18 +57,27 @@ export function HubHero({
             }
           >
             <div>
-              <h1
-                id={headingId}
-                className="max-w-[17ch] text-display-1 font-medium text-balance"
+              <Reveal index={1} stagger={110}>
+                <h1
+                  id={headingId}
+                  className="max-w-[17ch] text-display-1 font-medium text-balance"
+                >
+                  {title}
+                </h1>
+              </Reveal>
+              <Reveal index={2} stagger={110}>
+                <p
+                  className={`mt-8 max-w-[56ch] text-body-lg ${dark ? "text-ink-inverse-secondary" : "text-ink-secondary"}`}
+                >
+                  {standfirst}
+                </p>
+              </Reveal>
+              <Reveal
+                index={3}
+                stagger={110}
+                distance="0.75rem"
+                className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-4"
               >
-                {title}
-              </h1>
-              <p
-                className={`mt-8 max-w-[56ch] text-body-lg ${dark ? "text-ink-inverse-secondary" : "text-ink-secondary"}`}
-              >
-                {standfirst}
-              </p>
-              <div className="mt-11 flex flex-wrap items-center gap-x-8 gap-y-4">
                 <Link
                   href="/contact"
                   className={`inline-flex items-center justify-center rounded-sm px-7 py-4 text-body-sm font-medium transition-colors duration-base ${
@@ -84,7 +98,7 @@ export function HubHero({
                 >
                   {site.phone}
                 </a>
-              </div>
+              </Reveal>
               {aside}
             </div>
 

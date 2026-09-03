@@ -24,6 +24,9 @@ export function DrawingPlate({
   return (
     <div
       aria-hidden="true"
+      // A placeholder has nothing to settle into, so it fades rather than
+      // scaling. Keeps the rhythm without pretending to be a photograph.
+      data-reveal="fade"
       className={`absolute inset-0 overflow-hidden ${className}`}
       style={{ background: dark ? "var(--plate-dark)" : "var(--plate-light)" }}
     >

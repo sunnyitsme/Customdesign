@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { DrawingPlate } from "@/components/ui/DrawingPlate";
 import { PendingContent } from "@/components/ui/PendingContent";
+import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { team } from "@/content/team";
 
@@ -38,10 +39,14 @@ export function Experts() {
         >
           <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-14 p-0 sm:grid-cols-2 xl:grid-cols-4">
             {team.map((member, index) => (
-              <li
+              <Reveal
+                as="li"
                 key={member.id}
+                index={index}
+                stagger={90}
                 className={index % 2 === 1 ? "xl:mt-12" : undefined}
               >
+                {/* Portrait first, name and title a beat behind it. */}
                 <div className="relative aspect-4/5 w-full">
                   <DrawingPlate
                     label={`${member.name} — portrait required`}
@@ -66,7 +71,7 @@ export function Experts() {
                     Role and qualifications [FIRM CONFIRMATION REQUIRED]
                   </p>
                 ) : null}
-              </li>
+              </Reveal>
             ))}
           </ul>
         </PendingContent>

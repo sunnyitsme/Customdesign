@@ -557,3 +557,55 @@ provider marks rendering, the contact form validating and refusing to submit,
 `meta robots` and `robots.txt`, and zero broken asset requests. 138 distinct
 asset paths all prefixed and all resolving.
 
+## D-019 — Scroll motion, reintroduced without the D-010 failure ✅
+
+D-010 removed a `whileInView` scroll-reveal because it rendered `opacity: 0`
+into the server HTML, hiding service copy behind JavaScript. This reintroduces
+premium scroll motion while making that failure structurally impossible.
+
+### No animation library
+
+Framer Motion was considered and not used. The reveal is a SERVER primitive
+(`components/motion/Reveal.tsx`) that emits data attributes only; the hidden
+state lives in CSS that matches **exclusively** under `[data-motion="on"]`, an
+attribute a pre-paint inline script sets on `<html>` and only when the viewer
+allows motion. So the server HTML is always fully visible, and every degraded
+path — no JS, reduced motion, a crawler, a script that fails — resolves to
+"everything visible, no animation". Verified: 0 `opacity:0` in the SSR output,
+service copy present with JavaScript disabled.
+
+`suppressHydrationWarning` on `<html>` covers the one intentional server/client
+difference (the pre-paint attribute) — the standard next-themes pattern.
+
+### One observer, one rAF loop
+
+`components/motion/MotionRuntime.tsx` runs a single IntersectionObserver for
+every `[data-reveal]` on the page and a single rAF loop for every
+`[data-parallax]`, not one per element. Reveals unobserve on trigger, so
+scrolling back up never replays. A fast-scroll backstop reveals anything flung
+past between frames, and drops the stagger delay when it does — a stagger only
+helps someone watching it arrive.
+
+### What moves, and how much
+
+Default: opacity + 28px settle (18px on mobile), ~780ms, `--ease-out-quart`,
+`once`. Headings run eyebrow→heading→copy at 110ms; card groups at 60-90ms.
+Images use a clip-and-settle (frame fixed, picture 1.04→1) — never a zoom.
+`SectionHeading` carries the sequence once, so most sections inherit it. The
+process connector draws along its axis, then the four steps arrive.
+
+Parallax is 28px, desktop-only (not even collected below 1024px), and used in
+exactly two places: the About plate and the CTA plate.
+
+Header refined to a 92% ground with backdrop-blur (14.01:1 worst case, AAA);
+filled buttons lift 1px on hover. Marquees are untouched — each section fades in
+as one object (opacity only, so the scroll container never moves); the engines,
+speeds, hover-pause and reduced-motion behaviour are exactly as before.
+
+### Verified
+
+CLS < 0.001 at every breakpoint; no horizontal overflow; fast-scroll leaves no
+blank bands; scroll-up does not replay; reduced motion shows everything with no
+parallax; both marquees still autoplay and pause on hover; no hydration
+warnings across four routes. tsc, eslint, next build, 134 Playwright + axe.
+
